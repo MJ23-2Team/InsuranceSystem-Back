@@ -2,6 +2,7 @@ package server.api.insurance.reward;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.api.insurance.contract.Contract;
 import server.api.insurance.util.Constants.Result;
 
 import java.time.LocalDate;
@@ -16,8 +17,11 @@ public class Reward {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rewardID")
-    private Long rewardID;
-    private Long contractID;
+    private int rewardID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contractID")
+    private Contract contract;
     private int reward;
 
     private Result appliResult;

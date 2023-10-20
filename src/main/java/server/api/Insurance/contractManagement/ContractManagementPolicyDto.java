@@ -6,7 +6,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ContractManagementDto {
+public class ContractManagementPolicyDto {
     private int policyID;
     private String content;
     private String name;

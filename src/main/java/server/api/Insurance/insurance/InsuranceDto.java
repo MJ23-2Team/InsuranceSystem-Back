@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InsuranceDto {
-    private Long insuranceID;
+    private int insuranceID;
     private String insuranceName;
     private String planReport;
     private InsuranceState insuranceState;

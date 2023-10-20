@@ -2,6 +2,7 @@ package server.api.insurance.contract;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.api.insurance.customer.Customer;
 import server.api.insurance.util.Constants.Result;
 
 @Entity
@@ -16,7 +17,13 @@ public class AdviceNote {
     @Column(name = "adviceNoteID")
     private int adviceNoteID;
     private String content;
-    private int customerID;
     private Result result;
-    private int contractID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customerID")
+    private Customer customer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contractID")
+    private Contract contract;
 }

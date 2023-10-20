@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RewardDto {
-    private Long rewardID;
-    private Long contractID;
+    private int rewardID;
+    private int contractID;
     private int reward;
 
     private Result appliResult;

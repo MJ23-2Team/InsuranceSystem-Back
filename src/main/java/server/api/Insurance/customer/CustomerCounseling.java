@@ -15,7 +15,9 @@ public class CustomerCounseling {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "counselingID")
     private int counselingID;
-    private int customerID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customerID")
+    private Customer customer;
     private String counselingPlace;
     private LocalDateTime counselingTime;
     private CounselingState counselingState;

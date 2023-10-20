@@ -7,8 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CampaignProgramDto {
-    private Long campaignID; // 캠페인 ID - DB 자동 생성
-    private Long insuranceID; // 캠페인 대상 보험
+    private int campaignID; // 캠페인 ID - DB 자동 생성
+    private int insuranceID; // 캠페인 대상 보험
 
     private int budget; // 캠페인 예산
 

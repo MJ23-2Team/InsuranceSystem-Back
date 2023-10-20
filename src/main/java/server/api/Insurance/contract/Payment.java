@@ -16,7 +16,10 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "paymentID")
     private int paymentID;
-    private int contractID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contractID")
+    private Contract contract;
 
     private int duration;				// 누적 납부 기간
     private int contractDuration;		// 가입 기간

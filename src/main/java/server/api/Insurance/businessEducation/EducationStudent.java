@@ -15,11 +15,14 @@ public class EducationStudent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "studentID")
     private int studentID;
-    private int educationID;
-    private Gender gender;;
+    private Gender gender;
     private int age;
     private String name;
     private String phone;
     private String examination;
     private int studentScore;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "educationID")
+    private Education educationID;
 }

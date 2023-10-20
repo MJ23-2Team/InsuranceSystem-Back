@@ -2,6 +2,7 @@ package server.api.insurance.marketingPlanning;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.api.insurance.insurance.Insurance;
 
 @Entity
 @Getter
@@ -13,8 +14,11 @@ public class CampaignProgram {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "campaignID")
-    private Long campaignID; // 캠페인 ID - DB 자동 생성
-    private Long insuranceID; // 캠페인 대상 보험
+    private int campaignID; // 캠페인 ID - DB 자동 생성
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "insuranceID")
+    private Insurance insurance;
 
     private int budget; // 캠페인 예산
 

@@ -2,7 +2,13 @@ package server.api.insurance.customer;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.api.insurance.contract.AdviceNote;
+import server.api.insurance.contract.Contract;
+import server.api.insurance.customerManagement.CustomerManagement;
 import server.api.insurance.util.Constants.Gender;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -27,4 +33,13 @@ public class Customer {
     private int incomeLevel;
     private String accountNumber; //계좌번호
     private String accountPassword;
+
+    @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
+    private List<Contract> contracts = new ArrayList<>();
+    @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
+    private List<AdviceNote> adviceNotes = new ArrayList<>();
+    @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
+    private List<CustomerCounseling> customerCounselings = new ArrayList<>();
+    @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
+    private List<CustomerManagement> customerManagements = new ArrayList<>();
 }

@@ -2,8 +2,15 @@ package server.api.insurance.insurance;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.api.insurance.contract.Contract;
+import server.api.insurance.marketingPlanning.CampaignProgram;
+import server.api.insurance.userPersona.UserPersona;
+import server.api.insurance.userPersona.UserPersonaDto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -14,7 +21,7 @@ public class Insurance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "insuranceID")
-    private Long insuranceID;
+    private int insuranceID;
     private String insuranceName;
     private String planReport;
     private InsuranceState insuranceState;
@@ -37,4 +44,10 @@ public class Insurance {
     private int rewardAmount;	// 보상 금액
     private int salesPerformance;	// 판매 실적
 
+    @OneToMany(mappedBy = "insurance") //FK가 없는 쪽에 mappedBy 사용을 추천
+    private List<Contract> contracts = new ArrayList<>();
+    @OneToMany(mappedBy = "insurance") //FK가 없는 쪽에 mappedBy 사용을 추천
+    private List<UserPersona> userPersonas = new ArrayList<>();
+    @OneToMany(mappedBy = "insurance") //FK가 없는 쪽에 mappedBy 사용을 추천
+    private List<CampaignProgram> campaignPrograms = new ArrayList<>();
 }
