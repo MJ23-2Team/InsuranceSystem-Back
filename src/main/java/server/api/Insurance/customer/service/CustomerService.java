@@ -15,17 +15,13 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepository userRepository;
 
-    public void saveUser(CustomerDto request) {
-        userRepository.save(request);
-    }
+    public void add(CustomerDto request) {userRepository.save(request);}
 
-    public List<CustomerDto> getUser() {return userRepository.findAll();}
+    public CustomerDto retrieve(Long id) {return userRepository.findById(id).get();}
 
-    public void updateUser(CustomerDto request) {
-        userRepository.save(request);
-    }
+    public List<CustomerDto> retrieveAll() {return userRepository.findAll();}
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
+    public void update(CustomerDto request) {userRepository.save(request);}
+
+    public void delete(Long id) {userRepository.deleteById(id);}
 }

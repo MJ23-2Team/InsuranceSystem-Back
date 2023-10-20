@@ -11,15 +11,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerControl {
     private final CustomerService customerService;
-    @PostMapping("/save")
-    public void saveUser(@RequestBody CustomerDto request) {
-        customerService.saveUser(request);}
-    @GetMapping("/user")
-    public List<CustomerDto> getUser() {return customerService.getUser();}
-    @PutMapping("/user")
-    public void updateUser(@RequestBody CustomerDto request) {
-        customerService.updateUser(request);}
-    @DeleteMapping("/user")
-    public void deleteUser(@RequestParam Long id) {
-        customerService.deleteUser(id);}
+    @PostMapping("/customer")
+    public void add(@RequestBody CustomerDto request) {customerService.add(request);}
+    @GetMapping("/customer")
+    public CustomerDto retrieve(@RequestParam Long id) {return customerService.retrieve(id);}
+    @GetMapping("/customer/getAll")
+    public List<CustomerDto> retrieveAll() {return customerService.retrieveAll();}
+    @PutMapping("/customer")
+    public void update(@RequestBody CustomerDto request) {customerService.update(request);}
+    @DeleteMapping("/customer")
+    public void delete(@RequestParam Long id) {customerService.delete(id);}
 }
