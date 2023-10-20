@@ -1,20 +1,20 @@
-package server.api.insurance.user.dto;
+package server.api.insurance.customer.dto;
 
 import lombok.*;
-import server.api.insurance.user.entity.User;
+import server.api.insurance.customer.entity.Customer;
 
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class CustomerDto{
     private Long id;
     private String name;
     private int age;
 
-    public static UserDTO of(User user){
-        return UserDTO.builder()
+    public static CustomerDto of(Customer user){
+        return CustomerDto.builder()
                 .name(user.getName())
                 .age(user.getAge())
                 .build();

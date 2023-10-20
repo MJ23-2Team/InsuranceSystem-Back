@@ -1,4 +1,4 @@
-package server.api.insurance.user.entity;
+package server.api.insurance.customer.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,10 +10,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_Id")
+    @Column(name = "customerID")
     private Long id;
     @Column(name = "name")
     private String name;
