@@ -8,13 +8,13 @@ import server.api.insurance.user.entity.User;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserResponse {
+public class UserDTO {
     private Long id;
     private String name;
     private int age;
 
-    public static UserResponse of(User user){
-        return UserResponse.builder()
+    public static UserDTO of(User user){
+        return UserDTO.builder()
                 .name(user.getName())
                 .age(user.getAge())
                 .build();

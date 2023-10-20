@@ -3,9 +3,7 @@ package server.api.insurance.user.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import server.api.insurance.user.dto.UserCreateRequest;
-import server.api.insurance.user.dto.UserResponse;
-import server.api.insurance.user.dto.UserUpdateRequest;
+import server.api.insurance.user.dto.UserDTO;
 import server.api.insurance.user.repository.UserRepository;
 
 import java.util.List;
@@ -16,24 +14,17 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
-    public void saveUser(UserCreateRequest request) {
-        userRepository.save(request.getName(),request.getAge());
+    public void saveUser(UserDTO request) {
+        userRepository.save(request);
     }
 
-    public List<UserResponse> getUser() {return userRepository.get();}
+    public List<UserDTO> getUser() {return userRepository.findAll();}
 
-    public void updateUser(UserUpdateRequest request) {
-        if(userRepository.isUserNotExistById(request.getId())){throw new IllegalArgumentException();}
-        userRepository.update(request.getName(), request.getId());
+    public void updateUser(UserDTO request) {
+        userRepository.save(request);
     }
 
-    public void deleteUser(String name) {
-        if(userRepository.isUserNotExistByName(name)){ throw new IllegalArgumentException();}
-        userRepository.delete(name);
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 }
-
-//        userRepository.save(User.builder()
-//                .name(request.getName())
-//                .age(request.getAge())
-//                .build());

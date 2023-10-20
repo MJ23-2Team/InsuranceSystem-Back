@@ -13,9 +13,10 @@ import lombok.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "User_ID")
+    @Column(name = "user_Id")
     private Long id;
-
+    @Column(name = "name")
     private String name;
+    @Column(name = "age")
     private Integer age;
 }
