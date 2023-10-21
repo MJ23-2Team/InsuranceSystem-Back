@@ -13,7 +13,7 @@ import server.api.insurance.util.Constants.Gender;
 public class EducationStudent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "studentID")
+    @Column(name = "studentid")
     private int studentID;
     private Gender gender;
     private int age;
@@ -24,5 +24,5 @@ public class EducationStudent {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "educationID")
-    private Education educationID;
+    private Education education;
 }

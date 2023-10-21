@@ -20,7 +20,7 @@ import java.util.List;
 public class Insurance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "insuranceID")
+    @Column(name = "insuranceid")
     private int insuranceID;
     private String insuranceName;
     private String planReport;

@@ -14,7 +14,7 @@ import server.api.insurance.util.Constants.Result;
 public class AdviceNote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "adviceNoteID")
+    @Column(name = "adviceNoteid")
     private int adviceNoteID;
     private String content;
     private Result result;

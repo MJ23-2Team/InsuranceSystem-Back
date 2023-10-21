@@ -9,6 +9,7 @@ import server.api.insurance.util.Constants.Gender;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerDto{
+
     private int customerID;
     private String address;
     private int age;

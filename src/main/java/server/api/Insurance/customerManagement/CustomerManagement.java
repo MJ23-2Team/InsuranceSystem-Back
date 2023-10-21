@@ -13,10 +13,10 @@ import server.api.insurance.customer.Customer;
 public class CustomerManagement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customerManagementID")
+    @Column(name = "customer_managementid")
     private int customerManagementID;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customerID")
+    @JoinColumn(name = "customerid")
     private Customer customer;
     private String ID;
     private String PW;

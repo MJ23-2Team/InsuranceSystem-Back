@@ -19,15 +19,15 @@ import java.util.List;
 public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contractID")
+    @Column(name = "contractid")
     private int contractID;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customerID")
+    @JoinColumn(name = "customerid")
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "insuranceID")
+    @JoinColumn(name = "insuranceid")
     private Insurance insurance;
 
     private LocalDate contractDate;

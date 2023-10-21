@@ -12,7 +12,7 @@ import lombok.*;
 public class AssumePolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "policyID")
+    @Column(name = "policyid")
     private int policyID; // 인수정책 ID - DB에서 자동 추가
     private String name; // 인수정책 이름
     private String content; // 인수정책 내용

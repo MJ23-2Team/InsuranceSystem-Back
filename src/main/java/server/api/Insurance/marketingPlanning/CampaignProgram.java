@@ -13,11 +13,11 @@ import server.api.insurance.insurance.Insurance;
 public class CampaignProgram {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "campaignID")
+    @Column(name = "campaignid")
     private int campaignID; // 캠페인 ID - DB 자동 생성
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "insuranceID")
+    @JoinColumn(name = "insuranceid")
     private Insurance insurance;
 
     private int budget; // 캠페인 예산

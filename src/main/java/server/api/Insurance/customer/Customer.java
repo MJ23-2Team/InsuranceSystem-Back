@@ -20,7 +20,7 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customerID")
+    @Column(name = "customerid")
     private int customerID;
 
     private String address;
@@ -42,4 +42,20 @@ public class Customer {
     private List<CustomerCounseling> customerCounselings = new ArrayList<>();
     @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<CustomerManagement> customerManagements = new ArrayList<>();
+
+    public static Customer of(CustomerDto customerDto){
+        return Customer.builder()
+                .customerID(customerDto.getCustomerID())
+                .address(customerDto.getAddress())
+                .age(customerDto.getAge())
+                .sex(customerDto.getSex())
+                .job(customerDto.getJob())
+                .name(customerDto.getName())
+                .phoneNumber(customerDto.getPhoneNumber())
+                .registrationNumber(customerDto.getRegistrationNumber())
+                .incomeLevel(customerDto.getIncomeLevel())
+                .accountNumber(customerDto.getAccountNumber())
+                .accountPassword(customerDto.getAccountPassword())
+                .build();
+    }
 }

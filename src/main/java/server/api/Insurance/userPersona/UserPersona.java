@@ -14,11 +14,11 @@ import server.api.insurance.util.Constants.Gender;
 public class UserPersona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userPersonaID")
+    @Column(name = "userPersonaid")
     private int userPersonaID;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "insuranceID")
+    @JoinColumn(name = "insuranceid")
     private Insurance insurance;
 
     private Gender sex;

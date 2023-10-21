@@ -14,11 +14,11 @@ import java.time.LocalDate;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "paymentID")
+    @Column(name = "paymentid")
     private int paymentID;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contractID")
+    @JoinColumn(name = "contractid")
     private Contract contract;
 
     private int duration;				// 누적 납부 기간

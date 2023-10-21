@@ -12,7 +12,7 @@ import lombok.*;
 public class ContractManagementPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "policyID")
+    @Column(name = "policyid")
     private int policyID;
     private String content;
     private String name;

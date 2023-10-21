@@ -13,11 +13,13 @@ import java.time.LocalDateTime;
 public class CustomerCounseling {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "counselingID")
+    @Column(name = "counselingid")
     private int counselingID;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customerID")
+    @JoinColumn(name = "customerid")
     private Customer customer;
+
     private String counselingPlace;
     private LocalDateTime counselingTime;
     private CounselingState counselingState;

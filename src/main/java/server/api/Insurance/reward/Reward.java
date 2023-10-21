@@ -16,11 +16,11 @@ import java.time.LocalDate;
 public class Reward {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rewardID")
+    @Column(name = "rewardid")
     private int rewardID;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contractID")
+    @JoinColumn(name = "contractid")
     private Contract contract;
     private int reward;
 
