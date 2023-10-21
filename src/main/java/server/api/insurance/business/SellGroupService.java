@@ -15,9 +15,7 @@ public class SellGroupService extends Team {
     public void establishPolicy(Target target, Crud crud) {}
 
     @Override
-    public void manage(Target target, Crud crud) {
-
-    }
+    public void manage(Target target, Crud crud) {}
 
     @Override
     public void plan(Target target, Crud crud) {}
