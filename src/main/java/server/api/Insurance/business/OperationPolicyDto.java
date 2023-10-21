@@ -1,6 +1,5 @@
 package server.api.insurance.business;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
