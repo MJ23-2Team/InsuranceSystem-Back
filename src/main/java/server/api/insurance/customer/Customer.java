@@ -25,6 +25,7 @@ public class Customer {
 
     private String address;
     private int age;
+    @Enumerated(EnumType.STRING)
     private Gender sex;
     private String job;
     private String name;
@@ -40,8 +41,9 @@ public class Customer {
     private List<AdviceNote> adviceNotes = new ArrayList<>();
     @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<CustomerCounseling> customerCounselings = new ArrayList<>();
-    @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
-    private List<CustomerManagement> customerManagements = new ArrayList<>();
+    @OneToOne(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
+
+    private CustomerManagement customerManagements = new CustomerManagement();
 
     public static Customer of(CustomerDto customerDto){
         return Customer.builder()

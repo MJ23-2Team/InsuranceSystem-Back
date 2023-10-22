@@ -24,7 +24,9 @@ public class Insurance {
     private int insuranceID;
     private String insuranceName;
     private String planReport;
+    @Enumerated(EnumType.STRING)
     private InsuranceState insuranceState;
+    @Enumerated(EnumType.STRING)
     private InsuranceType insuranceType;
     private String salesTarget; // 보험 판매 대상
     private String canRegistTarget; // 보험 가입 가능 대상
