@@ -29,6 +29,7 @@ public class Education {
     @OneToMany(mappedBy = "education") //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<EducationStudent> educationStudents = new ArrayList<>();
 
+    // TEST
     public static Education of( EducationDto educationDto ){
         return Education.builder()
                 .educationID( educationDto.getEducationID() )
