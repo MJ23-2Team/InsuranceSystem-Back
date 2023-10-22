@@ -2,6 +2,9 @@ package server.api.insurance.underwriting;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.api.insurance.contract.*;
+import server.api.insurance.customer.Customer;
+import server.api.insurance.insurance.Insurance;
 
 @Entity
 @Getter
@@ -18,5 +21,13 @@ public class AssumePolicy {
     private String content; // 인수정책 내용
     @Enumerated(EnumType.STRING)
     private PolicyType policyType; // 인수정책의 종류(일반 인수, 공동 인수) - 시나리오에 존재하지만 설계에서 attribute 제외되어 추가함
+
+    public static AssumePolicy of(AssumePolicyDto assumePolicyDto){
+        return AssumePolicy.builder()
+                .name(assumePolicyDto.getName())
+                .content(assumePolicyDto.getContent())
+                .policyType(assumePolicyDto.getPolicyType())
+                .build();
+    }
 
 }

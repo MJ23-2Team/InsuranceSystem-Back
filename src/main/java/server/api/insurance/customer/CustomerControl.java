@@ -2,6 +2,8 @@ package server.api.insurance.customer;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import server.api.insurance.contract.ContractDto;
+import server.api.insurance.contract.ContractService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerControl {
     private final CustomerService customerService;
+    private final ContractService contractService;
+
+    @PostMapping("/customer/registerInsurance")
+    public void registerInsurance(@RequestBody ContractDto contractDto) {
+        contractService.registerInsurance(contractDto);
+    }
+
     @PostMapping("/customer")
     public void add(@RequestBody CustomerDto request) {customerService.add(request);}
     @GetMapping("/customer")

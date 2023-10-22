@@ -46,4 +46,17 @@ public class Contract {
     private List<Reward> rewards = new ArrayList<>();
     @OneToMany(mappedBy = "contract") //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<Payment> payments = new ArrayList<>();
+
+    public static Contract of(ContractDto contractDto, Customer contractCustomer, Insurance contractInsurance){
+        return Contract.builder()
+                .customer(contractCustomer)
+                .insurance(contractInsurance)
+                .contractDate(contractDto.getContractDate())
+                .contractFile(contractDto.getContractFile())
+                .contractState(ContractState.ONLINE)
+                .contractRunState(ContractRunState.READY)
+                .contractUWState(ContractUWState.BASIC)
+                .specialization(contractDto.getSpecialization())
+                .build();
+    }
 }
