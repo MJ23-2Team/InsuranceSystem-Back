@@ -20,7 +20,7 @@ public class UserPersona {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "insuranceid")
     private Insurance insurance;
-
+    @Enumerated(EnumType.STRING)
     private Gender sex;
     private int age;
     private String job;

@@ -32,8 +32,11 @@ public class Contract {
 
     private LocalDate contractDate;
     private String contractFile;
+    @Enumerated(EnumType.STRING)
     private ContractState contractState;
+    @Enumerated(EnumType.STRING)
     private ContractRunState contractRunState;
+    @Enumerated(EnumType.STRING)
     private ContractUWState contractUWState;
     private String specialization;
 

@@ -25,7 +25,8 @@ public class Payment {
     private LocalDate expireDate;		// 만기 기간
     private String content;				// 내용
     private int amount;					// 납부해야하는 금액
-    private int accidentCount;			// 현재 사고 발생으로 보험금을 타간 횟수
+    private int accidentCount;
+    @Enumerated(EnumType.STRING)// 현재 사고 발생으로 보험금을 타간 횟수
     private PayWay payway;				// 납부 방법
     private boolean result;
 

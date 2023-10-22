@@ -22,5 +22,6 @@ public class CustomerCounseling {
 
     private String counselingPlace;
     private LocalDateTime counselingTime;
+    @Enumerated(EnumType.STRING)
     private CounselingState counselingState;
 }
