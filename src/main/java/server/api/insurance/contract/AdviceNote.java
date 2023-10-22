@@ -17,6 +17,8 @@ public class AdviceNote {
     @Column(name = "adviceNoteid")
     private int adviceNoteID;
     private String content;
+
+    @Enumerated(EnumType.STRING)
     private Result result;
 
     @ManyToOne(fetch = FetchType.LAZY)

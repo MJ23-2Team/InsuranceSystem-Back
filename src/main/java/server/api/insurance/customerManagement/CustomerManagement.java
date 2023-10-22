@@ -15,7 +15,7 @@ public class CustomerManagement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_managementid")
     private int customerManagementID;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customerid")
     private Customer customer;
     private String ID;

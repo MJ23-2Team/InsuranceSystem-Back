@@ -23,7 +23,7 @@ public class Reward {
     @JoinColumn(name = "contractid")
     private Contract contract;
     private int reward;
-
+    @Enumerated(EnumType.STRING)
     private Result appliResult;
     private String accidentProfile;			// File 형식이 TUI에서는 지원되지 않으므로 String으로 대신함
     private LocalDate appliDate;

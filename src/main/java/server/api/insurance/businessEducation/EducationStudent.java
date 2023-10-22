@@ -15,6 +15,7 @@ public class EducationStudent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "studentid")
     private int studentID;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private int age;
     private String name;
