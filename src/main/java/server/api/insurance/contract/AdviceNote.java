@@ -21,11 +21,19 @@ public class AdviceNote {
     @Enumerated(EnumType.STRING)
     private Result result;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customerID")
-    private Customer customer;
+    private int customerID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contractID")
-    private Contract contract;
+    private int contractID;
+
+    public static AdviceNote of( AdviceNoteDto adviceNoteDto ){
+        return AdviceNote.builder()
+                .adviceNoteID( adviceNoteDto.getAdviceNoteID() )
+                .content( adviceNoteDto.getContent() )
+                .result( adviceNoteDto.getResult() )
+                .customerID( adviceNoteDto.getCustomerID() )
+                .contractID( adviceNoteDto.getContractID() )
+                .build();
+    }
 }

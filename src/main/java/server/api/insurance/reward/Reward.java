@@ -19,11 +19,10 @@ public class Reward {
     @Column(name = "rewardid")
     private int rewardID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contractid")
-    private Contract contract;
-    private int reward;
-    @Enumerated(EnumType.STRING)
+    private int contractID;
+    private int rewardAmount;
+
     private Result appliResult;
     private String accidentProfile;			// File 형식이 TUI에서는 지원되지 않으므로 String으로 대신함
     private LocalDate appliDate;
@@ -31,6 +30,18 @@ public class Reward {
 
     private String customerName;
     private String identifyProfile;			// File 형식이 TUI에서는 지원되지 않으므로 String으로 대신함
-					// 보상금
+
+    public static Reward of( RewardDto rewardDto ){
+        return Reward.builder()
+                .rewardID( rewardDto.getRewardID() )
+                .contractID( rewardDto.getContractID() )
+                .rewardAmount( rewardDto.getRewardAmount() )
+                .appliResult( rewardDto.getAppliResult() )
+                .appliDate( rewardDto.getAppliDate() )
+                .content( rewardDto.getContent() )
+                .customerName( rewardDto.getCustomerName() )
+                .identifyProfile( rewardDto.getIdentifyProfile() )
+                .build();
+    }					// 보상금
 
 }

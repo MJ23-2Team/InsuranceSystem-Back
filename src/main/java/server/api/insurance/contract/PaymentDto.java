@@ -22,4 +22,19 @@ public class PaymentDto {
     private int accidentCount;			// 현재 사고 발생으로 보험금을 타간 횟수
     private PayWay payway;				// 납부 방법
     private boolean result;
+
+    public static PaymentDto of( Payment payment ){
+        return PaymentDto.builder()
+                .paymentID( payment.getPaymentID() )
+                .contractID( payment.getContractID() )
+                .duration( payment.getDuration() )
+                .contractDuration(payment.getContractDuration() )
+                .expireDate( payment.getExpireDate() )
+                .content( payment.getContent() )
+                .amount( payment.getAmount() )
+                .accidentCount( payment.getAccidentCount() )
+                .payway( payment.getPayway() )
+                .result(payment.isResult() )
+                .build();
+    }
 }
