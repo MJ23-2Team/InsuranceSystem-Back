@@ -1,5 +1,6 @@
 package server.api.insurance.business;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import server.api.insurance.customer.Customer;
 import server.api.insurance.insurance.Insurance;
@@ -13,6 +14,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class SellGroupService extends Team {
 
     private SellGroupRepository sellGroupRepository;
