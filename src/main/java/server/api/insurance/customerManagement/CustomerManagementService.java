@@ -26,11 +26,16 @@ public class CustomerManagementService {
         if (findCustomer.isPresent()) {
             return findCustomer.get().getCustomer().getCustomerID();
         }
-        throw new CIllegalArgumentException("로그인을 실패했습니다.");
+        throw new CIllegalArgumentException("로그인에 실패했습니다.");
     }
-    public void register(CustomerDto cd, CustomerManagementDto cmd) {
-        customerRepository.save(Customer.of(cd));
-        customerManagementRepository.save(CustomerManagement.of(cmd));
+    public void register(RegisterRequset request) {
+        if (!customerManagementRepository.findByIDEmpty(request.getId())){
+            Customer customer=Customer.of(request.getCustomerDto());
+            customerRepository.save(customer);
+            customerManagementRepository.save(CustomerManagement.builder()
+                    .customer(customer).ID(request.getId()).PW(request.getPw()).build());
+        }else{
+            throw new CIllegalArgumentException("이미 가입된 계정입니다.");
+        }
     }
-
 }

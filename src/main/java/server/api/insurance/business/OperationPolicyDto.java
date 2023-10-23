@@ -13,4 +13,14 @@ public class OperationPolicyDto {
     private String name;
     private int rating;
     private int pass;
+
+    public static OperationPolicyDto of(OperationPolicy dto) {
+        return OperationPolicyDto.builder()
+                .policyID(dto.getPolicyID())
+                .content(dto.getContent())
+                .name(dto.getName())
+                .rating(dto.getRating())
+                .pass(dto.getPass())
+                .build();
+    }
 }
