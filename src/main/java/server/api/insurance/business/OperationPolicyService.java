@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OperationPolicyService {
     private final OperationPolicyRepository operationPolicyRepository;
-    private final SellGroupRepository sellGroupRepository;
-
     public void establishPolicy(OperationPolicyDto dto) {
         operationPolicyRepository.save(OperationPolicy.of(dto));
     }
