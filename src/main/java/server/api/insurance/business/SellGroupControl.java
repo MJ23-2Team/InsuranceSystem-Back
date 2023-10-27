@@ -2,7 +2,6 @@ package server.api.insurance.business;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import server.api.insurance.customer.CustomerDto;
 import server.api.insurance.insurance.InsuranceDto;
 
 import java.util.List;
@@ -21,4 +20,4 @@ public class SellGroupControl {
     public String recommendInsuranceReason(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupService.recommendInsuranceReason(insuarnceId,customerId);}
     @GetMapping("/SellGroup/fee")
     public int calculateInsuranceFee(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupService.calculateInsuranceFee(insuarnceId,customerId);}
-    }
+}

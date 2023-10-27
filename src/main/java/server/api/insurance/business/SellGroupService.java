@@ -3,16 +3,10 @@ package server.api.insurance.business;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import server.api.insurance.customer.Customer;
-import server.api.insurance.customer.CustomerDto;
 import server.api.insurance.exception.CustomException;
-import server.api.insurance.insurance.Insurance;
 import server.api.insurance.insurance.InsuranceDto;
 import server.api.insurance.insurance.InsuranceRepository;
 import server.api.insurance.insurance.InsuranceState;
-import server.api.insurance.util.Constants.Target;
-import server.api.insurance.util.Constants.Crud;
-import server.api.insurance.util.Team;
 
 import java.util.List;
 import java.util.Random;
