@@ -3,15 +3,9 @@ package server.api.insurance.business;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import server.api.insurance.exception.CIllegalArgumentException;
-import server.api.insurance.exception.CustomException;
 import server.api.insurance.exception.SOPPolicyNotFoundException;
-import server.api.insurance.util.Constants.Target;
-import server.api.insurance.util.Constants.Crud;
-import server.api.insurance.util.Team;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
