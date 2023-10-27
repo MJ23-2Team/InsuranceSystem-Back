@@ -17,8 +17,9 @@ public class Payment {
     @Column(name = "paymentid")
     private int paymentID;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contractid")
-    private int contractID;
+    private Contract contract;
 
     private int duration;				// 누적 납부 기간
     private int contractDuration;		// 가입 기간
@@ -33,7 +34,6 @@ public class Payment {
     public static Payment of( PaymentDto paymentDto ){
         return Payment.builder()
                 .paymentID( paymentDto.getPaymentID() )
-                .contractID( paymentDto.getContractID() )
                 .duration( paymentDto.getDuration() )
                 .contractDuration(paymentDto.getContractDuration() )
                 .expireDate( paymentDto.getExpireDate() )

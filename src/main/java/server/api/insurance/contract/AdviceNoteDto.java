@@ -20,8 +20,6 @@ public class AdviceNoteDto {
                 .adviceNoteID( adviceNote.getAdviceNoteID() )
                 .content( adviceNote.getContent() )
                 .result( adviceNote.getResult() )
-                .customerID( adviceNote.getCustomerID() )
-                .contractID( adviceNote.getContractID() )
                 .build();
     }
 }

@@ -26,7 +26,6 @@ public class PaymentDto {
     public static PaymentDto of( Payment payment ){
         return PaymentDto.builder()
                 .paymentID( payment.getPaymentID() )
-                .contractID( payment.getContractID() )
                 .duration( payment.getDuration() )
                 .contractDuration(payment.getContractDuration() )
                 .expireDate( payment.getExpireDate() )
