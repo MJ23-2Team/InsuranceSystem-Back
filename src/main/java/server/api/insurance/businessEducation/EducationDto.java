@@ -17,4 +17,18 @@ public class EducationDto {
     private String place;
     private String teacherName;
     private String teacherPhoneNumber;
+
+    public static EducationDto of( Education education ){
+        return EducationDto.builder()
+                .educationID( education.getEducationID() )
+                .budget( education.getBudget() )
+                .content( education.getContent() )
+                .duration( education.getDuration() )
+                .exResult( education.getExResult() )
+                .name( education.getName() )
+                .place( education.getPlace() )
+                .teacherName( education.getTeacherName() )
+                .teacherPhoneNumber( education.getTeacherPhoneNumber() )
+                .build();
+    }
 }

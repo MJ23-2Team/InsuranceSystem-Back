@@ -30,4 +30,18 @@ public class Payment {
     @Enumerated(EnumType.STRING)// 현재 사고 발생으로 보험금을 타간 횟수
     private PayWay payway;				// 납부 방법
     private boolean result;
+
+    public static Payment of( PaymentDto paymentDto ){
+        return Payment.builder()
+                .paymentID( paymentDto.getPaymentID() )
+                .duration( paymentDto.getDuration() )
+                .contractDuration(paymentDto.getContractDuration() )
+                .expireDate( paymentDto.getExpireDate() )
+                .content( paymentDto.getContent() )
+                .amount( paymentDto.getAmount() )
+                .accidentCount( paymentDto.getAccidentCount() )
+                .payway( paymentDto.getPayway() )
+                .result(paymentDto.isResult() )
+                .build();
+    }
 }

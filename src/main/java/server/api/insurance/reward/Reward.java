@@ -22,8 +22,8 @@ public class Reward {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contractid")
     private Contract contract;
-    private int reward;
-    @Enumerated(EnumType.STRING)
+    private int rewardAmount;
+
     private Result appliResult;
     private String accidentProfile;			// File 형식이 TUI에서는 지원되지 않으므로 String으로 대신함
     private LocalDate appliDate;
@@ -31,6 +31,6 @@ public class Reward {
 
     private String customerName;
     private String identifyProfile;			// File 형식이 TUI에서는 지원되지 않으므로 String으로 대신함
-					// 보상금
+    // 보상금
 
 }

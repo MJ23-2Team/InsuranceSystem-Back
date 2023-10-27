@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class RewardDto {
     private int rewardID;
     private int contractID;
-    private int reward;
+    private int rewardAmount;
 
     private Result appliResult;
     private String accidentProfile;			// File 형식이 TUI에서는 지원되지 않으므로 String으로 대신함

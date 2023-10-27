@@ -42,7 +42,6 @@ public class Customer {
     @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<CustomerCounseling> customerCounselings = new ArrayList<>();
     @OneToOne(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
-
     private CustomerManagement customerManagements = new CustomerManagement();
 
     public static Customer of(CustomerDto customerDto){

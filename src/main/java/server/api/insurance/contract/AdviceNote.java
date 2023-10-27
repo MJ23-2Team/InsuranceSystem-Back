@@ -22,10 +22,18 @@ public class AdviceNote {
     private Result result;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customerID")
+    @JoinColumn(name = "customerid")
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contractID")
+    @JoinColumn(name = "contractid")
     private Contract contract;
+
+    public static AdviceNote of( AdviceNoteDto adviceNoteDto ){
+        return AdviceNote.builder()
+                .adviceNoteID( adviceNoteDto.getAdviceNoteID() )
+                .content( adviceNoteDto.getContent() )
+                .result( adviceNoteDto.getResult() )
+                .build();
+    }
 }
