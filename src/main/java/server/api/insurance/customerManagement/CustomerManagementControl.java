@@ -15,8 +15,8 @@ public class CustomerManagementControl {
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody CustomerDto cd,@RequestBody CustomerManagementDto cmd){
-        customerManagementService.register(cd,cmd);
+    public void register(@RequestBody RegisterRequset request) {
+        customerManagementService.register(request);
     }
 
 }

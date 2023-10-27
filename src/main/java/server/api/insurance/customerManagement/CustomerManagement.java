@@ -20,8 +20,4 @@ public class CustomerManagement {
     private Customer customer;
     private String ID;
     private String PW;
-
-    public static CustomerManagement of(CustomerManagementDto dto){
-        return CustomerManagement.builder().build();
-    }
 }

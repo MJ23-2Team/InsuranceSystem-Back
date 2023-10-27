@@ -15,7 +15,7 @@ public abstract class Team {
 
 	public Team(){}
 
-	public abstract void establishPolicy(Target target, Crud crud );
+	public abstract void establishPolicy(Object request);
 	public abstract void manage( Target target, Crud crud );
 	public abstract void plan( Target target, Crud crud );
 	public abstract void process( Target target, Crud crud );

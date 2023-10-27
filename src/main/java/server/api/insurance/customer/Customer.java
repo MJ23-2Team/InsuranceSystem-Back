@@ -47,7 +47,6 @@ public class Customer {
 
     public static Customer of(CustomerDto customerDto){
         return Customer.builder()
-                .customerID(customerDto.getCustomerID())
                 .address(customerDto.getAddress())
                 .age(customerDto.getAge())
                 .sex(customerDto.getSex())

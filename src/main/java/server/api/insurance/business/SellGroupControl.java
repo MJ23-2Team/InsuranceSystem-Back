@@ -1,35 +1,23 @@
 package server.api.insurance.business;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import server.api.insurance.customer.Customer;
-import server.api.insurance.insurance.Insurance;
-import server.api.insurance.insurance.InsuranceState;
+import org.springframework.web.bind.annotation.*;
+import server.api.insurance.insurance.InsuranceDto;
 
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 public class SellGroupControl {
     private final SellGroupService sellGroupService;
-
-    @GetMapping("/sellGroup/getAll")
-    public List<SellGroup> getAllGroup() {
-        return sellGroupService.getAllGroup();
-    }
-    @GetMapping("/insurance/getRecommended")
-    public List<Insurance> recommendInsurance(Customer customer) {
-        return sellGroupService.recommendInsurance(customer);
-    }
-    @GetMapping("/insurance/getFee")
-    public int calculateInsuranceFee(Insurance insurance, Customer customer) {
-        return sellGroupService.calculateInsuranceFee(insurance, customer);
-    }
-    @GetMapping("/insurance/getRecommendedReason")
-    public String recommendInsuranceReason(Insurance insurance, Customer customer) {
-        return sellGroupService.recommendInsuranceReason(insurance, customer);
-    }
+    @PostMapping("/SellGroup/recommand")
+    public void evaluateResult(@RequestParam int id,@RequestParam String inf) {sellGroupService.evaluateResult(id,inf);}
+    @GetMapping("/SellGroup/recommend")
+    public List<InsuranceDto> recommendInsurance() {return sellGroupService.recommendInsurance();}
+    @GetMapping("/SellGroup/getAll")
+    public List<SellGroupDto> retrieveAll() {return sellGroupService.getAllGroup();}
+    @GetMapping("/SellGroup/recommanReason")
+    public String recommendInsuranceReason(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupService.recommendInsuranceReason(insuarnceId,customerId);}
+    @GetMapping("/SellGroup/fee")
+    public int calculateInsuranceFee(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupService.calculateInsuranceFee(insuarnceId,customerId);}
 }

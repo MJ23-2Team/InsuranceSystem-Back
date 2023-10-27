@@ -33,4 +33,30 @@ public class InsuranceDto {
     private int rewardAmount;	// 보상 금액
     private int salesPerformance;	// 판매 실적
 
+    public static InsuranceDto of(Insurance insurance) {
+        return InsuranceDto.builder()
+                .insuranceID(insurance.getInsuranceID())
+                .insuranceName(insurance.getInsuranceName())
+                .planReport(insurance.getPlanReport())
+                .insuranceState(insurance.getInsuranceState())
+                .insuranceType(insurance.getInsuranceType())
+                .salesTarget(insurance.getSalesTarget())
+                .canRegistTarget(insurance.getCanRegistTarget())
+                .payment(insurance.getPayment())
+                .guarantee(insurance.getGuarantee())
+                .estimatedDevelopment(insurance.getEstimatedDevelopment())
+                .estimatedProfitRate(insurance.getEstimatedProfitRate())
+                .riskDegree(insurance.getRiskDegree())
+                .salesStartDate(insurance.getSalesStartDate())
+                .salesEndDate(insurance.getSalesEndDate())
+                .goalPeopleNumber(insurance.getGoalPeopleNumber())
+                .salesMethod(insurance.getSalesMethod())
+                .rate(insurance.getRate())
+                .duration(insurance.getDuration())
+                .resultAnalysis(insurance.getResultAnalysis())
+                .rewardAmount(insurance.getRewardAmount())
+                .salesPerformance(insurance.getSalesPerformance())
+                .build();
+
+    }
 }

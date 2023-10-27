@@ -14,4 +14,13 @@ public class SellGroupDto {
     private String representative;
     private String representativePhoneNumber;
 
+    public static SellGroupDto of(SellGroup sellGroup) {
+        return SellGroupDto.builder()
+                .sellGroupID(sellGroup.getSellGroupID())
+                .exResult(sellGroup.getExResult())
+                .name(sellGroup.getName())
+                .representative(sellGroup.getRepresentative())
+                .representativePhoneNumber(sellGroup.getRepresentativePhoneNumber())
+                .build();
+    }
 }
