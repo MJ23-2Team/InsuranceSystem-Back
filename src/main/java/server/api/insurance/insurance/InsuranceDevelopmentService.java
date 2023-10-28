@@ -9,14 +9,13 @@ import server.api.insurance.util.Team;
 
 @Service
 @RequiredArgsConstructor
-public class InsuranceDevelopmentService extends Team {
+public class InsuranceDevelopmentService {
 
     private InsuranceRepository insuranceRepository;
 
     public InsuranceDevelopmentService(InsuranceRepository insuranceRepository){
         this.insuranceRepository = insuranceRepository;
     }
-    @Override
     public void establishPolicy(Constants.Target target, Constants.Crud crud) {
         if (target == Constants.Target.INSURANCE) {
             if (crud == Constants.Crud.CREATE) {
@@ -36,20 +35,5 @@ public class InsuranceDevelopmentService extends Team {
 
             }
         }
-    }
-
-    @Override
-    public void manage(Constants.Target target, Constants.Crud crud) {
-
-    }
-
-    @Override
-    public void plan(Constants.Target target, Constants.Crud crud) {
-
-    }
-
-    @Override
-    public void process(Constants.Target target, Constants.Crud crud) {
-
     }
 }

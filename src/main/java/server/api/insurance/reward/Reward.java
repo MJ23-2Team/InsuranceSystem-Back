@@ -31,6 +31,10 @@ public class Reward {
 
     private String customerName;
     private String identifyProfile;			// File 형식이 TUI에서는 지원되지 않으므로 String으로 대신함
+
+    public static Reward of(RewardDto request) {
+        return new Reward();
+    }
     // 보상금
 
 }
