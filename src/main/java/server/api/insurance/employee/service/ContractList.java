@@ -48,8 +48,8 @@ public class ContractList {
 
     public void collaboratUW(ContractDto collaboUWTarget) {
         Customer contractCustomer = customerRepository.getReferenceById(collaboUWTarget.getCustomerID());
-        boolean deny = outerActor.collaborateUW(collaboUWTarget, contractCustomer.getIncomeLevel());
-        if(deny) {
+        boolean result = outerActor.collaborateUW(contractCustomer.getIncomeLevel());
+        if(result) {
             collaboUWTarget.setContractRunState(ContractRunState.FINISH);
             contractRepository.save(Contract.update(collaboUWTarget));
         } else {

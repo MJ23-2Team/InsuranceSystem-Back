@@ -2,6 +2,7 @@ package server.api.insurance.employee.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.api.insurance.employee.dto.CampaignProgramDto;
 import server.api.insurance.employee.state.CampaignState;
 
 @Entity
@@ -34,4 +35,17 @@ public class CampaignProgram {
     private CampaignState state;
     private String outTeam;
 
+    public static CampaignProgram of(Insurance campaignInsurance, CampaignProgramDto campaignProgramDto) {
+        return CampaignProgram.builder()
+                .insurance(campaignInsurance)
+                .budget(campaignProgramDto.getBudget())
+                .campaignName(campaignProgramDto.getCampaignName())
+                .campaignTarget(campaignProgramDto.getCampaignTarget())
+                .duration(campaignProgramDto.getDuration())
+                .exResult(campaignProgramDto.getExResult())
+                .place(campaignProgramDto.getPlace())
+                .campaignWay(campaignProgramDto.getCampaignWay())
+                .state(CampaignState.PLAN)
+                .build();
+    }
 }
