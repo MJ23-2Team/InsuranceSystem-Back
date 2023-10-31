@@ -44,10 +44,10 @@ public class Insurance {
     private int rewardAmount;	// 보상 금액
     private int salesPerformance;	// 판매 실적
 
-    @OneToMany(mappedBy = "insurance") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToMany(mappedBy = "insurance", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<Contract> contracts = new ArrayList<>();
-    @OneToMany(mappedBy = "insurance") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToMany(mappedBy = "insurance", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<UserPersona> userPersonas = new ArrayList<>();
-    @OneToMany(mappedBy = "insurance") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToMany(mappedBy = "insurance", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<CampaignProgram> campaignPrograms = new ArrayList<>();
 }

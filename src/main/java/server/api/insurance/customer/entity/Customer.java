@@ -35,13 +35,13 @@ public class Customer {
     private String accountNumber; //계좌번호
     private String accountPassword;
 
-    @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<Contract> contracts = new ArrayList<>();
-    @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<AdviceNote> adviceNotes = new ArrayList<>();
-    @OneToMany(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<CustomerCounseling> customerCounselings = new ArrayList<>();
-    @OneToOne(mappedBy = "customer") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private CustomerManagement customerManagements = new CustomerManagement();
 
     public static Customer of(CustomerDto customerDto){

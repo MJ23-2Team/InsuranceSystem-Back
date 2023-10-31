@@ -42,11 +42,11 @@ public class Contract {
     private ContractUWState contractUWState;
     private String specialization;
 
-    @OneToMany(mappedBy = "contract") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToMany(mappedBy = "contract", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<AdviceNote> adviceNotes = new ArrayList<>();
-    @OneToMany(mappedBy = "contract") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToMany(mappedBy = "contract", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<Reward> rewards = new ArrayList<>();
-    @OneToMany(mappedBy = "contract") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToMany(mappedBy = "contract", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<Payment> payments = new ArrayList<>();
 
     public static Contract of(ContractDto contractDto, Customer contractCustomer, Insurance contractInsurance){

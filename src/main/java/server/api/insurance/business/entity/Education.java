@@ -27,7 +27,7 @@ public class Education {
     private String teacherName;
     private String teacherPhoneNumber;
 
-    @OneToMany(mappedBy = "education") //FK가 없는 쪽에 mappedBy 사용을 추천
+    @OneToMany(mappedBy = "education", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<EducationStudent> educationStudents = new ArrayList<>();
 
     // TEST
