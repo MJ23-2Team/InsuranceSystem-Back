@@ -36,10 +36,18 @@ public class CustomerControl {
     @GetMapping ("/index")
     public List<User> get() {
         List<User> use= new ArrayList<>();
-        use.add(User.builder().age(123).name("123").build());
+        use.add(User.builder().age(555).name("GET 테스팅1").build());
         return use;
     }
     @PostMapping("/index")
     public void add(@RequestBody User user) {
         System.out.println(user.getName());}
+
+    @GetMapping ("/index/test")
+    public List<User> gets(@RequestParam String test) {
+        System.out.println(test);
+        List<User> use= new ArrayList<>();
+        use.add(User.builder().age(555).name(test).build());
+        return use;
+    }
 }
