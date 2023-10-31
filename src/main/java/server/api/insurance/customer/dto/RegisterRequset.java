@@ -11,7 +11,7 @@ import server.api.insurance.customer.dto.CustomerDto;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequset {
-    private String Id;
-    private String Pw;
+    private String id;
+    private String pw;
     private CustomerDto customerDto;
 }

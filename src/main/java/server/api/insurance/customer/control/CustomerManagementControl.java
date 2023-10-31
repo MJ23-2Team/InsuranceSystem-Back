@@ -19,5 +19,4 @@ public class CustomerManagementControl {
     public void register(@RequestBody RegisterRequset request) {
         customerManagementList.register(request);
     }
-
 }
