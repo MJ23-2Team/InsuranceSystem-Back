@@ -20,22 +20,21 @@ public class CustomerManagementList {
     private final CustomerManagementRepository customerManagementRepository;
 
     public int login(String userId, String password) {
-        Optional<CustomerManagement> findCustomer = customerManagementRepository.findAll()
-                .stream()
-                .filter(customerManagement -> customerManagement.getID().equals(userId) &&
-                        customerManagement.getPW().equals(password))
-                .findFirst();
-        if (findCustomer.isPresent()) {
-            return findCustomer.get().getCustomer().getCustomerID();
+        try {
+            Optional<CustomerManagement> findCustomer = customerManagementRepository.findAll()
+                    .stream()
+                    .filter(customerManagement -> customerManagement.getID().equals(userId) &&
+                            customerManagement.getPW().equals(password))
+                    .findFirst();
+            if (findCustomer.isPresent()) {
+                return findCustomer.get().getCustomer().getCustomerID();
+            }
+        }catch (NullPointerException e){
+            throw new CIllegalArgumentException("로그인에 실패했습니다.");
         }
         throw new CIllegalArgumentException("로그인에 실패했습니다.");
     }
     public void register(RegisterRequset request) {
-        System.out.println(request.getId());
-        System.out.println(request.getCustomerDto().getAge());
-        System.out.println(request.getCustomerDto().getAddress());
-        System.out.println(request.getCustomerDto().getName());
-
         if (!customerManagementRepository.existsByID(request.getId())){
             Customer customer=Customer.of(request.getCustomerDto());
             customerRepository.save(customer);
