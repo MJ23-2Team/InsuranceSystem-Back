@@ -6,9 +6,7 @@ import server.api.insurance.customer.service.CustomerList;
 import server.api.insurance.employee.dto.ContractDto;
 import server.api.insurance.employee.service.ContractList;
 import server.api.insurance.customer.dto.CustomerDto;
-import server.api.insurance.customer.entity.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,22 +30,4 @@ public class CustomerControl {
     public void update(@RequestBody CustomerDto request) {customerList.update(request);}
     @DeleteMapping("/customer")
     public void delete(@RequestParam int id) {customerList.delete(id);}
-
-    @GetMapping ("/index")
-    public List<User> get() {
-        List<User> use= new ArrayList<>();
-        use.add(User.builder().age(555).name("GET 테스팅1").build());
-        return use;
-    }
-    @PostMapping("/index")
-    public void add(@RequestBody User user) {
-        System.out.println(user.getName());}
-
-    @GetMapping ("/index/test")
-    public List<User> gets(@RequestParam String test) {
-        System.out.println(test);
-        List<User> use= new ArrayList<>();
-        use.add(User.builder().age(555).name(test).build());
-        return use;
-    }
 }
