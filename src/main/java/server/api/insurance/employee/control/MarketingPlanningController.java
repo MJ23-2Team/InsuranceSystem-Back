@@ -1,6 +1,7 @@
 package server.api.insurance.employee.control;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,11 @@ public class MarketingPlanningController {
     @PostMapping("/campaign")
     public void campaignPlan(@RequestBody CampaignProgramDto campaignProgramDto) {
         campaignProgramList.campaignPlan(campaignProgramDto);
+    }
+
+    @GetMapping("/campaign")
+    public List<CampaignProgram> runningCampaign() {
+       return campaignProgramList.runningCampaign();
     }
 
 }

@@ -54,11 +54,11 @@ public class Contract {
                 .customer(contractCustomer)
                 .insurance(contractInsurance)
                 .contractDate(contractDto.getContractDate())
-                .contractFile(contractDto.getContractFile())
+//                .contractFile(contractDto.getContractFile())
                 .contractState(contractDto.getContractState())
                 .contractRunState(contractDto.getContractRunState())
                 .contractUWState(contractDto.getContractUWState())
-                .specialization(contractDto.getSpecialization())
+//                .specialization(contractDto.getSpecialization())
                 .build();
     }
 

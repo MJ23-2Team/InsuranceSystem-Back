@@ -1,7 +1,9 @@
 package server.api.insurance.outerActor;
 
-import server.api.insurance.employee.dto.ContractDto;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class OuterActor {
     public boolean collaborateUW(int incomeLevel) {
         if(incomeLevel  == 1) {

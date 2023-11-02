@@ -1,6 +1,7 @@
 package server.api.insurance.employee.dto;
 
 import lombok.*;
+import server.api.insurance.employee.entity.CampaignProgram;
 import server.api.insurance.employee.state.CampaignState;
 
 @Getter
@@ -24,4 +25,17 @@ public class CampaignProgramDto {
     private CampaignState state;
     private String outTeam;
 
+    public static CampaignProgram of(CampaignProgram campaignProgram) {
+        return CampaignProgram.builder()
+                .campaignName(campaignProgram.getCampaignName())
+                .campaignTarget(campaignProgram.getCampaignTarget())
+                .duration(campaignProgram.getDuration())
+                .exResult(campaignProgram.getExResult())
+                .place(campaignProgram.getPlace())
+                .campaignWay(campaignProgram.getCampaignWay())
+                .endResult(campaignProgram.getEndResult())
+                .state(campaignProgram.getState())
+                .outTeam(campaignProgram.getOutTeam())
+                .build();
+    }
 }
