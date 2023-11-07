@@ -3,7 +3,7 @@ package server.app.insurance.user.employee.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import server.api.insurance.outerActor.OuterActor;
+import server.app.insurance.user.outerActor.OuterActor;
 import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.customer.repository.CustomerRepository;
 import server.app.insurance.user.employee.dto.ContractDto;
@@ -46,15 +46,13 @@ public class ContractList {
         contractRepository.save(Contract.update(uwTarget));
     }
 
-    public void collaboratUW(ContractDto collaboUWTarget) {
-        Customer contractCustomer = customerRepository.getReferenceById(collaboUWTarget.getCustomerID());
-        boolean result = outerActor.collaborateUW(contractCustomer.getIncomeLevel());
+    public void collaborateUW(ContractDto collaborateUWTarget) {
+        Customer contractCustomer = customerRepository.getReferenceById(collaborateUWTarget.getCustomerID());
+        boolean result = outerActor.collaborateUW(collaborateUWTarget, contractCustomer.getIncomeLevel());
         if(result) {
-            collaboUWTarget.setContractRunState(ContractRunState.FINISH);
-            contractRepository.save(Contract.update(collaboUWTarget));
+            contractRepository.save(Contract.update(collaborateUWTarget));
         } else {
-            collaboUWTarget.setContractRunState(ContractRunState.DENY);
-            contractRepository.save(Contract.update(collaboUWTarget));
+            contractRepository.save(Contract.update(collaborateUWTarget));
         }
     }
 }
