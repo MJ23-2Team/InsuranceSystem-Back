@@ -2,6 +2,7 @@ package server.app.insurance.user.employee.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.app.insurance.user.employee.dto.CampaignProgramDto;
 import server.app.insurance.user.employee.state.CampaignState;
 
 @Entity
@@ -29,9 +30,22 @@ public class CampaignProgram {
     private String place; // 캠페인 장소
     private String campaignWay; // 캠페인 수단 - 시나리오에 적혀있지만 설계 과정에서 attribute가 제외되서 추가함
     private float endResult; // 실제 손익률 - 시나리오에 적혀있지만 설계 과정에서 attribute가 제외되서 추가함
-    //private CampaignProgram report; // 캠페인 결과 분석 보고서 - 시나리오에 적혀있지만 설계에서 제외됨
+
     @Enumerated(EnumType.STRING)
     private CampaignState state;
     private String outTeam;
 
+    public static CampaignProgram of(Insurance campaignInsurance, CampaignProgramDto campaignProgramDto) {
+        return CampaignProgram.builder()
+                .insurance(campaignInsurance)
+                .campaignName(campaignProgramDto.getCampaignName())
+                .campaignTarget(campaignProgramDto.getCampaignTarget())
+                .budget(campaignProgramDto.getBudget())
+                .duration(campaignProgramDto.getDuration())
+                .exResult(campaignProgramDto.getExResult())
+                .place(campaignProgramDto.getPlace())
+                .campaignWay(campaignProgramDto.getCampaignWay())
+                .state(CampaignState.PLAN)
+                .build();
+    }
 }

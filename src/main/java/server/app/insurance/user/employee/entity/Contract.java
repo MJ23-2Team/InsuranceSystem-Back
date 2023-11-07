@@ -54,11 +54,17 @@ public class Contract {
                 .customer(contractCustomer)
                 .insurance(contractInsurance)
                 .contractDate(contractDto.getContractDate())
-                .contractFile(contractDto.getContractFile())
-                .contractState(ContractState.ONLINE)
-                .contractRunState(ContractRunState.READY)
-                .contractUWState(ContractUWState.BASIC)
-                .specialization(contractDto.getSpecialization())
+//                .contractFile(contractDto.getContractFile())
+                .contractState(contractDto.getContractState())
+                .contractRunState(contractDto.getContractRunState())
+                .contractUWState(contractDto.getContractUWState())
+//                .specialization(contractDto.getSpecialization())
+                .build();
+    }
+
+    public static Contract update(ContractDto uwTarget) {
+        return Contract.builder()
+                .contractRunState(uwTarget.getContractRunState())
                 .build();
     }
 }
