@@ -3,7 +3,7 @@
 ### MJU 23-2 Dispersion 2
 
 ### 개발 환경
-Backend  : Spring boot
+Backend  : Spring boot \r\n
 Frontend : React
 Sever : EC2
 DBMS : MySQL(RDS)
