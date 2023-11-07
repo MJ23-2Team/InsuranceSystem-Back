@@ -1,4 +1,4 @@
-package server.api.insurance.employee.service;
+package server.app.insurance.user.employee.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

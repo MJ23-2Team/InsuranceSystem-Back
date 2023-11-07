@@ -37,7 +37,7 @@ public class UnderWritingController {
     }
 
     @PutMapping("/underwriting/collaborative")
-    public void colloborateUW(@RequestBody ContractDto collaboUWTarget) {
-        contractList.collaboratUW(collaboUWTarget);
+    public void collaborateUW(@RequestBody ContractDto collaborateUWTarget) {
+        contractList.collaborateUW(collaborateUWTarget);
     }
 }
