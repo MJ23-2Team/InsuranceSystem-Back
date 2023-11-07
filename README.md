@@ -3,16 +3,17 @@
 ### MJU 23-2 Dispersion 2
 
 ### 개발 환경
-Backend  : Spring boot \r\n
+```
+Backend  : Spring boot 
 Frontend : React
 Sever : EC2
 DBMS : MySQL(RDS)
-
+```
 ### Team
-[황재웅(팀장)](https://github.com/wodnd0131)
-[임현우](https://github.com/woowal)
-[심규창](https://github.com/gyuchangShim)
-[임성제](https://github.com/seongje00416)
+[황재웅(팀장)](https://github.com/wodnd0131),
+[임현우](https://github.com/woowal),
+[심규창](https://github.com/gyuchangShim),
+[임성제](https://github.com/seongje00416),
 
 ### 사용한 라이브러리 
 #### 스프링부트
