@@ -18,13 +18,12 @@ public class CustomerList {
 
     public void add(CustomerDto request) {userRepository.save(Customer.of(request));}
 
-    public CustomerDto retrieve(int id) {return CustomerDto.of(userRepository.findById(id).get());}
+    public CustomerDto retrieve(String name) {return CustomerDto.of(userRepository.findByName(name));}
 
     public List<CustomerDto> retrieveAll() {
         return userRepository.findAll().stream().map(CustomerDto::of).collect(Collectors.toList());
     }
 
-    public void update(CustomerDto request) {userRepository.save(Customer.of(request));}
-
-    public void delete(int id) {userRepository.deleteById(id);}
+//    public void update(CustomerDto request) {userRepository.save(Customer.of(request));}
+//    public void delete(int id) {userRepository.deleteById(id);}
 }
