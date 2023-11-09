@@ -12,7 +12,6 @@ public class CustomerManagementControl {
     private final CustomerManagementList customerManagementList;
     @PostMapping("/login")
     public void login(@RequestBody LoginRequset request){
-        System.out.println("123");
         customerManagementList.login(request.getId(),request.getPw());
     }
     @PostMapping("/register")

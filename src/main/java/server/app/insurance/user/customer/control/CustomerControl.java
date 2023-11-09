@@ -23,11 +23,11 @@ public class CustomerControl {
     @PostMapping("/customer")
     public void add(@RequestBody CustomerDto request) {customerList.add(request);}
     @GetMapping("/customer")
-    public CustomerDto retrieve(@RequestParam int id) {return customerList.retrieve(id);}
+    public CustomerDto retrieve(@RequestParam String name) {return customerList.retrieve(name);}
     @GetMapping("/customer/getAll")
     public List<CustomerDto> retrieveAll() {return customerList.retrieveAll();}
-    @PutMapping("/customer")
-    public void update(@RequestBody CustomerDto request) {customerList.update(request);}
-    @DeleteMapping("/customer")
-    public void delete(@RequestParam int id) {customerList.delete(id);}
+//    @PutMapping("/customer")
+//    public void update(@RequestBody CustomerDto request) {customerList.update(request);}
+//    @DeleteMapping("/customer")
+//    public void delete(@RequestParam int id) {customerList.delete(id);}
 }
