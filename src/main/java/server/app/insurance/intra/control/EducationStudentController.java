@@ -1,5 +1,6 @@
 package server.app.insurance.intra.control;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.intra.dto.EducationStudentDto;
@@ -7,6 +8,7 @@ import server.app.insurance.intra.service.EducationStudentList;
 
 import java.util.List;
 
+@Tag(name = "EducationStudent 컨트롤러", description = "EducationStudent API입니다.")
 @RestController
 @RequiredArgsConstructor
 public class EducationStudentController {
