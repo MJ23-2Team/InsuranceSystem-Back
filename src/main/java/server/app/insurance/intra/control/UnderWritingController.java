@@ -1,5 +1,6 @@
 package server.app.insurance.intra.control;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import server.app.insurance.user.employee.service.ContractList;
 
 import java.util.List;
 
+@Tag(name = "UnderWriting 컨트롤러", description = "UnderWriting API입니다.")
 @RestController
 @RequiredArgsConstructor
 public class UnderWritingController {

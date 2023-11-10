@@ -1,5 +1,6 @@
 package server.app.insurance.intra.control;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.intra.dto.SellGroupDto;
@@ -8,6 +9,7 @@ import server.app.insurance.user.employee.dto.InsuranceDto;
 
 import java.util.List;
 
+@Tag(name = "SellGroup 컨트롤러", description = "SellGroup API입니다.")
 @RestController
 @RequiredArgsConstructor
 public class SellGroupController {

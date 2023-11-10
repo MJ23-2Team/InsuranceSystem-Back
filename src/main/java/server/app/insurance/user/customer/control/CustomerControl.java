@@ -1,5 +1,6 @@
 package server.app.insurance.user.customer.control;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.user.customer.service.CustomerList;
@@ -9,6 +10,7 @@ import server.app.insurance.user.customer.dto.CustomerDto;
 
 import java.util.List;
 
+@Tag(name = "Customer 컨트롤러", description = "Customer API입니다.")
 @RestController
 @RequiredArgsConstructor
 public class CustomerControl {
@@ -26,9 +28,4 @@ public class CustomerControl {
     public CustomerDto retrieve(@RequestParam String name) {return customerList.retrieve(name);}
     @GetMapping("/customer/getAll")
     public List<CustomerDto> retrieveAll() {return customerList.retrieveAll();}
-
-//    @PutMapping("/customer")
-//    public void update(@RequestBody CustomerDto request) {customerList.update(request);}
-//    @DeleteMapping("/customer")
-//    public void delete(@RequestParam int id) {customerList.delete(id);}
 }

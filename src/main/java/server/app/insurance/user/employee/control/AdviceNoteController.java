@@ -1,5 +1,6 @@
 package server.app.insurance.user.employee.control;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.user.employee.dto.AdviceNoteDto;
@@ -7,6 +8,7 @@ import server.app.insurance.user.employee.service.AdviceNoteList;
 
 import java.util.List;
 
+@Tag(name = "AdviceNote 컨트롤러", description = "AdviceNote API입니다.")
 @RestController
 @RequiredArgsConstructor
 public class AdviceNoteController {
