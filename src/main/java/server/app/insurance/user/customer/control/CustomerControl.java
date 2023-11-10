@@ -26,6 +26,7 @@ public class CustomerControl {
     public CustomerDto retrieve(@RequestParam String name) {return customerList.retrieve(name);}
     @GetMapping("/customer/getAll")
     public List<CustomerDto> retrieveAll() {return customerList.retrieveAll();}
+
 //    @PutMapping("/customer")
 //    public void update(@RequestBody CustomerDto request) {customerList.update(request);}
 //    @DeleteMapping("/customer")
