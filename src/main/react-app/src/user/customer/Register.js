@@ -1,19 +1,24 @@
 import { useState, useEffect} from "react";
-import { createUser } from "./User";
+import { createUser } from "./Customer";
 
-  const UserForm = () => {
+  const Register = () => {
   const [data, setData] = useState({});
   const [info, setinfo] = useState({});
 
   const onHandleChangeinfo = (e) => {
-    setinfo(prevInfo => ({ ...prevInfo, [e.target.name]: e.target.value }));
+          setinfo(prevInfo => ({...prevInfo, [e.target.name]: e.target.value}));
   };
   
   const onHandleChangeData = (e) => {
-    setData(prevData => ({ ...prevData, [e.target.name]: e.target.value }));
+         setData(prevData => ({ ...prevData, [e.target.name]: e.target.value }));
   };
   const onSubmitHandle = () => {
-    createUser(data).then(() => alert("회원가입 완료"));
+      if (data.id && data.pw) {
+          createUser(data).then((res) => alert(res.data.message));
+      }else{
+          alert("값을 입력해주세요");
+      }
+
   };
   useEffect(() => {
     setData(prevData => ({ ...prevData, id: prevData.id,pw: prevData.pw, customerDto: info }));
@@ -23,7 +28,7 @@ import { createUser } from "./User";
     <><div>회원가입</div>
       <div>아이디 / 비밀번호</div>
       <input type="text" name="id" placeholder="ID" onChange={(e) => onHandleChangeData(e)} />
-      <input type="text" name="pw" placeholder="PW" onChange={(e) => onHandleChangeData(e)} />
+      <input type="password" name="pw" placeholder="PW" onChange={(e) => onHandleChangeData(e)} />
       <div>고객 정보 등록</div>
       <input type="text" name="address" placeholder="address" onChange={(e) => onHandleChangeinfo(e)} />
       <input type="text" name="age" placeholder="age" onChange={(e) => onHandleChangeinfo(e)} />
@@ -43,4 +48,4 @@ import { createUser } from "./User";
     </>
   );
 };
-export default UserForm;
+export default Register;

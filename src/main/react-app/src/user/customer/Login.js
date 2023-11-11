@@ -1,13 +1,18 @@
 import { useState } from "react";
-import { loginUser } from "./User";
+import { loginUser } from "./Customer";
 
-const UserLogin = () => {
+const Login = () => {
   const [data, setData] = useState({});
   const onHandleChangeData = (e) => {
-    setData(prevData => ({ ...prevData, [e.target.name]: e.target.value }));
+        setData(prevData => ({ ...prevData, [e.target.name]: e.target.value }));
   };
   const onSubmitHandle = () => {
-    loginUser(data).then(() => alert("로그인 완료"));
+      if (data.id && data.pw) {
+          loginUser(data).then((res) =>
+              alert(res.data.message));
+      }else{
+          alert("값을 입력해주세요");
+      }
   };
 
   return (
@@ -15,7 +20,7 @@ const UserLogin = () => {
       <div>로그인</div>
       <div>아이디 / 비밀번호</div>
       <input type="text" name="id" placeholder="ID" onChange={(e) => onHandleChangeData(e)} />
-      <input type="text" name="pw" placeholder="PW" onChange={(e) => onHandleChangeData(e)} />
+      <input type="password" name="pw" placeholder="PW" onChange={(e) => onHandleChangeData(e)} />
       <button onClick={() => {onSubmitHandle();}}>
         로그인
       </button>
@@ -23,4 +28,4 @@ const UserLogin = () => {
     </>
   );
 };
-export default UserLogin;
+export default Login;
