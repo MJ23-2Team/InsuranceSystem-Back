@@ -23,7 +23,4 @@ public class CustomerList {
     public List<CustomerDto> retrieveAll() {
         return userRepository.findAll().stream().map(CustomerDto::of).collect(Collectors.toList());
     }
-
-//    public void update(CustomerDto request) {userRepository.save(Customer.of(request));}
-//    public void delete(int id) {userRepository.deleteById(id);}
 }
