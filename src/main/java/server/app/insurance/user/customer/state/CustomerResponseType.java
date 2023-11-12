@@ -10,6 +10,8 @@ import server.app.insurance.common.util.BaseResponseType;
 public enum CustomerResponseType implements BaseResponseType {
     REGIST_SUCCESS(20001, "회원가입 성공", HttpStatus.OK),
     LOGIN_SUCCESS(20002, "로그인 성공", HttpStatus.OK),
+    RETRIVE_SUCCESS(20002, "고객 정보 불러오기 성공", HttpStatus.OK),
+
 
     CONNECT_ERROR(40001, "연결 에러", HttpStatus.BAD_REQUEST),
     NOT_FOUND_EMAIL(40002,"이메일을 찾을 수 없습니다.", HttpStatus.BAD_REQUEST),
