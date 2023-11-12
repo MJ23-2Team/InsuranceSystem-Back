@@ -15,7 +15,7 @@ import server.app.insurance.user.customer.state.CustomerResponseType;
 public class CustomerManagementControl {
     private final CustomerManagementList customerManagementList;
     @PostMapping("/login")
-    public ApiResponse<Object> login(@RequestBody LoginRequset request){
+    public ApiResponse<Integer> login(@RequestBody LoginRequset request){
         return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS,
         customerManagementList.login(request.getId(),request.getPw()));
     }
