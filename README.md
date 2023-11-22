@@ -1,4 +1,4 @@
-# MJU-insurance
+# MJU-insurance / BACK-END
 ## Insurance System Application.
 ### MJU 23-2 Dispersion 2
 
