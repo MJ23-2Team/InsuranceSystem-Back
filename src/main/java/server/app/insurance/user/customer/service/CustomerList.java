@@ -15,9 +15,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CustomerList {
     private final CustomerRepository userRepository;
-
-    public void add(CustomerDto request) {userRepository.save(Customer.of(request));}
-
     public CustomerDto retrieve(String name) {return CustomerDto.of(userRepository.findByName(name));}
 
     public List<CustomerDto> retrieveAll() {

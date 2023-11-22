@@ -23,9 +23,6 @@ public class CustomerControl {
     public void registerInsurance(@RequestBody ContractDto contractDto) {
         contractList.registerInsurance(contractDto);
     }
-
-    @PostMapping("/customer")
-    public void add(@RequestBody CustomerDto request) {customerList.add(request);}
     @GetMapping("/customer")
     public CustomerDto retrieve(@RequestParam String name) {return customerList.retrieve(name);}
     @GetMapping("/customer/getAll")
