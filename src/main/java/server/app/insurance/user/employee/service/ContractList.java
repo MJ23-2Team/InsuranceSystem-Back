@@ -15,6 +15,9 @@ import server.app.insurance.user.employee.state.ContractRunState;
 import server.app.insurance.user.employee.state.ContractState;
 import server.app.insurance.user.employee.state.ContractUWState;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -22,37 +25,47 @@ public class ContractList {
 
     private final ContractRepository contractRepository;
     private final InsuranceRepository insuranceRepository;
-    private final CustomerRepository customerRepository;
     private final OuterActor outerActor;
 
-    public void registerInsurance(ContractDto contractDto) {
-        Insurance contractInsurance = insuranceRepository.getReferenceById(contractDto.getInsuranceID());
-        Customer contractCustomer = customerRepository.getReferenceById(contractDto.getCustomerID());
+    public void registerInsurance(Customer registCustomer, int insuranceId) {
+        Insurance contractInsurance = insuranceRepository.getReferenceById(insuranceId);
+        ContractDto newContract = ContractDto.builder().build();
 
-        contractDto.setContractState(ContractState.ONLINE);
-        contractDto.setContractRunState(ContractRunState.READY);
-        if(contractCustomer.getIncomeLevel() > 5) {
-            contractDto.setContractUWState(ContractUWState.BASIC);
-            contractRepository.save(Contract.of(contractDto, contractCustomer, contractInsurance));
-        } else if(contractCustomer.getIncomeLevel() <= 5) {
-            contractDto.setContractUWState(ContractUWState.COLLABORATIVE);
-            contractRepository.save(Contract.of(contractDto, contractCustomer, contractInsurance));
+        newContract.setContractState(ContractState.ONLINE);
+        newContract.setContractRunState(ContractRunState.READY);
+
+        if(registCustomer.getIncomeLevel() > 5) {
+            newContract.setContractUWState(ContractUWState.BASIC);
+            contractRepository.save(Contract.of(newContract, registCustomer, contractInsurance));
+        } else if(registCustomer.getIncomeLevel() <= 5) {
+            newContract.setContractUWState(ContractUWState.COLLABORATIVE);
+            contractRepository.save(Contract.of(newContract, registCustomer, contractInsurance));
         }
-
     }
 
-    public void basicUW(ContractDto uwTarget) {
-        uwTarget.setContractRunState(ContractRunState.FINISH);
-        contractRepository.save(Contract.update(uwTarget));
+
+    public void basicUW(int contractId) {
+        Contract target = contractRepository.getReferenceById(contractId);
+        target.setContractRunState(ContractRunState.FINISH);
+        contractRepository.save(target);
     }
 
-    public void collaborateUW(ContractDto collaborateUWTarget) {
-        Customer contractCustomer = customerRepository.getReferenceById(collaborateUWTarget.getCustomerID());
-        boolean result = outerActor.collaborateUW(collaborateUWTarget, contractCustomer.getIncomeLevel());
+    public void collaborateUW(int contractId) {
+        Contract collaborateTarget = contractRepository.getReferenceById(contractId);
+        Customer contractCustomer = collaborateTarget.getCustomer();
+        boolean result = outerActor.collaborateUW(collaborateTarget, contractCustomer.getIncomeLevel());
         if(result) {
-            contractRepository.save(Contract.update(collaborateUWTarget));
+            collaborateTarget.setContractRunState(ContractRunState.FINISH);
         } else {
-            contractRepository.save(Contract.update(collaborateUWTarget));
+            collaborateTarget.setContractRunState(ContractRunState.DENY);
         }
+    }
+
+    public List<ContractDto> getAll() {
+        List<ContractDto> contractList = contractRepository.findAll()
+                .stream()
+                .map(ContractDto::of)
+                .collect(Collectors.toList());
+        return contractList;
     }
 }

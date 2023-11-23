@@ -17,29 +17,35 @@ import java.util.List;
 
 @Tag(name = "UnderWriting 컨트롤러", description = "UnderWriting API입니다.")
 @RestController
+@RequestMapping("/uw")
 @RequiredArgsConstructor
 public class UnderWritingController {
 
     private final UnderWritingList underWritingList;
     private final ContractList contractList;
 
-    @PostMapping("/uwPolicy")
+    @PostMapping()
     public AssumePolicy createUWPolicy(@RequestBody AssumePolicyDto assumePolicyDto) {
         return underWritingList.createUWPolicy(assumePolicyDto);
     }
 
-    @GetMapping("/uwPolicy")
-    public List<AssumePolicy> retrieveAll() {
+    @GetMapping("/policyAll")
+    public List<AssumePolicyDto> retrieveAll() {
         return underWritingList.retrieveAll();
     }
 
-    @PutMapping("/underwriting/basic")
-    public void basicUW(@RequestBody ContractDto basicUWTarget) {
-        contractList.basicUW(basicUWTarget);
+    @PutMapping("/basic/{contractId}")
+    public void basicUW(@PathVariable int contractId) {
+        contractList.basicUW(contractId);
     }
 
-    @PutMapping("/underwriting/collaborative")
-    public void collaborateUW(@RequestBody ContractDto collaborateUWTarget) {
-        contractList.collaborateUW(collaborateUWTarget);
+    @PutMapping("/collaborative/{contractId}")
+    public void collaborateUW(@PathVariable int contractId) {
+        contractList.collaborateUW(contractId);
+    }
+
+    @GetMapping("/all")
+    public List<ContractDto> getAll() {
+        return contractList.getAll();
     }
 }

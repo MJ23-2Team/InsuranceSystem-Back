@@ -33,7 +33,6 @@ public class CampaignProgramDto {
                 .exResult(campaignProgram.getExResult())
                 .place(campaignProgram.getPlace())
                 .campaignWay(campaignProgram.getCampaignWay())
-                .endResult(campaignProgram.getEndResult())
                 .state(campaignProgram.getState())
                 .outTeam(campaignProgram.getOutTeam())
                 .build();
@@ -43,7 +42,18 @@ public class CampaignProgramDto {
         return CampaignProgramDto.builder()
                 .insuranceID(campaignProgram.getInsurance().getInsuranceID())
                 .campaignName(campaignProgram.getCampaignName())
+                .campaignTarget(campaignProgram.getCampaignTarget())
+                .budget(campaignProgram.getBudget())
                 .duration(campaignProgram.getDuration())
+                .exResult(campaignProgram.getExResult())
+                .place(campaignProgram.getPlace())
+                .campaignWay(campaignProgram.getCampaignWay())
+                .state(campaignProgram.getState())
+                .outTeam(campaignProgram.getOutTeam())
                 .build();
+    }
+
+    public static CampaignProgramDto end(CampaignProgram campaignProgram) {
+        return CampaignProgramDto.builder().build();
     }
 }

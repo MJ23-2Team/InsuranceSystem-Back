@@ -1,6 +1,7 @@
 package server.app.insurance.user.employee.dto;
 
 import lombok.*;
+import server.app.insurance.user.employee.entity.Contract;
 import server.app.insurance.user.employee.state.ContractRunState;
 import server.app.insurance.user.employee.state.ContractState;
 import server.app.insurance.user.employee.state.ContractUWState;
@@ -23,4 +24,15 @@ public class ContractDto {
     private ContractRunState contractRunState;
     private ContractUWState contractUWState;
     private String specialization;
+
+    public static ContractDto of(Contract contract) {
+        return ContractDto.builder()
+                .contractID(contract.getContractID())
+                .customerID(contract.getCustomer().getCustomerID())
+                .insuranceID(contract.getInsurance().getInsuranceID())
+                .contractRunState(contract.getContractRunState())
+                .contractState(contract.getContractState())
+                .build();
+    }
+
 }
