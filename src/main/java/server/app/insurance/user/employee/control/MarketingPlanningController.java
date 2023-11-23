@@ -22,23 +22,28 @@ public class MarketingPlanningController {
         campaignProgramList.campaignPlan(campaignProgramDto);
     }
 
-    @PatchMapping()
-    public void runCampaign(@RequestParam int campaignId) {
+    @PutMapping("/run/{campaignId}")
+    public void runCampaign(@PathVariable int campaignId) {
         campaignProgramList.runCampaign(campaignId);
     }
 
-    @GetMapping("/running")
-    public List<CampaignProgram> runningCampaign() {
+    @GetMapping("/run")
+    public List<CampaignProgramDto> runningCampaign() {
         return campaignProgramList.runningCampaign();
+    }
+
+    @PutMapping("/end/{campaignId}")
+    public void setResultCampaign(@PathVariable int campaignId) {
+        campaignProgramList.setResultCampaign(campaignId);
+    }
+
+    @GetMapping("/end")
+    public List<CampaignProgramDto> endCampaign() {
+        return campaignProgramList.endCampaign();
     }
 
     @GetMapping("/{campaignId}")
     public CampaignProgramDto retrieve(@PathVariable int campaignId) {
         return campaignProgramList.retrieve(campaignId);
-    }
-
-    @GetMapping("/end")
-    public List<CampaignProgram> endCampaign() {
-        return campaignProgramList.endCampaign();
     }
 }
