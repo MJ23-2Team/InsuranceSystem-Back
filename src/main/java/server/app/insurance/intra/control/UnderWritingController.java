@@ -29,8 +29,8 @@ public class UnderWritingController {
         return underWritingList.createUWPolicy(assumePolicyDto);
     }
 
-    @GetMapping()
-    public List<AssumePolicy> retrieveAll() {
+    @GetMapping("/policyAll")
+    public List<AssumePolicyDto> retrieveAll() {
         return underWritingList.retrieveAll();
     }
 
