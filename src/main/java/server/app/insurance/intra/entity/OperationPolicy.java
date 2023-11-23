@@ -2,7 +2,7 @@ package server.app.insurance.intra.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import server.app.insurance.intra.dto.OperationPolicyDto;
+import server.app.insurance.intra.dto.OperationPolicyRequest;
 
 @Entity
 @Getter
@@ -15,19 +15,19 @@ public class OperationPolicy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "policyID")
     private int policyID;
-    private String content;
+
     private String name;
+    private String content;
 
-    private int rating;
-    private int pass;
+    @Builder.Default
+    private int rating = 0;
+    @Builder.Default
+    private int pass= 0;
 
-    public static OperationPolicy of(OperationPolicyDto dto) {
+    public static OperationPolicy of(OperationPolicyRequest dto) {
         return OperationPolicy.builder()
-                .policyID(dto.getPolicyID())
                 .content(dto.getContent())
                 .name(dto.getName())
-                .rating(dto.getRating())
-                .pass(dto.getPass())
                 .build();
 
     }

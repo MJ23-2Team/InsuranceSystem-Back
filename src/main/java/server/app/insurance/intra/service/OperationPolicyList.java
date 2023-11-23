@@ -3,8 +3,9 @@ package server.app.insurance.intra.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import server.app.insurance.intra.dto.OperationPolicyResponse;
 import server.app.insurance.intra.entity.OperationPolicy;
-import server.app.insurance.intra.dto.OperationPolicyDto;
+import server.app.insurance.intra.dto.OperationPolicyRequest;
 import server.app.insurance.intra.repository.OperationPolicyRepository;
 import server.app.insurance.common.exception.SOPPolicyNotFoundException;
 
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OperationPolicyList {
     private final OperationPolicyRepository operationPolicyRepository;
-    public void establishPolicy(OperationPolicyDto dto) {
+    public void establishPolicy(OperationPolicyRequest dto) {
         operationPolicyRepository.save(OperationPolicy.of(dto));
     }
 
@@ -34,7 +35,7 @@ public class OperationPolicyList {
         operationPolicy.setPass(1);
         operationPolicyRepository.save(operationPolicy);
     }
-    public List<OperationPolicyDto> getAllPolicy() {
-        return operationPolicyRepository.findAll().stream().map(OperationPolicyDto::of).collect(Collectors.toList());
+    public List<OperationPolicyResponse> getAllPolicy() {
+        return operationPolicyRepository.findAll().stream().map(OperationPolicyResponse::of).collect(Collectors.toList());
     }
 }

@@ -8,18 +8,18 @@ import server.app.insurance.intra.entity.OperationPolicy;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OperationPolicyDto {
+public class OperationPolicyResponse {
     private int policyID;
     private String content;
     private String name;
     private int rating;
     private int pass;
 
-    public static OperationPolicyDto of(OperationPolicy dto) {
-        return OperationPolicyDto.builder()
+    public static OperationPolicyResponse of(OperationPolicy dto) {
+        return OperationPolicyResponse.builder()
                 .policyID(dto.getPolicyID())
-                .content(dto.getContent())
                 .name(dto.getName())
+                .content(dto.getContent())
                 .rating(dto.getRating())
                 .pass(dto.getPass())
                 .build();

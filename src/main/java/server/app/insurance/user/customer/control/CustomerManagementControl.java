@@ -20,7 +20,7 @@ public class CustomerManagementControl {
         customerManagementList.login(request.getId(),request.getPw()));
     }
     @PostMapping("/register")
-    public ApiResponse<String> register(@RequestBody RegisterRequset request) {
+    public ApiResponse<Object> register(@RequestBody RegisterRequset request) {
         customerManagementList.register(request);
         return ApiResponse.of(CustomerResponseType.REGIST_SUCCESS);
     }
