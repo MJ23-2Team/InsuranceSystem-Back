@@ -22,19 +22,14 @@ public class MarketingPlanningController {
         campaignProgramList.campaignPlan(campaignProgramDto);
     }
 
-    @PutMapping("/{campaignId}")
+    @PutMapping("/run/{campaignId}")
     public void runCampaign(@PathVariable int campaignId) {
         campaignProgramList.runCampaign(campaignId);
     }
 
-    @GetMapping("/running")
+    @GetMapping("/run")
     public List<CampaignProgramDto> runningCampaign() {
         return campaignProgramList.runningCampaign();
-    }
-
-    @GetMapping("/{campaignId}")
-    public CampaignProgramDto retrieve(@PathVariable int campaignId) {
-        return campaignProgramList.retrieve(campaignId);
     }
 
     @PutMapping("/end/{campaignId}")
@@ -45,5 +40,10 @@ public class MarketingPlanningController {
     @GetMapping("/end")
     public List<CampaignProgramDto> endCampaign() {
         return campaignProgramList.endCampaign();
+    }
+
+    @GetMapping("/{campaignId}")
+    public CampaignProgramDto retrieve(@PathVariable int campaignId) {
+        return campaignProgramList.retrieve(campaignId);
     }
 }
