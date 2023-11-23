@@ -23,6 +23,7 @@ public class CampaignProgramList {
 
     public void campaignPlan(CampaignProgramDto campaignProgramDto) {
         Insurance campaignInsurance = insuranceRepository.getReferenceById(campaignProgramDto.getInsuranceID());
+        campaignProgramDto.setState(CampaignState.PLAN);
         campaignProgramRepository.save(CampaignProgram.of(campaignInsurance, campaignProgramDto));
     }
 
@@ -32,5 +33,23 @@ public class CampaignProgramList {
                 .filter(campaignProgram -> campaignProgram.getState() == CampaignState.RUN)
                 .map(CampaignProgramDto::of)
                 .collect(Collectors.toList());
+    }
+
+    public List<CampaignProgram> endCampaign() {
+        return campaignProgramRepository.findAll()
+                .stream()
+                .filter(campaignProgram -> campaignProgram.getState() == CampaignState.END)
+                .map(CampaignProgramDto::of)
+                .collect(Collectors.toList());
+    }
+
+    public void runCampaign(int campaignId) {
+        CampaignProgram runCampaignProgram = campaignProgramRepository.getReferenceById(campaignId);
+        runCampaignProgram.setState(CampaignState.END);
+        campaignProgramRepository.save(runCampaignProgram);
+    }
+
+    public CampaignProgramDto retrieve(int campaignId) {
+        return CampaignProgramDto.test(campaignProgramRepository.getReferenceById(campaignId));
     }
 }
