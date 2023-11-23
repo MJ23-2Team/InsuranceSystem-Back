@@ -33,7 +33,6 @@ public class CampaignProgramDto {
                 .exResult(campaignProgram.getExResult())
                 .place(campaignProgram.getPlace())
                 .campaignWay(campaignProgram.getCampaignWay())
-                .endResult(campaignProgram.getEndResult())
                 .state(campaignProgram.getState())
                 .outTeam(campaignProgram.getOutTeam())
                 .build();
@@ -52,5 +51,9 @@ public class CampaignProgramDto {
                 .state(campaignProgram.getState())
                 .outTeam(campaignProgram.getOutTeam())
                 .build();
+    }
+
+    public static CampaignProgramDto end(CampaignProgram campaignProgram) {
+        return CampaignProgramDto.builder().build();
     }
 }
