@@ -38,4 +38,12 @@ public class CampaignProgramDto {
                 .outTeam(campaignProgram.getOutTeam())
                 .build();
     }
+
+    public static CampaignProgramDto test(CampaignProgram campaignProgram) {
+        return CampaignProgramDto.builder()
+                .insuranceID(campaignProgram.getInsurance().getInsuranceID())
+                .campaignName(campaignProgram.getCampaignName())
+                .duration(campaignProgram.getDuration())
+                .build();
+    }
 }

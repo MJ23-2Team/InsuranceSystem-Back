@@ -45,7 +45,7 @@ public class CampaignProgram {
                 .exResult(campaignProgramDto.getExResult())
                 .place(campaignProgramDto.getPlace())
                 .campaignWay(campaignProgramDto.getCampaignWay())
-                .state(CampaignState.PLAN)
+                .state(campaignProgramDto.getState())
                 .build();
     }
 }
