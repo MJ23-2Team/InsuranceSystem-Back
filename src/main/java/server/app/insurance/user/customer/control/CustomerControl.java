@@ -14,18 +14,20 @@ import java.util.List;
 
 @Tag(name = "Customer 컨트롤러", description = "Customer API입니다.")
 @RestController
+@RequestMapping("/customer")
 @RequiredArgsConstructor
 public class CustomerControl {
     private final CustomerList customerList;
-    private final ContractList contractList;
 
-    @PostMapping("/customer/registerInsurance")
-    public void registerInsurance(@RequestBody ContractDto contractDto) {
-        contractList.registerInsurance(contractDto);
+    @PostMapping()
+    public void registerInsurance(@RequestParam int customerID, @RequestParam int insuranceID) {
+        customerList.registerInsurance(customerID, insuranceID);
     }
-    @GetMapping("/customer")
-    public CustomerDto retrieve(@RequestParam String name) {return customerList.retrieve(name);}
-    @GetMapping("/customer/getAll")
+
+    @GetMapping("/{name}")
+    public CustomerDto retrieve(@PathVariable String name) {return customerList.retrieve(name);}
+
+    @GetMapping("getAll")
     public ApiResponse<List<CustomerDto>> retrieveAll() {
         return ApiResponse.of(CustomerResponseType.RETRIVE_SUCCESS
                 ,customerList.retrieveAll());}

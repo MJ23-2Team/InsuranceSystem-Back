@@ -3,6 +3,7 @@ package server.app.insurance.user.outerActor;
 import org.springframework.stereotype.Service;
 import server.app.insurance.user.employee.dto.ContractDto;
 import server.app.insurance.user.employee.entity.CampaignProgram;
+import server.app.insurance.user.employee.entity.Contract;
 import server.app.insurance.user.employee.state.CampaignState;
 import server.app.insurance.user.employee.state.ContractRunState;
 
@@ -16,7 +17,7 @@ public class OuterActor {
         return readyCampaignProgram;
     }
 
-    public boolean collaborateUW(ContractDto collaborateUWTarget, int incomeLevel) {
+    public boolean collaborateUW(Contract collaborateUWTarget, int incomeLevel) {
         if(incomeLevel  == 1) {
             collaborateUWTarget.setContractRunState(ContractRunState.DENY);
             return false;

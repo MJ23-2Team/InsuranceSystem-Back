@@ -53,7 +53,7 @@ public class Contract {
         return Contract.builder()
                 .customer(contractCustomer)
                 .insurance(contractInsurance)
-                .contractDate(contractDto.getContractDate())
+                .contractDate(LocalDate.now())
 //                .contractFile(contractDto.getContractFile())
                 .contractState(contractDto.getContractState())
                 .contractRunState(contractDto.getContractRunState())
