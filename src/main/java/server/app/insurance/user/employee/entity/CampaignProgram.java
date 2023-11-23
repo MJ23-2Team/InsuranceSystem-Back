@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import server.app.insurance.user.employee.dto.CampaignProgramDto;
 import server.app.insurance.user.employee.state.CampaignState;
+import static server.app.insurance.user.outerActor.OuterActor.OUT_TEAM;
 
 @Entity
 @Getter
@@ -46,6 +47,7 @@ public class CampaignProgram {
                 .place(campaignProgramDto.getPlace())
                 .campaignWay(campaignProgramDto.getCampaignWay())
                 .state(campaignProgramDto.getState())
+                .outTeam(OUT_TEAM)
                 .build();
     }
 }

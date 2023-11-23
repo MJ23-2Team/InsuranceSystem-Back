@@ -7,6 +7,8 @@ import server.app.insurance.user.employee.state.ContractRunState;
 @Service
 public class OuterActor {
 
+    public static final String OUT_TEAM = "Test_Team";
+
     public boolean collaborateUW(ContractDto collaborateUWTarget, int incomeLevel) {
         if(incomeLevel  == 1) {
             collaborateUWTarget.setContractRunState(ContractRunState.DENY);
