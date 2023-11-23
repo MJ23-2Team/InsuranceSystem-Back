@@ -8,6 +8,7 @@ import server.app.insurance.intra.entity.AssumePolicy;
 import server.app.insurance.intra.repository.AssumePolicyRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -20,8 +21,11 @@ public class UnderWritingList {
         return assumePolicyRepository.save(AssumePolicy.of(assumePolicyDto));
     }
 
-    public List<AssumePolicy> retrieveAll() {
-        return assumePolicyRepository.findAll();
+    public List<AssumePolicyDto> retrieveAll() {
+        return assumePolicyRepository.findAll()
+                .stream()
+                .map(AssumePolicyDto::of)
+                .collect(Collectors.toList());
     }
 
 }
