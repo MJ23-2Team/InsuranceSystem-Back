@@ -16,7 +16,6 @@ import java.util.List;
 public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "educationid")
     private int educationID;
     private int budget;
     private String content;

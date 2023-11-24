@@ -1,5 +1,6 @@
 package server.app.insurance.intra.dto;
 
+import jakarta.persistence.Id;
 import lombok.*;
 import server.app.insurance.intra.entity.Education;
 
@@ -9,6 +10,7 @@ import server.app.insurance.intra.entity.Education;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EducationDto {
+    @Id
     private int educationID;
     private int budget;
     private String content;
