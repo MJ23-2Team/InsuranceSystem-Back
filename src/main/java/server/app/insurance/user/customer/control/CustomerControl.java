@@ -1,9 +1,11 @@
 package server.app.insurance.user.customer.control;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.common.util.ApiResponse;
+import server.app.insurance.user.customer.dto.RegisterInsuranceRequest;
 import server.app.insurance.user.customer.service.CustomerList;
 import server.app.insurance.user.customer.state.CustomerResponseType;
 import server.app.insurance.user.employee.dto.ContractDto;
@@ -20,8 +22,9 @@ public class CustomerControl {
     private final CustomerList customerList;
 
     @PostMapping()
-    public void registerInsurance(@RequestParam int customerID, @RequestParam int insuranceID) {
-        customerList.registerInsurance(customerID, insuranceID);
+    public ApiResponse<ContractDto> registerInsurance(@RequestBody RegisterInsuranceRequest registerInsuranceRequest) {
+        customerList.registerInsurance(registerInsuranceRequest);
+        return ApiResponse.of(CustomerResponseType.REGIST_INSURANCE_SUCCESS);
     }
 
     @GetMapping("/{name}")

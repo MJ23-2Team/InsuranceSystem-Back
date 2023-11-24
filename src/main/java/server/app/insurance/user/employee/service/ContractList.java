@@ -44,13 +44,13 @@ public class ContractList {
     }
 
 
-    public void basicUW(int contractId) {
+    public void doBasicUnderWriting(int contractId) {
         Contract target = contractRepository.getReferenceById(contractId);
         target.setContractRunState(ContractRunState.FINISH);
         contractRepository.save(target);
     }
 
-    public void collaborateUW(int contractId) {
+    public void doCollaborativeUnderWriting(int contractId) {
         Contract collaborateTarget = contractRepository.getReferenceById(contractId);
         Customer contractCustomer = collaborateTarget.getCustomer();
         boolean result = outerActor.collaborateUW(collaborateTarget, contractCustomer.getIncomeLevel());
