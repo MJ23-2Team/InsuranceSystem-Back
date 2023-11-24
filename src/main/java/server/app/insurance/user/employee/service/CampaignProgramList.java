@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import server.app.insurance.user.employee.dto.CampaignProgramDto;
+import server.app.insurance.user.employee.dto.CampaignProgramPlanRequest;
 import server.app.insurance.user.employee.entity.CampaignProgram;
 import server.app.insurance.user.employee.entity.Insurance;
 import server.app.insurance.user.employee.repository.CampaignProgramRepository;
@@ -23,27 +24,27 @@ public class CampaignProgramList {
     private final InsuranceRepository insuranceRepository;
 
     // 기획
-    public void campaignPlan(CampaignProgramDto campaignProgramDto) {
+    public void campaignPlan(CampaignProgramPlanRequest campaignProgramDto) {
         Insurance campaignInsurance = insuranceRepository.getReferenceById(campaignProgramDto.getInsuranceID());
         campaignProgramDto.setState(CampaignState.RUN);
         campaignProgramRepository.save(CampaignProgram.of(campaignInsurance, campaignProgramDto));
     }
 
     // state = RUN 조회
-    public List<CampaignProgramDto> runningCampaign() {
+    public List<CampaignProgramDto> retrieveRunCampaign() {
         return campaignProgramRepository.findAll()
                 .stream()
                 .filter(campaignProgram -> campaignProgram.getState() == CampaignState.RUN)
-                .map(CampaignProgramDto::test)
+                .map(CampaignProgramDto::of)
                 .collect(Collectors.toList());
     }
 
     // state = END 조회
-    public List<CampaignProgramDto> endCampaign() {
+    public List<CampaignProgramDto> retrieveEndCampaign() {
         return campaignProgramRepository.findAll()
                 .stream()
                 .filter(campaignProgram -> campaignProgram.getState() == CampaignState.END)
-                .map(CampaignProgramDto::end)
+                .map(CampaignProgramDto::of)
                 .collect(Collectors.toList());
     }
 
@@ -55,7 +56,7 @@ public class CampaignProgramList {
 
     // TODO Table 제약 조건 확인
     // 기획된 campaign state -> RUN으로 변경
-    public void runCampaign(int campaignId) {
+    public void doCampaignRun(int campaignId) {
         CampaignProgram readyCampaignProgram = campaignProgramRepository.getReferenceById(campaignId);
         CampaignState currentState = readyCampaignProgram.getState();
 
@@ -69,6 +70,6 @@ public class CampaignProgramList {
 
     // 연습용 단일 조회
     public CampaignProgramDto retrieve(int campaignId) {
-        return CampaignProgramDto.test(campaignProgramRepository.getReferenceById(campaignId));
+        return CampaignProgramDto.of(campaignProgramRepository.getReferenceById(campaignId));
     }
 }

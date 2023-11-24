@@ -3,6 +3,7 @@ package server.app.insurance.user.customer.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import server.app.insurance.user.customer.dto.RegisterInsuranceRequest;
 import server.app.insurance.user.customer.repository.CustomerRepository;
 import server.app.insurance.user.customer.dto.CustomerDto;
 import server.app.insurance.user.customer.entity.Customer;
@@ -24,8 +25,8 @@ public class CustomerList {
         return userRepository.findAll().stream().map(CustomerDto::of).collect(Collectors.toList());
     }
 
-    public void registerInsurance(int customerId, int insuranceId) {
-        Customer registCustomer = userRepository.getReferenceById(customerId);
-        contractList.registerInsurance(registCustomer, insuranceId);
+    public void registerInsurance(RegisterInsuranceRequest registerInsuranceRequest) {
+        Customer registCustomer = userRepository.getReferenceById(registerInsuranceRequest.getCustomerId());
+        contractList.registerInsurance(registCustomer, registerInsuranceRequest.getInsuranceId());
     }
 }

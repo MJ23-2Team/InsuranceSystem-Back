@@ -3,6 +3,7 @@ package server.app.insurance.user.employee.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import server.app.insurance.user.employee.dto.CampaignProgramDto;
+import server.app.insurance.user.employee.dto.CampaignProgramPlanRequest;
 import server.app.insurance.user.employee.state.CampaignState;
 import static server.app.insurance.user.outerActor.OuterActor.OUT_TEAM;
 
@@ -36,7 +37,7 @@ public class CampaignProgram {
     private CampaignState state;
     private String outTeam;
 
-    public static CampaignProgram of(Insurance campaignInsurance, CampaignProgramDto campaignProgramDto) {
+    public static CampaignProgram of(Insurance campaignInsurance, CampaignProgramPlanRequest campaignProgramDto) {
         return CampaignProgram.builder()
                 .insurance(campaignInsurance)
                 .campaignName(campaignProgramDto.getCampaignName())
