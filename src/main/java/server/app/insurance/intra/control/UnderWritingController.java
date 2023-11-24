@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import server.app.insurance.intra.dto.AssumePolicyDto;
 import server.app.insurance.intra.entity.AssumePolicy;
 import server.app.insurance.intra.service.UnderWritingList;
+import server.app.insurance.user.employee.control.ContractController;
 import server.app.insurance.user.employee.dto.ContractDto;
 import server.app.insurance.user.employee.service.ContractList;
 
@@ -22,10 +23,10 @@ import java.util.List;
 public class UnderWritingController {
 
     private final UnderWritingList underWritingList;
-    private final ContractList contractList;
+    private final ContractController contractController;
 
     @PostMapping()
-    public AssumePolicy createUWPolicy(@RequestBody AssumePolicyDto assumePolicyDto) {
+    public AssumePolicy createUnderWritingPolicy(@RequestBody AssumePolicyDto assumePolicyDto) {
         return underWritingList.createUWPolicy(assumePolicyDto);
     }
 
@@ -34,18 +35,14 @@ public class UnderWritingController {
         return underWritingList.retrieveAll();
     }
 
-    @PutMapping("/basic/{contractId}")
-    public void basicUW(@PathVariable int contractId) {
-        contractList.basicUW(contractId);
+    @PutMapping("/basic")
+    public void doBasicUnderWriting(@RequestParam int contractId) {
+        contractController.doBasicUnderWriting(contractId);
     }
 
-    @PutMapping("/collaborative/{contractId}")
-    public void collaborateUW(@PathVariable int contractId) {
-        contractList.collaborateUW(contractId);
+    @PutMapping("/collaborative")
+    public void doCollaborativeUnderWriting(@RequestParam int contractId) {
+        contractController.doCollaborativeUnderWriting(contractId);
     }
 
-    @GetMapping("/all")
-    public List<ContractDto> getAll() {
-        return contractList.getAll();
-    }
 }

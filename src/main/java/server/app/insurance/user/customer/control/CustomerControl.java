@@ -20,8 +20,9 @@ public class CustomerControl {
     private final CustomerList customerList;
 
     @PostMapping()
-    public void registerInsurance(@RequestParam int customerID, @RequestParam int insuranceID) {
+    public ApiResponse<ContractDto> registerInsurance(@RequestParam int customerID, @RequestParam int insuranceID) {
         customerList.registerInsurance(customerID, insuranceID);
+        return ApiResponse.of(CustomerResponseType.REGIST_INSURANCE_SUCCESS);
     }
 
     @GetMapping("/{name}")
