@@ -2,6 +2,7 @@ package server.app.insurance.user.employee.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.employee.state.InsuranceState;
 import server.app.insurance.user.employee.state.InsuranceType;
 
@@ -50,4 +51,30 @@ public class Insurance {
     private List<UserPersona> userPersonas = new ArrayList<>();
     @OneToMany(mappedBy = "insurance", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<CampaignProgram> campaignPrograms = new ArrayList<>();
+
+    public static Insurance of(InsuranceDto insuranceDto) {
+        return Insurance.builder()
+                .insuranceID( insuranceDto.getInsuranceID() )
+                .insuranceName( insuranceDto.getInsuranceName() )
+                .planReport(insuranceDto.getPlanReport() )
+                .insuranceState( insuranceDto.getInsuranceState() )
+                .insuranceType( insuranceDto.getInsuranceType() )
+                .salesTarget( insuranceDto.getSalesTarget() )
+                .canRegistTarget( insuranceDto.getCanRegistTarget() )
+                .payment( insuranceDto.getPayment() )
+                .guarantee(insuranceDto.getGuarantee() )
+                .estimatedDevelopment(insuranceDto.getEstimatedDevelopment() )
+                .estimatedProfitRate(insuranceDto.getEstimatedProfitRate() )
+                .riskDegree(insuranceDto.getRiskDegree() )
+                .salesStartDate(insuranceDto.getSalesStartDate() )
+                .salesEndDate(insuranceDto.getSalesEndDate() )
+                .goalPeopleNumber(insuranceDto.getGoalPeopleNumber() )
+                .salesMethod(insuranceDto.getSalesMethod() )
+                .rate(insuranceDto.getRate() )
+                .duration(insuranceDto.getDuration() )
+                .resultAnalysis(insuranceDto.getResultAnalysis() )
+                .rewardAmount(insuranceDto.getRewardAmount() )
+                .salesPerformance(insuranceDto.getSalesPerformance() )
+                .build();
+    }
 }
