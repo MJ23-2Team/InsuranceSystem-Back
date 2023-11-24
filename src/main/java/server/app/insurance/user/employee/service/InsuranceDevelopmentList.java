@@ -6,13 +6,11 @@ import org.springframework.stereotype.Service;
 import server.app.insurance.common.exception.CInsuranceNotFoundException;
 import server.app.insurance.common.exception.CSaveFailException;
 import server.app.insurance.common.exception.DaoException;
-import server.app.insurance.common.util.Constants;
 import server.app.insurance.common.util.TimeChecker;
-import server.app.insurance.user.employee.dto.InsuranceDto;
+import server.app.insurance.user.employee.dto.*;
 import server.app.insurance.user.employee.entity.Insurance;
 import server.app.insurance.user.employee.repository.InsuranceRepository;
 import server.app.insurance.user.employee.state.InsuranceState;
-import server.app.insurance.user.employee.state.InsuranceType;
 import server.app.insurance.user.outerActor.OuterActor;
 
 import java.time.LocalDateTime;
@@ -37,9 +35,9 @@ public class InsuranceDevelopmentList {
         }
     }
 
-    public void manageInsurancePlan(int id, String report) {
-        Insurance insurance = insuranceRepository.findById(id).get();
-        insurance.setPlanReport(report);
+    public void manageInsurancePlan(InsurancePlanRequest insurancePlanRequest) {
+        Insurance insurance = insuranceRepository.findById(insurancePlanRequest.getInsuranceID()).get();
+        insurance.setPlanReport(insurancePlanRequest.getPlanReport());
     }
 
     public void deleteInsurancePlan(int id) {
@@ -51,29 +49,29 @@ public class InsuranceDevelopmentList {
         }
     }
 
-    public InsuranceDto designInsurance(InsuranceDto insuranceDto) {
-        Insurance insurance = insuranceRepository.findById(insuranceDto.getInsuranceID()).get();
-        insurance.setInsuranceName(insuranceDto.getInsuranceName());
-        insurance.setInsuranceType(insuranceDto.getInsuranceType());
-        insurance.setSalesTarget(insuranceDto.getSalesTarget());
-        insurance.setCanRegistTarget(insuranceDto.getCanRegistTarget());
-        insurance.setPayment(insuranceDto.getPayment());
-        insurance.setGuarantee(insuranceDto.getGuarantee());
-        insurance.setEstimatedDevelopment(insuranceDto.getEstimatedDevelopment());
+    public InsuranceDto designInsurance(InsuranceDesignRequest insuranceDesignRequest) {
+        Insurance insurance = insuranceRepository.findById(insuranceDesignRequest.getInsuranceID()).get();
+        insurance.setInsuranceName(insuranceDesignRequest.getInsuranceName());
+        insurance.setInsuranceType(insuranceDesignRequest.getInsuranceType());
+        insurance.setSalesTarget(insuranceDesignRequest.getSalesTarget());
+        insurance.setCanRegistTarget(insuranceDesignRequest.getCanRegistTarget());
+        insurance.setPayment(insuranceDesignRequest.getPayment());
+        insurance.setGuarantee(insuranceDesignRequest.getGuarantee());
+        insurance.setEstimatedDevelopment(insuranceDesignRequest.getEstimatedDevelopment());
         insurance.setEstimatedProfitRate(-1f);
         insurance.setInsuranceState(InsuranceState.DESIGNED);
         return InsuranceDto.of(insurance);
     }
 
-    public InsuranceDto estimateProfit(InsuranceDto insuranceDto) {
-        Insurance insurance = insuranceRepository.findById(insuranceDto.getInsuranceID()).get();
-        insurance.setEstimatedProfitRate(insuranceDto.getEstimatedProfitRate());
+    public InsuranceDto estimateProfit(InsuranceProfitRequest insuranceProfitRequest) {
+        Insurance insurance = insuranceRepository.findById(insuranceProfitRequest.getInsuranceID()).get();
+        insurance.setEstimatedProfitRate(insuranceProfitRequest.getEstimatedProfitRate());
         return InsuranceDto.of(insurance);
     }
 
-    public void analyzeInsuranceRate(InsuranceDto insuranceDto) {
-        Insurance insurance = insuranceRepository.findById(insuranceDto.getInsuranceID()).get();
-        insurance.setRiskDegree(insuranceDto.getRiskDegree());
+    public void analyzeInsuranceRate(InsuranceRiskRequest insuranceRiskRequest) {
+        Insurance insurance = insuranceRepository.findById(insuranceRiskRequest.getInsuranceID()).get();
+        insurance.setRiskDegree(insuranceRiskRequest.getRiskDegree());
         Float rate = TimeChecker.actorNotResponseCheck(
                 outerActor.calcInsuranceRate(insurance.getPayment(), insurance.getRiskDegree()),
                 2, "요율검증부서의 응답이 없습니다.");
@@ -97,23 +95,23 @@ public class InsuranceDevelopmentList {
         }
     }
 
-    public List<Insurance> getPlannedInsurances() {
+    public List<InsuranceDto> getPlannedInsurances() {
         return insuranceRepository.findAll()
-                .stream()
+                .stream().map( InsuranceDto::of )
                 .filter(insurance -> insurance.getInsuranceState() == InsuranceState.PLANED)
                 .collect(Collectors.toList());
     }
 
-    public List<Insurance> getDesignedInsurances() {
+    public List<InsuranceDto> getDesignedInsurances() {
         return insuranceRepository.findAll()
-                .stream()
+                .stream().map( InsuranceDto::of )
                 .filter(insurance -> insurance.getInsuranceState() == InsuranceState.DESIGNED)
                 .collect(Collectors.toList());
     }
 
-    public List<Insurance> getAuthorizedInsurances() {
+    public List<InsuranceDto> getAuthorizedInsurances() {
         return insuranceRepository.findAll()
-                .stream()
+                .stream().map( InsuranceDto::of )
                 .filter(insurance -> insurance.getInsuranceState() == InsuranceState.AUTHORIZED)
                 .collect(Collectors.toList());
     }
