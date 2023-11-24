@@ -45,8 +45,7 @@ public class SellGroupList {
     public int calculateInsuranceFee(int insuarnceId, int customerId) {
         return new Random().nextInt(10000, 20000);
     }
-    public String recommendInsuranceReason(int insuarnceId, int customerId)
-    {
+    public String recommendInsuranceReason(int insuarnceId, int customerId){
         return "~~~ 이유로 이 보험을 추천합니다.";
     }
 }

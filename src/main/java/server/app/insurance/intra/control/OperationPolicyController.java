@@ -3,8 +3,12 @@ package server.app.insurance.intra.control;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import server.app.insurance.intra.dto.OperationPolicyDto;
+import server.app.insurance.common.util.ApiResponse;
+import server.app.insurance.intra.dto.OperationPolicyManageRequest;
+import server.app.insurance.intra.dto.OperationPolicyRequest;
+import server.app.insurance.intra.dto.OperationPolicyResponse;
 import server.app.insurance.intra.service.OperationPolicyList;
+import server.app.insurance.intra.state.intraResponseType;
 
 import java.util.List;
 
@@ -14,11 +18,21 @@ import java.util.List;
 public class OperationPolicyController {
     private final OperationPolicyList operationPolicyList;
     @PostMapping("/OperationPolicy")
-    public void establishPolicy(@RequestBody OperationPolicyDto request) {operationPolicyList.establishPolicy(request);}
+    public ApiResponse<Object> establishPolicy(@RequestBody OperationPolicyRequest request) {
+        operationPolicyList.establishPolicy(request);
+        return ApiResponse.of(intraResponseType.ESTABLISH_SUCCESS);}
     @PostMapping("/OperationPolicy/recommand")
-    public void manage(@RequestParam int id) {operationPolicyList.manage(id);}
+    public ApiResponse<Object> manage(@RequestBody OperationPolicyManageRequest request) {
+        operationPolicyList.manage(request.getId());
+        return ApiResponse.of(intraResponseType.MANAGE_SUCCESS);
+    }
     @PostMapping("/OperationPolicy/pass")
-    public void makeOPPolicy(@RequestBody int id) {operationPolicyList.makeOPPolicy(id);}
+    public ApiResponse<Object> makeOPPolicy(@RequestBody OperationPolicyManageRequest request) {
+        operationPolicyList.makeOPPolicy(request.getId());
+        return ApiResponse.of(intraResponseType.MAKEOP_SUCCESS);
+    }
     @GetMapping("/OperationPolicy/getAll")
-    public List<OperationPolicyDto> getAllPolicy() {return operationPolicyList.getAllPolicy();}
+    public ApiResponse<List<OperationPolicyResponse>> getAllPolicy() {
+        return  ApiResponse.of(intraResponseType.RETRIVE_SUCCESS,
+                operationPolicyList.getAllPolicy());}
 }

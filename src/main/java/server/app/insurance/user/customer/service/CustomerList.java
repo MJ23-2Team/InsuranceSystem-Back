@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import server.app.insurance.user.customer.repository.CustomerRepository;
 import server.app.insurance.user.customer.dto.CustomerDto;
 import server.app.insurance.user.customer.entity.Customer;
+import server.app.insurance.user.employee.service.ContractList;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,12 +16,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CustomerList {
     private final CustomerRepository userRepository;
-
-    public void add(CustomerDto request) {userRepository.save(Customer.of(request));}
-
+    private final ContractList contractList;
     public CustomerDto retrieve(String name) {return CustomerDto.of(userRepository.findByName(name));}
 
     public List<CustomerDto> retrieveAll() {
         return userRepository.findAll().stream().map(CustomerDto::of).collect(Collectors.toList());
+    }
+
+    public void registerInsurance(int customerId, int insuranceId) {
+        Customer registCustomer = userRepository.getReferenceById(customerId);
+        contractList.registerInsurance(registCustomer, insuranceId);
     }
 }

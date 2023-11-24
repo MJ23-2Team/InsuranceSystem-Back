@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import server.app.insurance.user.employee.dto.CampaignProgramDto;
 import server.app.insurance.user.employee.state.CampaignState;
+import static server.app.insurance.user.outerActor.OuterActor.OUT_TEAM;
 
 @Entity
 @Getter
@@ -29,7 +30,7 @@ public class CampaignProgram {
     private float exResult; // 캠페인 예상 손익률
     private String place; // 캠페인 장소
     private String campaignWay; // 캠페인 수단 - 시나리오에 적혀있지만 설계 과정에서 attribute가 제외되서 추가함
-    private float endResult; // 실제 손익률 - 시나리오에 적혀있지만 설계 과정에서 attribute가 제외되서 추가함
+    public float END_RESULT = 5.5f; // 실제 손익률 - 시나리오에 적혀있지만 설계 과정에서 attribute가 제외되서 추가함
 
     @Enumerated(EnumType.STRING)
     private CampaignState state;
@@ -45,7 +46,8 @@ public class CampaignProgram {
                 .exResult(campaignProgramDto.getExResult())
                 .place(campaignProgramDto.getPlace())
                 .campaignWay(campaignProgramDto.getCampaignWay())
-                .state(CampaignState.PLAN)
+                .state(campaignProgramDto.getState())
+                .outTeam(OUT_TEAM)
                 .build();
     }
 }
