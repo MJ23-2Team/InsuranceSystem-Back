@@ -17,49 +17,50 @@ import java.util.List;
 
 @Tag(name = "InsuranceDevelopment 컨트롤러", description = "InsuranceDevelopment API입니다.")
 @RestController
+@RequestMapping("/insuranceDevelopment")
 @RequiredArgsConstructor
 public class InsuranceDevelopmentController {
     private final InsuranceDevelopmentList insuranceDevelopmentList;
 
-    @PostMapping("/insurance/plan")
+    @PostMapping("/plan")
     public void createInsurancePlan(@RequestParam String report) {
         insuranceDevelopmentList.createInsurancePlan(report);
     }
 
-    @PutMapping("/insurance/plan")
-    public void manageInsurancePlan(@RequestParam int id, String report) {
+    @PutMapping("/plan")
+    public void manageInsurancePlan(@RequestParam int id, @RequestParam String report) {
         insuranceDevelopmentList.manageInsurancePlan(id, report);
     }
 
-    @DeleteMapping("/insurance/plan")
+    @DeleteMapping("/plan")
     public void deleteInsurancePlan(@RequestParam int id) {
         insuranceDevelopmentList.deleteInsurancePlan(id);
     }
-    @PutMapping("/insurance/design")
-    public InsuranceDto designInsurance(@RequestParam int id, String name, String type, String target, String canResistTarget, String payment, String guarantee, String development) {
-        return insuranceDevelopmentList.designInsurance(id, name, type, target, canResistTarget, payment, guarantee, development);
+    @PutMapping("/design")
+    public InsuranceDto designInsurance(@RequestBody InsuranceDto insuranceDto) {
+        return insuranceDevelopmentList.designInsurance(insuranceDto);
     }
-    @PutMapping("/insurance/profit")
-    public void estimateProfit(@RequestBody InsuranceDto insuranceDto, Float estimatedProfitRate) {
-        insuranceDevelopmentList.estimateProfit(insuranceDto, estimatedProfitRate);
+    @PutMapping("/profit")
+    public void estimateProfit(@RequestBody InsuranceDto insuranceDto) {
+        insuranceDevelopmentList.estimateProfit(insuranceDto);
     }
-    @PutMapping("/insurance/rate")
-    public void analyzeInsuranceRate(@RequestBody InsuranceDto insuranceDto, int riskDegree) throws Exception {
-        insuranceDevelopmentList.analyzeInsuranceRate(insuranceDto, riskDegree);
+    @PutMapping("/rate")
+    public void analyzeInsuranceRate(@RequestBody InsuranceDto insuranceDto) {
+        insuranceDevelopmentList.analyzeInsuranceRate(insuranceDto);
     }
-    @PutMapping("/insurance/authorize")
+    @PutMapping("/authorize")
     public void authorizeInsurance(@RequestBody InsuranceDto insuranceDto) {
         insuranceDevelopmentList.authorizeInsurance(insuranceDto);
     }
-    @GetMapping("/insurance/planned")
+    @GetMapping("/planned")
     public List<Insurance> getPlannedInsurances() {
         return insuranceDevelopmentList.getPlannedInsurances();
     }
-    @GetMapping("/insurance/designed")
+    @GetMapping("/designed")
     public List<Insurance> getDesignedInsurances() {
         return insuranceDevelopmentList.getDesignedInsurances();
     }
-    @GetMapping("/insurance/authorized")
+    @GetMapping("/authorized")
     public List<Insurance> getAuthorizedInsurances() {
         return insuranceDevelopmentList.getAuthorizedInsurances();
     }

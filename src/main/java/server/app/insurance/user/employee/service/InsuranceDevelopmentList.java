@@ -29,6 +29,7 @@ public class InsuranceDevelopmentList {
     public void createInsurancePlan(String report) {
         InsuranceDto insuranceDto = new InsuranceDto();
         insuranceDto.setPlanReport(report);
+        insuranceDto.setInsuranceState(InsuranceState.PLANED);
         try {
             insuranceRepository.save(Insurance.of(insuranceDto));
         } catch (DaoException e) {
@@ -37,8 +38,8 @@ public class InsuranceDevelopmentList {
     }
 
     public void manageInsurancePlan(int id, String report) {
-        InsuranceDto insuranceDto = InsuranceDto.of(insuranceRepository.findById(id).get());
-        insuranceDto.setPlanReport(report);
+        Insurance insurance = insuranceRepository.findById(id).get();
+        insurance.setPlanReport(report);
     }
 
     public void deleteInsurancePlan(int id) {
@@ -50,28 +51,29 @@ public class InsuranceDevelopmentList {
         }
     }
 
-    public InsuranceDto designInsurance(int id, String name, String type, String target, String canResistTarget, String payment, String guarantee, String development) {
-        Insurance insurance = insuranceRepository.findById(id).get();
-        insurance.setInsuranceName(name);
-        insurance.setInsuranceType(InsuranceType.valueOf(type));
-        insurance.setSalesTarget(target);
-        insurance.setCanRegistTarget(canResistTarget);
-        insurance.setPayment(Integer.parseInt(payment));
-        insurance.setGuarantee(guarantee);
-        insurance.setEstimatedDevelopment(Integer.parseInt(development));
+    public InsuranceDto designInsurance(InsuranceDto insuranceDto) {
+        Insurance insurance = insuranceRepository.findById(insuranceDto.getInsuranceID()).get();
+        insurance.setInsuranceName(insuranceDto.getInsuranceName());
+        insurance.setInsuranceType(insuranceDto.getInsuranceType());
+        insurance.setSalesTarget(insuranceDto.getSalesTarget());
+        insurance.setCanRegistTarget(insuranceDto.getCanRegistTarget());
+        insurance.setPayment(insuranceDto.getPayment());
+        insurance.setGuarantee(insuranceDto.getGuarantee());
+        insurance.setEstimatedDevelopment(insuranceDto.getEstimatedDevelopment());
         insurance.setEstimatedProfitRate(-1f);
         insurance.setInsuranceState(InsuranceState.DESIGNED);
         return InsuranceDto.of(insurance);
     }
 
-    public void estimateProfit(InsuranceDto insuranceDto, Float estimatedProfitRate) {
+    public InsuranceDto estimateProfit(InsuranceDto insuranceDto) {
         Insurance insurance = insuranceRepository.findById(insuranceDto.getInsuranceID()).get();
-        insurance.setEstimatedProfitRate(estimatedProfitRate);
+        insurance.setEstimatedProfitRate(insuranceDto.getEstimatedProfitRate());
+        return InsuranceDto.of(insurance);
     }
 
-    public void analyzeInsuranceRate(InsuranceDto insuranceDto, int riskDegree) throws Exception {
+    public void analyzeInsuranceRate(InsuranceDto insuranceDto) {
         Insurance insurance = insuranceRepository.findById(insuranceDto.getInsuranceID()).get();
-        insurance.setRiskDegree(riskDegree);
+        insurance.setRiskDegree(insuranceDto.getRiskDegree());
         Float rate = TimeChecker.actorNotResponseCheck(
                 outerActor.calcInsuranceRate(insurance.getPayment(), insurance.getRiskDegree()),
                 2, "요율검증부서의 응답이 없습니다.");
