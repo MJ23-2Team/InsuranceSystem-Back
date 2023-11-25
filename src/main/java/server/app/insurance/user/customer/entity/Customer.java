@@ -1,5 +1,6 @@
 package server.app.insurance.user.customer.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 import server.app.insurance.user.employee.entity.AdviceNote;

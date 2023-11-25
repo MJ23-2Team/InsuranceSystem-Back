@@ -1,6 +1,7 @@
 package server.app.insurance.user.employee.dto;
 
 import lombok.*;
+import server.app.insurance.user.employee.state.CampaignState;
 
 @Getter
 @Setter
@@ -16,4 +17,5 @@ public class CampaignProgramPlanRequest {
     private float exResult; // 캠페인 예상 손익률
     private String place; // 캠페인 장소
     private String campaignWay; // 캠페인 수단 - 시나리오에 적혀있지만 설계 과정에서 attribute가 제외되서 추가함
+    private CampaignState state;
 }

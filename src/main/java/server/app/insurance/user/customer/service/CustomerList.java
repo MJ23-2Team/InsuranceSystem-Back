@@ -25,8 +25,8 @@ public class CustomerList {
         return userRepository.findAll().stream().map(CustomerDto::of).collect(Collectors.toList());
     }
 
-    public void registerInsurance(RegisterInsuranceRequest registerInsuranceRequest) {
-        Customer registCustomer = userRepository.getReferenceById(registerInsuranceRequest.getCustomerId());
-        contractList.registerInsurance(registCustomer, registerInsuranceRequest.getInsuranceId());
+    public void registerInsurance(int customerID, int insuranceID) {
+        Customer registerCustomer = userRepository.getReferenceById(customerID);
+        contractList.registerInsurance(registerCustomer, insuranceID);
     }
 }

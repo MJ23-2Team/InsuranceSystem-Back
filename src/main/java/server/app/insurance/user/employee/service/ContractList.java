@@ -3,6 +3,9 @@ package server.app.insurance.user.employee.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import server.app.insurance.user.customer.dto.CustomerDto;
+import server.app.insurance.user.customer.dto.RegisterInsuranceRequest;
+import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.outerActor.OuterActor;
 import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.customer.repository.CustomerRepository;
@@ -27,19 +30,19 @@ public class ContractList {
     private final InsuranceRepository insuranceRepository;
     private final OuterActor outerActor;
 
-    public void registerInsurance(Customer registCustomer, int insuranceId) {
-        Insurance contractInsurance = insuranceRepository.getReferenceById(insuranceId);
+    public void registerInsurance(Customer registerCustomer, int insuranceID) {
+        Insurance contractInsurance = insuranceRepository.getReferenceById(insuranceID);
         ContractDto newContract = ContractDto.builder().build();
 
         newContract.setContractState(ContractState.ONLINE);
         newContract.setContractRunState(ContractRunState.READY);
 
-        if(registCustomer.getIncomeLevel() > 5) {
+        if(registerCustomer.getIncomeLevel() > 5) {
             newContract.setContractUWState(ContractUWState.BASIC);
-            contractRepository.save(Contract.of(newContract, registCustomer, contractInsurance));
-        } else if(registCustomer.getIncomeLevel() <= 5) {
+            contractRepository.save(Contract.of(newContract, registerCustomer, contractInsurance));
+        } else if(registerCustomer.getIncomeLevel() <= 5) {
             newContract.setContractUWState(ContractUWState.COLLABORATIVE);
-            contractRepository.save(Contract.of(newContract, registCustomer, contractInsurance));
+            contractRepository.save(Contract.of(newContract, registerCustomer, contractInsurance));
         }
     }
 

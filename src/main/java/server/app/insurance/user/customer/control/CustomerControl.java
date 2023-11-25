@@ -21,9 +21,10 @@ import java.util.List;
 public class CustomerControl {
     private final CustomerList customerList;
 
+    // @RequestDto를 만들어서 하면 ID 인식이 안됨 <- 뭐지 진짜
     @PostMapping()
-    public ApiResponse<ContractDto> registerInsurance(@RequestBody RegisterInsuranceRequest registerInsuranceRequest) {
-        customerList.registerInsurance(registerInsuranceRequest);
+    public ApiResponse<Object> registerInsurance(@RequestParam int customerID, @RequestParam int insuranceID) {
+        customerList.registerInsurance(customerID, insuranceID);
         return ApiResponse.of(CustomerResponseType.REGIST_INSURANCE_SUCCESS);
     }
 
