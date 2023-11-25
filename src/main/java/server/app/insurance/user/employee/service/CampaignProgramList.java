@@ -26,7 +26,7 @@ public class CampaignProgramList {
     // 기획
     public void campaignPlan(CampaignProgramPlanRequest campaignProgramDto) {
         Insurance campaignInsurance = insuranceRepository.getReferenceById(campaignProgramDto.getInsuranceID());
-        campaignProgramDto.setState(CampaignState.RUN);
+        campaignProgramDto.setState(CampaignState.PLAN);
         campaignProgramRepository.save(CampaignProgram.of(campaignInsurance, campaignProgramDto));
     }
 
@@ -68,8 +68,21 @@ public class CampaignProgramList {
         }
     }
 
+    public void doCampaignEnd(int campaignId) {
+        CampaignProgram readyCampaignProgram = campaignProgramRepository.getReferenceById(campaignId);
+        CampaignState currentState = readyCampaignProgram.getState();
+
+        if (currentState == CampaignState.RUN) {
+            readyCampaignProgram.setState(CampaignState.END);
+            campaignProgramRepository.save(readyCampaignProgram);
+        } else {
+            // TODO 에러 메세지(웹 기준 alert 출력)
+        }
+    }
+
     // 연습용 단일 조회
     public CampaignProgramDto retrieve(int campaignId) {
         return CampaignProgramDto.of(campaignProgramRepository.getReferenceById(campaignId));
     }
+
 }

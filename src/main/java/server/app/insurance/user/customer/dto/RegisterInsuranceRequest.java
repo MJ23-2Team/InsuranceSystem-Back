@@ -1,15 +1,13 @@
 package server.app.insurance.user.customer.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterInsuranceRequest {
-        private int insuranceId;
-        private int customerId;
+        private int insuranceID;
+        private int customerID;
 }

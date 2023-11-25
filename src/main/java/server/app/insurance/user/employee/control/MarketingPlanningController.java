@@ -44,6 +44,12 @@ public class MarketingPlanningController {
                 campaignProgramList.retrieveEndCampaign());
     }
 
+    @PutMapping("/stateEnd")
+    public ApiResponse<Object> doCampaignEnd(@RequestParam int campaignId) {
+        campaignProgramList.doCampaignEnd(campaignId);
+        return ApiResponse.of(EmployeeResponseType.SETCAMPAIGNEND_SUCCESS);
+    }
+
     @PutMapping("/result")
     public ApiResponse<Object> setCampaignResult(@RequestParam int campaignId) {
         campaignProgramList.setResultCampaign(campaignId);

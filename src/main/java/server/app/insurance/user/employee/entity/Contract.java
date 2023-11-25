@@ -2,8 +2,10 @@ package server.app.insurance.user.employee.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.app.insurance.user.customer.dto.CustomerDto;
 import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.employee.dto.ContractDto;
+import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.employee.state.ContractRunState;
 import server.app.insurance.user.employee.state.ContractState;
 import server.app.insurance.user.employee.state.ContractUWState;
@@ -49,9 +51,9 @@ public class Contract {
     @OneToMany(mappedBy = "contract", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<Payment> payments = new ArrayList<>();
 
-    public static Contract of(ContractDto contractDto, Customer contractCustomer, Insurance contractInsurance){
+    public static Contract of(ContractDto contractDto, Customer registerCustomer, Insurance contractInsurance){
         return Contract.builder()
-                .customer(contractCustomer)
+                .customer(registerCustomer)
                 .insurance(contractInsurance)
                 .contractDate(LocalDate.now())
 //                .contractFile(contractDto.getContractFile())
