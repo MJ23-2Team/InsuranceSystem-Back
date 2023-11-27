@@ -21,13 +21,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SellGroupController {
     private final SellGroupList sellGroupList;
-    @PostMapping("/recommand")
+    @PostMapping("/recommend")
     public void evaluateResult(@RequestParam int id,@RequestParam String inf) {sellGroupList.evaluateResult(id,inf);}
     @GetMapping("/recommend")
     public List<InsuranceDto> recommendInsurance() {return sellGroupList.recommendInsurance();}
     @GetMapping("/getAll")
     public List<SellGroupDto> retrieveAll() {return sellGroupList.getAllGroup();}
-    @GetMapping("/recommanReason")
+    @GetMapping("/recommendReason")
     public String recommendInsuranceReason(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupList.recommendInsuranceReason(insuarnceId,customerId);}
     @GetMapping("/fee")
     public int calculateInsuranceFee(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupList.calculateInsuranceFee(insuarnceId,customerId);}
