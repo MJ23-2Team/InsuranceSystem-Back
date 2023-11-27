@@ -3,6 +3,7 @@ package server.app.insurance.user.customer.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import server.app.insurance.user.customer.dto.CustomerInformationRequest;
 import server.app.insurance.user.customer.dto.RegisterInsuranceRequest;
 import server.app.insurance.user.customer.repository.CustomerRepository;
 import server.app.insurance.user.customer.dto.CustomerDto;
@@ -28,5 +29,23 @@ public class CustomerList {
     public void registerInsurance(RegisterInsuranceRequest registerInsuranceRequest) {
         Customer registCustomer = userRepository.getReferenceById(registerInsuranceRequest.getCustomerId());
         contractList.registerInsurance(registCustomer, registerInsuranceRequest.getInsuranceId());
+    }
+
+    public CustomerDto retrieveByID(int id) {
+        return CustomerDto.of(userRepository.findById(id).get());
+    }
+
+    public void setCustomerInformation(CustomerInformationRequest customerInformationRequest, int id) {
+        Customer customer = userRepository.findById(id).get();
+        customer.setAge(customerInformationRequest.getAge());
+        customer.setSex(customerInformationRequest.getSex());
+        customer.setName(customerInformationRequest.getName());
+        customer.setPhoneNumber(customerInformationRequest.getPhoneNumber());
+        customer.setRegistrationNumber(customerInformationRequest.getRegistrationNumber());
+        customer.setIncomeLevel(customerInformationRequest.getIncomeLevel());
+        customer.setAccountNumber(customerInformationRequest.getAccountNumber());
+        customer.setAccountPassword(customerInformationRequest.getAccountPassword());
+
+
     }
 }
