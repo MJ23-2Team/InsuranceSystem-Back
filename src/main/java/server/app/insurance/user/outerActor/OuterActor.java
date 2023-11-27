@@ -48,4 +48,8 @@ public class OuterActor {
         };
     }
 
+    public void sendSMStoCustomer(String s) {
+//        throw new Exception("메시지 전송에 실패했습니다.");
+    }
+
 }

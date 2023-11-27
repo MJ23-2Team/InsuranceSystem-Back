@@ -3,15 +3,34 @@ package server.app.insurance.intra.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import server.app.insurance.common.exception.CCounselingNotFoundException;
+import server.app.insurance.common.exception.CInsuranceNotFoundException;
 import server.app.insurance.intra.dto.SellGroupDto;
 import server.app.insurance.intra.entity.SellGroup;
 import server.app.insurance.intra.repository.SellGroupRepository;
 import server.app.insurance.common.exception.CustomException;
-import server.app.insurance.user.employee.dto.InsuranceDto;
+import server.app.insurance.user.customer.dto.CustomerCounselingDto;
+import server.app.insurance.user.customer.dto.CustomerCounselingResponse;
+import server.app.insurance.user.customer.dto.CustomerDto;
+import server.app.insurance.user.customer.entity.CustomerCounseling;
+import server.app.insurance.user.customer.repository.CustomerCounselingRepository;
+import server.app.insurance.user.customer.repository.CustomerRepository;
+import server.app.insurance.user.customer.service.CustomerList;
+import server.app.insurance.user.customer.state.CounselingState;
+import server.app.insurance.user.employee.dto.*;
+import server.app.insurance.user.employee.entity.CampaignProgram;
+import server.app.insurance.user.employee.entity.Insurance;
+import server.app.insurance.user.employee.entity.UserPersona;
+import server.app.insurance.user.employee.repository.CampaignProgramRepository;
 import server.app.insurance.user.employee.repository.InsuranceRepository;
+import server.app.insurance.user.employee.repository.UserPersonaRepository;
+import server.app.insurance.user.employee.state.CampaignState;
 import server.app.insurance.user.employee.state.InsuranceState;
+import server.app.insurance.user.outerActor.OuterActor;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -21,6 +40,11 @@ import java.util.stream.Collectors;
 public class SellGroupList {
     private final SellGroupRepository sellGroupRepository;
     private final InsuranceRepository insuranceRepository;
+    private final CampaignProgramRepository campaignProgramRepository;
+    private final UserPersonaRepository userPersonaRepository;
+    private final CustomerCounselingRepository customerCounselingRepository;
+
+    private final OuterActor outerActor;
     public List<SellGroupDto> getAllGroup() {
         return sellGroupRepository.findAll().stream()
                 .map(SellGroupDto::of)
@@ -48,4 +72,79 @@ public class SellGroupList {
     public String recommendInsuranceReason(int insuarnceId, int customerId){
         return "~~~ 이유로 이 보험을 추천합니다.";
     }
+
+    public CampaignProgramDto choiceCampaignProgram(InsuranceDto insuranceDto) {
+        Optional<CampaignProgramDto> findCampaignDto = campaignProgramRepository.findAll().stream().map( CampaignProgramDto::of )
+                .filter(campaignProgramDto -> campaignProgramDto.getInsuranceID() == insuranceDto.getInsuranceID()
+                        && campaignProgramDto.getState() == CampaignState.END)
+                .findFirst();
+        if (findCampaignDto.isEmpty()) {
+            throw new CInsuranceNotFoundException("해당 상품의 캠페인 프로그램이 종료되지 않았습니다.");
+        }
+        return findCampaignDto.get();
+    }
+
+    public List<UserPersonaDto> getUserPersonas(InsuranceDto insuranceDto) {
+        return userPersonaRepository.findAll()
+                .stream().map( UserPersonaDto::of )
+                .filter(userPersonaDto -> userPersonaDto.getInsurance().getInsuranceID() == insuranceDto.getInsuranceID())
+                .collect(Collectors.toList());
+    }
+
+    public void addUserPersona(UserPersonaDto userPersonaDto) { // insuranceId는 프론트에서 입력이 아니고 insurance에서 받기
+        userPersonaRepository.save(UserPersona.of(userPersonaDto));
+    }
+
+    public void planSalesPlan(InsuranceSalesRequest insuranceSalesRequest) {
+        Insurance insurance = insuranceRepository.findById(insuranceSalesRequest.getInsuranceID()).get();
+        insurance.setSalesStartDate(insuranceSalesRequest.getSalesStartDate());
+        insurance.setSalesEndDate(insuranceSalesRequest.getSalesEndDate());
+        insurance.setGoalPeopleNumber(insuranceSalesRequest.getGoalPeopleNumber());
+        insurance.setSalesMethod(insuranceSalesRequest.getSalesMethod());
+    }
+
+    private List<CustomerCounselingDto> getCustomerCounselings(CounselingState counselingState) {
+        return customerCounselingRepository.findAll().stream().map(CustomerCounselingDto::of)
+                .filter(customerCounselingDto -> customerCounselingDto.getCounselingState() == counselingState)
+                .collect(Collectors.toList());
+    }
+
+    public List<CustomerDto> getAppliedCounselingCustomers() {
+        return getCustomerCounselings(CounselingState.APPLIED).stream()
+                .map(CustomerCounselingDto::getCustomer)
+                .distinct()
+                .map(CustomerDto::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<CustomerCounselingDto> getCustomerCounselingsByCustomerDto(CustomerDto customerDto) {
+        return getCustomerCounselings(CounselingState.APPLIED).stream()
+                .filter(customerCounselingDto -> customerCounselingDto.getCustomer().getCustomerID() == customerDto.getCustomerID())
+                .collect(Collectors.toList());
+    }
+
+    public void setConsultationSchedule(CustomerCounselingDto customerCounselingDto) {
+        CustomerCounseling customerCounseling = CustomerCounseling.of(customerCounselingDto);
+        customerCounseling.setCounselingState(CounselingState.ACCEPTED_APPLY);
+        outerActor.sendSMStoCustomer("상담 일정이 잡혔습니다.");
+    }
+
+    public List<CustomerCounselingResponse> getAcceptedApplyCounselingCustomers() {
+        return getCustomerCounselings(CounselingState.ACCEPTED_APPLY).stream()
+                .map(CustomerCounseling::of)
+                .map(CustomerCounselingResponse::of)
+                .collect(Collectors.toList());
+    }
+
+    public int checkCounselingTime(CustomerCounselingResponse customerCounselingResponse) {
+        CustomerCounselingDto customerCounselingDto = CustomerCounselingDto.of(customerCounselingRepository.findById(customerCounselingResponse.getCounselingID()).get());
+        LocalDateTime counselingTime = customerCounselingDto.getCounselingTime();
+        LocalDateTime startTime = LocalDateTime.now().minusHours(1);
+        LocalDateTime endTime = LocalDateTime.now().plusHours(1);
+        if (counselingTime.isBefore(startTime) || counselingTime.isAfter(endTime)) {
+            throw new CCounselingNotFoundException("해당 고객은 상담 시간이 아닙니다.");
+        }
+        return customerCounselingResponse.getCustomerID();
+    }
+
 }
