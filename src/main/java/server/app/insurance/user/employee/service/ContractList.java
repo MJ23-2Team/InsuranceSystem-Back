@@ -18,6 +18,7 @@ import server.app.insurance.user.employee.state.ContractRunState;
 import server.app.insurance.user.employee.state.ContractState;
 import server.app.insurance.user.employee.state.ContractUWState;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,7 +47,22 @@ public class ContractList {
         }
     }
 
+    public ContractDto registerOffLine(Customer registCustomer, int insuranceId, String contractFile) {
+        Insurance contractInsurance = insuranceRepository.getReferenceById(insuranceId);
+        ContractDto newContract = ContractDto.builder().build();
 
+        newContract.setContractState(ContractState.OFFLINE);
+        newContract.setContractRunState(ContractRunState.READY);
+        newContract.setContractFile(contractFile);
+
+        if(registCustomer.getIncomeLevel() > 5) {
+            newContract.setContractUWState(ContractUWState.BASIC);
+        } else if(registCustomer.getIncomeLevel() <= 5) {
+            newContract.setContractUWState(ContractUWState.COLLABORATIVE);
+        }
+        contractRepository.save(Contract.of(newContract, registCustomer, contractInsurance));
+        return ContractDto.of(Contract.of(newContract, registCustomer, contractInsurance));
+    }
     public void doBasicUnderWriting(int contractId) {
         Contract target = contractRepository.getReferenceById(contractId);
         target.setContractRunState(ContractRunState.FINISH);
