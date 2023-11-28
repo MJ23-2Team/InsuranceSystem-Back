@@ -18,19 +18,19 @@ import java.util.List;
 @RequestMapping("/OperationPolicy")
 public class OperationPolicyController {
     private final OperationPolicyList operationPolicyList;
-    @PostMapping("")
-    public ApiResponse<Object> establishPolicy(@RequestBody OperationPolicyRequest request) {
-        operationPolicyList.establishPolicy(request);
+    @PostMapping()
+    public ApiResponse<Object> establishOperationPolicy(@RequestBody OperationPolicyRequest request) {
+        operationPolicyList.establishOperationPolicy(request);
         return ApiResponse.of(intraResponseType.ESTABLISH_SUCCESS);
     }
     @PostMapping("/recommand")
-    public ApiResponse<Object> manage(@RequestBody OperationPolicyManageRequest request) {
+    public ApiResponse<Object> recommand(@RequestBody OperationPolicyManageRequest request) {
         operationPolicyList.manage(request.getId());
         return ApiResponse.of(intraResponseType.MANAGE_SUCCESS);
     }
     @PostMapping("/pass")
-    public ApiResponse<Object> makeOPPolicy(@RequestBody OperationPolicyManageRequest request) {
-        operationPolicyList.makeOPPolicy(request.getId());
+    public ApiResponse<Object> passOperationPolicy(@RequestBody OperationPolicyManageRequest request) {
+        operationPolicyList.passOperationPolicy(request.getId());
         return ApiResponse.of(intraResponseType.MAKEOP_SUCCESS);
     }
     @GetMapping("/getAll")

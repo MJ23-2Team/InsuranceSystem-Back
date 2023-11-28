@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OperationPolicyList {
     private final OperationPolicyRepository operationPolicyRepository;
-    public void establishPolicy(OperationPolicyRequest dto) {
+    public void establishOperationPolicy(OperationPolicyRequest dto) {
         operationPolicyRepository.save(OperationPolicy.of(dto));
     }
 
@@ -30,12 +30,12 @@ public class OperationPolicyList {
             throw new SOPPolicyNotFoundException("건의된 운영 방침이 없습니다.");
         }
     }
-    public void makeOPPolicy(int id) {
+    public void passOperationPolicy(int id) {
         OperationPolicy operationPolicy = operationPolicyRepository.findById(id).get();
         operationPolicy.setPass(1);
         operationPolicyRepository.save(operationPolicy);
     }
     public List<OperationPolicyResponse> getAllPolicy() {
-        return operationPolicyRepository.findAll().stream().map(OperationPolicyResponse::of).collect(Collectors.toList());
+        return operationPolicyRepository.findByPassLike(0).stream().map(OperationPolicyResponse::of).collect(Collectors.toList());
     }
 }
