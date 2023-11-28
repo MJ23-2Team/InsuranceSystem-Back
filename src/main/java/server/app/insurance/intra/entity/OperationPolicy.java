@@ -13,8 +13,8 @@ import server.app.insurance.intra.dto.OperationPolicyRequest;
 public class OperationPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "policyID")
-    private int policyID;
+    @Column(name = "policyId")
+    private int policyId;
 
     private String name;
     private String content;
