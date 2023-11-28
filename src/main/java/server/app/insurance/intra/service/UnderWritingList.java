@@ -20,6 +20,8 @@ public class UnderWritingList {
     private final AssumePolicyRepository assumePolicyRepository;
 
     public void createUWPolicy(AssumePolicyCreateRequest assumePolicyDto) {
+        checkNull(assumePolicyDto);
+        checkDuplicateName(assumePolicyDto.getName());
         assumePolicyRepository.save(AssumePolicy.of(assumePolicyDto));
     }
 
@@ -28,6 +30,23 @@ public class UnderWritingList {
                 .stream()
                 .map(AssumePolicyRetrieveResponse::of)
                 .collect(Collectors.toList());
+    }
+
+    private void checkNull(AssumePolicyCreateRequest assumePolicyCreateRequest) {
+        if (assumePolicyCreateRequest.getName() == null
+                || assumePolicyCreateRequest.getContent() == null
+                || assumePolicyCreateRequest.getPolicyType() == null) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkDuplicateName(String title) {
+        boolean exist = assumePolicyRepository.findAll()
+                            .stream()
+                            .anyMatch(assumePolicy -> assumePolicy.getName().equals(title));
+        if(!exist) {
+            throw new IllegalArgumentException();
+        }
     }
 
 }
