@@ -22,7 +22,7 @@ import java.util.List;
 public class CustomerControl {
     private final CustomerList customerList;
 
-    // @RequestDto를 만들어서 하면 ID 인식이 안됨 <- 뭐지 진짜
+    // @RequestBody RequestDto를 만들어서 하면 ID 인식이 안됨 <- 뭐지 진짜
     @PostMapping()
     public ApiResponse<Object> registerInsurance(@RequestParam int customerID, @RequestParam int insuranceID) {
         customerList.registerInsurance(customerID, insuranceID);

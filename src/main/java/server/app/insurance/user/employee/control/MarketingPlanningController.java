@@ -27,9 +27,14 @@ public class MarketingPlanningController {
     }
 
     @PutMapping("/stateRun")
-    public ApiResponse<Object> doCampaignRun(@RequestParam int campaignId) {
+    public ApiResponse<Object> doCampaignRun(@RequestParam("campaignId") int campaignId) {
         campaignProgramList.doCampaignRun(campaignId);
         return ApiResponse.of(EmployeeResponseType.SETCAMPAIGNRUN_SUCCESS);
+    }
+
+    @GetMapping("/planCampaign")
+    public ApiResponse<List<CampaignProgramDto>> retrieveAllCampaignPlan() {
+        return ApiResponse.of(EmployeeResponseType.RETRIEVEALL_SUCCESS, campaignProgramList.retrieveAllCampaignPlan());
     }
 
     @GetMapping("/runCampaign")
@@ -56,8 +61,4 @@ public class MarketingPlanningController {
         return ApiResponse.of(EmployeeResponseType.SETCAMPAIGNRESULT_SUCCESS);
     }
 
-    @GetMapping()
-    public CampaignProgramDto retrieve(@RequestParam int campaignId) {
-        return campaignProgramList.retrieve(campaignId);
-    }
 }

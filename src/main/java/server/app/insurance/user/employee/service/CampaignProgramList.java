@@ -3,6 +3,7 @@ package server.app.insurance.user.employee.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.user.employee.dto.CampaignProgramDto;
 import server.app.insurance.user.employee.dto.CampaignProgramPlanRequest;
 import server.app.insurance.user.employee.entity.CampaignProgram;
@@ -80,9 +81,10 @@ public class CampaignProgramList {
         }
     }
 
-    // 연습용 단일 조회
-    public CampaignProgramDto retrieve(int campaignId) {
-        return CampaignProgramDto.of(campaignProgramRepository.getReferenceById(campaignId));
+    public List<CampaignProgramDto> retrieveAllCampaignPlan() {
+        return campaignProgramRepository.findAll().stream()
+                .filter(campaignProgram -> campaignProgram.getState() == CampaignState.PLAN)
+                .map(CampaignProgramDto::of)
+                .collect(Collectors.toList());
     }
-
 }

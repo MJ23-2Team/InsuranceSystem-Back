@@ -87,4 +87,5 @@ public class ContractList {
                 .collect(Collectors.toList());
         return contractList;
     }
+
 }
