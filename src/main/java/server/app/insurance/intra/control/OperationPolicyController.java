@@ -15,23 +15,25 @@ import java.util.List;
 @Tag(name = "OperationPolicy 컨트롤러", description = "OperationPolicy API입니다.")
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/OperationPolicy")
 public class OperationPolicyController {
     private final OperationPolicyList operationPolicyList;
-    @PostMapping("/OperationPolicy")
+    @PostMapping("")
     public ApiResponse<Object> establishPolicy(@RequestBody OperationPolicyRequest request) {
         operationPolicyList.establishPolicy(request);
-        return ApiResponse.of(intraResponseType.ESTABLISH_SUCCESS);}
-    @PostMapping("/OperationPolicy/recommand")
+        return ApiResponse.of(intraResponseType.ESTABLISH_SUCCESS);
+    }
+    @PostMapping("/recommand")
     public ApiResponse<Object> manage(@RequestBody OperationPolicyManageRequest request) {
         operationPolicyList.manage(request.getId());
         return ApiResponse.of(intraResponseType.MANAGE_SUCCESS);
     }
-    @PostMapping("/OperationPolicy/pass")
+    @PostMapping("/pass")
     public ApiResponse<Object> makeOPPolicy(@RequestBody OperationPolicyManageRequest request) {
         operationPolicyList.makeOPPolicy(request.getId());
         return ApiResponse.of(intraResponseType.MAKEOP_SUCCESS);
     }
-    @GetMapping("/OperationPolicy/getAll")
+    @GetMapping("/getAll")
     public ApiResponse<List<OperationPolicyResponse>> getAllPolicy() {
         return  ApiResponse.of(intraResponseType.RETRIVE_SUCCESS,
                 operationPolicyList.getAllPolicy());}
