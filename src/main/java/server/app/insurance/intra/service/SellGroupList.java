@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import server.app.insurance.common.exception.CCounselingNotFoundException;
 import server.app.insurance.common.exception.CInsuranceNotFoundException;
+import server.app.insurance.intra.dto.EvaluateResultRequest;
 import server.app.insurance.intra.dto.SellGroupDto;
 import server.app.insurance.intra.entity.SellGroup;
 import server.app.insurance.intra.repository.SellGroupRepository;
@@ -58,10 +59,10 @@ public class SellGroupList {
                 .map(InsuranceDto::of)
                 .collect(Collectors.toList());
     }
-    public void evaluateResult(int sellGroupId, String inf){
-        if(sellGroupRepository.existsById(sellGroupId)){
-            SellGroup sellGroup = sellGroupRepository.findById(sellGroupId).get();
-            sellGroup.setExResult(inf);
+    public void evaluateResult(EvaluateResultRequest request){
+        if(sellGroupRepository.existsById(request.getSellGruopID())){
+            SellGroup sellGroup = sellGroupRepository.findById(request.getSellGruopID()).get();
+            sellGroup.setExResult(request.getInfo());
             sellGroupRepository.save(sellGroup);
         }
         throw new CustomException("판매그룹을 찾을 수 없습니다..");
