@@ -9,7 +9,7 @@ import server.app.insurance.intra.entity.OperationPolicy;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OperationPolicyResponse {
-    private int policyId;
+    private int policyID;
     private String content;
     private String name;
     private int rating;
@@ -17,7 +17,7 @@ public class OperationPolicyResponse {
 
     public static OperationPolicyResponse of(OperationPolicy dto) {
         return OperationPolicyResponse.builder()
-                .policyId(dto.getPolicyId())
+                .policyID(dto.getPolicyId())
                 .name(dto.getName())
                 .content(dto.getContent())
                 .rating(dto.getRating())

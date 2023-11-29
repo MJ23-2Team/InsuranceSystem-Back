@@ -15,7 +15,7 @@ import java.util.List;
 @Tag(name = "OperationPolicy 컨트롤러", description = "OperationPolicy API입니다.")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/OperationPolicy")
+@RequestMapping("/operationPolicy")
 public class OperationPolicyController {
     private final OperationPolicyList operationPolicyList;
     @PostMapping()
