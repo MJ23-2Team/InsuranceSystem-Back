@@ -2,7 +2,7 @@ package server.app.insurance.user.customer.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import server.app.insurance.user.customer.dto.CustomerCounselingDto;
+import server.app.insurance.intra.repository.dto.CustomerCounselingDto;
 import server.app.insurance.user.customer.state.CounselingState;
 
 import java.time.LocalDateTime;
