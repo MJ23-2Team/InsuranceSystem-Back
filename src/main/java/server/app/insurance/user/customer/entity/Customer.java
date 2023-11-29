@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import server.app.insurance.user.employee.entity.AdviceNote;
 import server.app.insurance.user.employee.entity.Contract;
-import server.app.insurance.user.customer.dto.CustomerDto;
+import server.app.insurance.intra.repository.dto.CustomerDto;
 import server.app.insurance.common.util.Constants;
 
 import java.util.ArrayList;

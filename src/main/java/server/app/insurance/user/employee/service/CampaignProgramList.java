@@ -1,6 +1,7 @@
 package server.app.insurance.user.employee.service;
 
 import lombok.RequiredArgsConstructor;
+import org.antlr.v4.runtime.misc.IntegerList;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import server.app.insurance.common.util.ApiResponse;
@@ -24,11 +25,19 @@ public class CampaignProgramList {
     private final CampaignProgramRepository campaignProgramRepository;
     private final InsuranceRepository insuranceRepository;
 
-    // 기획
+    // 기획 -> O
     public void campaignPlan(CampaignProgramPlanRequest campaignProgramDto) {
         Insurance campaignInsurance = insuranceRepository.getReferenceById(campaignProgramDto.getInsuranceID());
         campaignProgramDto.setState(CampaignState.PLAN);
         campaignProgramRepository.save(CampaignProgram.of(campaignInsurance, campaignProgramDto));
+    }
+
+    // state = PLAN 조회 -> O
+    public List<CampaignProgramDto> retrievePlanCampaign() {
+        return campaignProgramRepository.findAll().stream()
+                .filter(campaignProgram -> campaignProgram.getState() == CampaignState.PLAN)
+                .map(CampaignProgramDto::of)
+                .collect(Collectors.toList());
     }
 
     // state = RUN 조회
@@ -55,12 +64,10 @@ public class CampaignProgramList {
         endCampaign.setEND_RESULT(endCampaign.END_RESULT);
     }
 
-    // TODO Table 제약 조건 확인
     // 기획된 campaign state -> RUN으로 변경
-    public void doCampaignRun(int campaignId) {
-        CampaignProgram readyCampaignProgram = campaignProgramRepository.getReferenceById(campaignId);
+    public void doCampaignRun(int campaignID) {
+        CampaignProgram readyCampaignProgram = campaignProgramRepository.getReferenceById(campaignID);
         CampaignState currentState = readyCampaignProgram.getState();
-
         if (currentState == CampaignState.END || currentState == CampaignState.PLAN) {
             readyCampaignProgram = OuterActor.runProgram(readyCampaignProgram);
             campaignProgramRepository.save(readyCampaignProgram);
@@ -81,10 +88,4 @@ public class CampaignProgramList {
         }
     }
 
-    public List<CampaignProgramDto> retrieveAllCampaignPlan() {
-        return campaignProgramRepository.findAll().stream()
-                .filter(campaignProgram -> campaignProgram.getState() == CampaignState.PLAN)
-                .map(CampaignProgramDto::of)
-                .collect(Collectors.toList());
-    }
 }

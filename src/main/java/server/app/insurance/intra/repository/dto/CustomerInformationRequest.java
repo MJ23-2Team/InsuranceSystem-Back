@@ -1,4 +1,4 @@
-package server.app.insurance.user.customer.dto;
+package server.app.insurance.intra.repository.dto;
 
 import lombok.*;
 import server.app.insurance.common.util.Constants;

@@ -26,15 +26,15 @@ public class MarketingPlanningController {
         return ApiResponse.of(EmployeeResponseType.CAMPAIGNPLAN_SUCCESS);
     }
 
-    @PutMapping("/stateRun")
-    public ApiResponse<Object> doCampaignRun(@RequestParam("campaignId") int campaignId) {
-        campaignProgramList.doCampaignRun(campaignId);
+    @PostMapping("/stateRun")
+    public ApiResponse<Object> doCampaignRun(@RequestParam int campaignID) {
+        campaignProgramList.doCampaignRun(campaignID);
         return ApiResponse.of(EmployeeResponseType.SETCAMPAIGNRUN_SUCCESS);
     }
 
     @GetMapping("/planCampaign")
-    public ApiResponse<List<CampaignProgramDto>> retrieveAllCampaignPlan() {
-        return ApiResponse.of(EmployeeResponseType.RETRIEVEALL_SUCCESS, campaignProgramList.retrieveAllCampaignPlan());
+    public ApiResponse<List<CampaignProgramDto>> retrievePlanCampaign() {
+        return ApiResponse.of(EmployeeResponseType.RETRIEVEALL_SUCCESS, campaignProgramList.retrievePlanCampaign());
     }
 
     @GetMapping("/runCampaign")
@@ -49,15 +49,15 @@ public class MarketingPlanningController {
                 campaignProgramList.retrieveEndCampaign());
     }
 
-    @PutMapping("/stateEnd")
-    public ApiResponse<Object> doCampaignEnd(@RequestParam int campaignId) {
-        campaignProgramList.doCampaignEnd(campaignId);
+    @PostMapping("/stateEnd")
+    public ApiResponse<Object> doCampaignEnd(@RequestParam int campaignID) {
+        campaignProgramList.doCampaignEnd(campaignID);
         return ApiResponse.of(EmployeeResponseType.SETCAMPAIGNEND_SUCCESS);
     }
 
-    @PutMapping("/result")
-    public ApiResponse<Object> setCampaignResult(@RequestParam int campaignId) {
-        campaignProgramList.setResultCampaign(campaignId);
+    @PostMapping("/result")
+    public ApiResponse<Object> setCampaignResult(@RequestParam int campaignID) {
+        campaignProgramList.setResultCampaign(campaignID);
         return ApiResponse.of(EmployeeResponseType.SETCAMPAIGNRESULT_SUCCESS);
     }
 
