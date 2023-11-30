@@ -4,7 +4,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.user.employee.dto.*;
+import server.app.insurance.user.employee.entity.Insurance;
 import server.app.insurance.user.employee.service.InsuranceDevelopmentList;
+import server.app.insurance.user.employee.service.InsuranceList;
 
 import java.util.List;
 
@@ -14,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InsuranceDevelopmentController {
     private final InsuranceDevelopmentList insuranceDevelopmentList;
+    private final InsuranceList insuranceList;
 
     @PostMapping("/plan")
     public void createInsurancePlan(@RequestParam String report) {
@@ -44,6 +47,10 @@ public class InsuranceDevelopmentController {
     @PutMapping("/authorize")
     public void authorizeInsurance(@RequestBody InsuranceDto insuranceDto) {
         insuranceDevelopmentList.authorizeInsurance(insuranceDto);
+    }
+    @GetMapping("/reports")
+    public List<InsurancePlanRequest> getReports() {
+        return insuranceList.retrieveReports();
     }
     @GetMapping("/planned")
     public List<InsuranceDto> getPlannedInsurances() {
