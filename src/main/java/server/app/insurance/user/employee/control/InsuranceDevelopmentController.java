@@ -7,6 +7,7 @@ import server.app.insurance.user.employee.dto.*;
 import server.app.insurance.user.employee.entity.Insurance;
 import server.app.insurance.user.employee.service.InsuranceDevelopmentList;
 import server.app.insurance.user.employee.service.InsuranceList;
+import server.app.insurance.user.employee.state.InsuranceState;
 
 import java.util.List;
 
@@ -45,8 +46,8 @@ public class InsuranceDevelopmentController {
         insuranceDevelopmentList.analyzeInsuranceRate(insuranceRiskRequest);
     }
     @PutMapping("/authorize")
-    public void authorizeInsurance(@RequestBody InsuranceDto insuranceDto) {
-        insuranceDevelopmentList.authorizeInsurance(insuranceDto);
+    public InsuranceState authorizeInsurance(@RequestBody InsuranceDto insuranceDto) {
+        return insuranceDevelopmentList.authorizeInsurance(insuranceDto);
     }
     @GetMapping("/reports")
     public List<InsurancePlanRequest> getReports() {
@@ -64,4 +65,6 @@ public class InsuranceDevelopmentController {
     public List<InsuranceDto> getAuthorizedInsurances() {
         return insuranceDevelopmentList.getAuthorizedInsurances();
     }
+    @GetMapping("/insurance")
+    public InsuranceDto getByInsuranceID(@RequestParam int id) {return insuranceDevelopmentList.getByInsuranceID(id);}
 }
