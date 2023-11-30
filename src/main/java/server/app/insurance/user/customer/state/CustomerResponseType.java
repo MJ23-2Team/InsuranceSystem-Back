@@ -13,6 +13,8 @@ public enum CustomerResponseType implements BaseResponseType {
     RETRIVE_SUCCESS(20002, "고객 정보 불러오기 성공", HttpStatus.OK),
     REGIST_INSURANCE_SUCCESS(20003, "보험 가입 신청 성공", HttpStatus.OK),
 
+    SIGN_UP_ING(40003,"회원가입 진행중", HttpStatus.BAD_REQUEST),
+
 
     CONNECT_ERROR(40001, "연결 에러", HttpStatus.BAD_REQUEST),
     NOT_FOUND_EMAIL(40002,"이메일을 찾을 수 없습니다.", HttpStatus.BAD_REQUEST),

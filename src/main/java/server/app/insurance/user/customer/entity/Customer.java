@@ -24,6 +24,7 @@ public class Customer {
     @Column(name = "customerid")
     private int customerID;
 
+    private String email;
     private String address;
     private int age;
     @Enumerated(EnumType.STRING)
