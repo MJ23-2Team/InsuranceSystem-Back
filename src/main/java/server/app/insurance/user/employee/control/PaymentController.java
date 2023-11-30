@@ -10,18 +10,21 @@ import java.util.List;
 
 @Tag(name = "Payment 컨트롤러", description = "Payment API입니다.")
 @RestController
+@RequestMapping( "/payment" )
 @RequiredArgsConstructor
 public class PaymentController {
     private final PaymentList paymentList;
 
-    @PostMapping("/payment")
+    @PostMapping("/add")
     public void add(@RequestBody PaymentDto request) {paymentList.add(request);}
-    @GetMapping("/payment")
+    @GetMapping("/getById")
     public PaymentDto retrieve(@RequestParam int id) {return paymentList.retrieve(id);}
-    @GetMapping("/payment/getAll")
+    @GetMapping("/getAll")
     public List<PaymentDto> retrieveAll() {return paymentList.retrieveAll();}
-    @PutMapping("/payment")
+    @GetMapping( "/checkValidate" )
+    public void checkValidate() { paymentList.checkValidate(); }
+    @PutMapping("/update")
     public void update(@RequestBody PaymentDto request) {paymentList.update(request);}
-    @DeleteMapping("/payment")
+    @DeleteMapping("/delete")
     public void delete(@RequestParam int id) {paymentList.delete(id);}
 }

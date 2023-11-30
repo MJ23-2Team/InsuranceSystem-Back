@@ -10,31 +10,32 @@ import java.util.List;
 
 @Tag(name = "Education 컨트롤러", description = "Education API입니다.")
 @RestController
+@RequestMapping("/education")
 @RequiredArgsConstructor
 public class EducationController {
     private final EducationList educationList;
 
-    @PostMapping("/education")
+    @PostMapping("/add")
     public void add(@RequestBody EducationDto request) {
         educationList.add(request);
     }
 
-    @GetMapping("/education")
+    @GetMapping("/getById")
     public EducationDto retrieve(@RequestParam int id) {
         return educationList.retrieve(id);
     }
 
-    @GetMapping("/education/getAll")
+    @GetMapping("/getAll")
     public List<EducationDto> retrieveAll() {
         return educationList.retrieveAll();
     }
 
-    @PutMapping("/education")
+    @PutMapping("/update")
     public void update(@RequestBody EducationDto request) {
         educationList.update(request);
     }
 
-    @DeleteMapping("/education")
+    @DeleteMapping("/delete")
     public void delete(@RequestParam int id) {
         educationList.delete(id);
     }
