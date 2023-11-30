@@ -5,20 +5,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import server.app.insurance.common.exception.CCounselingNotFoundException;
 import server.app.insurance.common.exception.CInsuranceNotFoundException;
+import server.app.insurance.intra.dto.EvaluateResultRequest;
 import server.app.insurance.intra.dto.SellGroupDto;
 import server.app.insurance.intra.entity.SellGroup;
 import server.app.insurance.intra.repository.SellGroupRepository;
 import server.app.insurance.common.exception.CustomException;
-import server.app.insurance.user.customer.dto.CustomerCounselingDto;
-import server.app.insurance.user.customer.dto.CustomerCounselingResponse;
-import server.app.insurance.user.customer.dto.CustomerDto;
+import server.app.insurance.intra.repository.dto.CustomerCounselingDto;
+import server.app.insurance.intra.repository.dto.CustomerCounselingResponse;
+import server.app.insurance.intra.repository.dto.CustomerDto;
 import server.app.insurance.user.customer.entity.CustomerCounseling;
 import server.app.insurance.user.customer.repository.CustomerCounselingRepository;
-import server.app.insurance.user.customer.repository.CustomerRepository;
-import server.app.insurance.user.customer.service.CustomerList;
 import server.app.insurance.user.customer.state.CounselingState;
 import server.app.insurance.user.employee.dto.*;
-import server.app.insurance.user.employee.entity.CampaignProgram;
 import server.app.insurance.user.employee.entity.Insurance;
 import server.app.insurance.user.employee.entity.UserPersona;
 import server.app.insurance.user.employee.repository.CampaignProgramRepository;
@@ -58,10 +56,10 @@ public class SellGroupList {
                 .map(InsuranceDto::of)
                 .collect(Collectors.toList());
     }
-    public void evaluateResult(int sellGroupId, String inf){
-        if(sellGroupRepository.existsById(sellGroupId)){
-            SellGroup sellGroup = sellGroupRepository.findById(sellGroupId).get();
-            sellGroup.setExResult(inf);
+    public void evaluateResult(EvaluateResultRequest request){
+        if(sellGroupRepository.existsById(request.getSellGruopID())){
+            SellGroup sellGroup = sellGroupRepository.findById(request.getSellGruopID()).get();
+            sellGroup.setExResult(request.getInfo());
             sellGroupRepository.save(sellGroup);
         }
         throw new CustomException("판매그룹을 찾을 수 없습니다..");

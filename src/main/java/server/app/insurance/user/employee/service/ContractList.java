@@ -3,12 +3,8 @@ package server.app.insurance.user.employee.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import server.app.insurance.user.customer.dto.CustomerDto;
-import server.app.insurance.user.customer.dto.RegisterInsuranceRequest;
-import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.outerActor.OuterActor;
 import server.app.insurance.user.customer.entity.Customer;
-import server.app.insurance.user.customer.repository.CustomerRepository;
 import server.app.insurance.user.employee.dto.ContractDto;
 import server.app.insurance.user.employee.entity.Contract;
 import server.app.insurance.user.employee.repository.ContractRepository;
@@ -18,7 +14,6 @@ import server.app.insurance.user.employee.state.ContractRunState;
 import server.app.insurance.user.employee.state.ContractState;
 import server.app.insurance.user.employee.state.ContractUWState;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,4 +82,5 @@ public class ContractList {
                 .collect(Collectors.toList());
         return contractList;
     }
+
 }

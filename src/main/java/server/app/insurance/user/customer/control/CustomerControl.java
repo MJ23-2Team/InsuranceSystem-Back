@@ -5,13 +5,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.common.util.ApiResponse;
-import server.app.insurance.user.customer.dto.CustomerInformationRequest;
-import server.app.insurance.user.customer.dto.RegisterInsuranceRequest;
+import server.app.insurance.intra.repository.dto.CustomerInformationRequest;
 import server.app.insurance.user.customer.service.CustomerList;
 import server.app.insurance.user.customer.state.CustomerResponseType;
-import server.app.insurance.user.employee.dto.ContractDto;
-import server.app.insurance.user.employee.service.ContractList;
-import server.app.insurance.user.customer.dto.CustomerDto;
+import server.app.insurance.intra.repository.dto.CustomerDto;
 
 import java.util.List;
 
@@ -22,7 +19,7 @@ import java.util.List;
 public class CustomerControl {
     private final CustomerList customerList;
 
-    // @RequestDto를 만들어서 하면 ID 인식이 안됨 <- 뭐지 진짜
+    // @RequestBody RequestDto를 만들어서 하면 ID 인식이 안됨 <- 뭐지 진짜
     @PostMapping()
     public ApiResponse<Object> registerInsurance(@RequestParam int customerID, @RequestParam int insuranceID) {
         customerList.registerInsurance(customerID, insuranceID);

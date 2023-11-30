@@ -17,7 +17,7 @@ public class OperationPolicyResponse {
 
     public static OperationPolicyResponse of(OperationPolicy dto) {
         return OperationPolicyResponse.builder()
-                .policyID(dto.getPolicyID())
+                .policyID(dto.getPolicyId())
                 .name(dto.getName())
                 .content(dto.getContent())
                 .rating(dto.getRating())

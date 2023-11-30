@@ -2,10 +2,8 @@ package server.app.insurance.user.employee.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import server.app.insurance.user.customer.dto.CustomerDto;
 import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.employee.dto.ContractDto;
-import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.employee.state.ContractRunState;
 import server.app.insurance.user.employee.state.ContractState;
 import server.app.insurance.user.employee.state.ContractUWState;

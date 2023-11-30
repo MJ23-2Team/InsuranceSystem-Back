@@ -28,6 +28,7 @@ public class CampaignProgramDto {
     public static CampaignProgramDto of(CampaignProgram campaignProgram) {
         return CampaignProgramDto.builder()
                 .insuranceID(campaignProgram.getInsurance().getInsuranceID())
+                .campaignID(campaignProgram.getCampaignID())
                 .campaignName(campaignProgram.getCampaignName())
                 .campaignTarget(campaignProgram.getCampaignTarget())
                 .budget(campaignProgram.getBudget())

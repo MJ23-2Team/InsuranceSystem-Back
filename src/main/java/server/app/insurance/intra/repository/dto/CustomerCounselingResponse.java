@@ -1,7 +1,6 @@
-package server.app.insurance.user.customer.dto;
+package server.app.insurance.intra.repository.dto;
 
 import lombok.*;
-import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.customer.entity.CustomerCounseling;
 
 @Getter

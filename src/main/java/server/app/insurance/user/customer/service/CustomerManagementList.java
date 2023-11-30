@@ -3,7 +3,7 @@ package server.app.insurance.user.customer.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import server.app.insurance.user.customer.dto.RegisterRequset;
+import server.app.insurance.intra.repository.dto.RegisterRequset;
 import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.customer.entity.CustomerManagement;
 import server.app.insurance.user.customer.repository.CustomerRepository;

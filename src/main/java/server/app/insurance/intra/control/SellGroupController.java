@@ -3,11 +3,12 @@ package server.app.insurance.intra.control;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import server.app.insurance.intra.dto.EvaluateResultRequest;
 import server.app.insurance.intra.dto.SellGroupDto;
 import server.app.insurance.intra.service.SellGroupList;
-import server.app.insurance.user.customer.dto.CustomerCounselingDto;
-import server.app.insurance.user.customer.dto.CustomerCounselingResponse;
-import server.app.insurance.user.customer.dto.CustomerDto;
+import server.app.insurance.intra.repository.dto.CustomerCounselingDto;
+import server.app.insurance.intra.repository.dto.CustomerCounselingResponse;
+import server.app.insurance.intra.repository.dto.CustomerDto;
 import server.app.insurance.user.employee.dto.CampaignProgramDto;
 import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.employee.dto.InsuranceSalesRequest;
@@ -21,8 +22,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SellGroupController {
     private final SellGroupList sellGroupList;
-    @PostMapping("/recommend")
-    public void evaluateResult(@RequestParam int id,@RequestParam String inf) {sellGroupList.evaluateResult(id,inf);}
+    @PostMapping("/evaluateResult")
+    public void evaluateResult(@RequestBody EvaluateResultRequest request) {sellGroupList.evaluateResult(request);}
     @GetMapping("/recommend")
     public List<InsuranceDto> recommendInsurance() {return sellGroupList.recommendInsurance();}
     @GetMapping("/getAll")
@@ -31,6 +32,8 @@ public class SellGroupController {
     public String recommendInsuranceReason(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupList.recommendInsuranceReason(insuarnceId,customerId);}
     @GetMapping("/fee")
     public int calculateInsuranceFee(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupList.calculateInsuranceFee(insuarnceId,customerId);}
+   //
+
     @GetMapping("/campaignProgram")
     public CampaignProgramDto choiceCampaignProgram(@RequestBody InsuranceDto insuranceDto) {return sellGroupList.choiceCampaignProgram(insuranceDto);}
     @GetMapping ("/userPersonas")
