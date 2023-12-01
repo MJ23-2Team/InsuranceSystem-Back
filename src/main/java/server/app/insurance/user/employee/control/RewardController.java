@@ -25,8 +25,8 @@ public class RewardController {
         return rewardList.retrieve( id );
     }
 
-    @GetMapping( "/getByContractId" )
-    public List<RewardDto> retrieveByContractId( @RequestParam int contractId ) { return rewardList.retrieveByContractId( contractId ); }
+    @GetMapping( "/getByCustomerId" )
+    public List<RewardDto> retrieveByCustomerId( @RequestParam int customerId ) { return rewardList.retrieveByCustomerId( customerId ); }
     @GetMapping( "/getAll")
     public List<RewardDto> retrieveAll(){
         return rewardList.retrieveAll();
