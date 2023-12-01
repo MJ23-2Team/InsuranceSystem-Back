@@ -10,18 +10,23 @@ import java.util.List;
 
 @Tag(name = "AdviceNote 컨트롤러", description = "AdviceNote API입니다.")
 @RestController
+@RequestMapping("/advicenote")
 @RequiredArgsConstructor
 public class AdviceNoteController {
     private final AdviceNoteList adviceNoteList;
 
-    @PostMapping("/advicenote")
+    @PostMapping("/add")
     public void add(@RequestBody AdviceNoteDto request) {adviceNoteList.add(request);}
-    @GetMapping("/advicenote")
+    @GetMapping("/getById")
     public AdviceNoteDto retrieve(@RequestParam int id) {return adviceNoteList.retrieve(id);}
-    @GetMapping("/advicenote/getAll")
+    @GetMapping("/getAll")
     public List<AdviceNoteDto> retrieveAll() {return adviceNoteList.retrieveAll();}
-    @PutMapping("/advicenote")
+    @GetMapping( "/getByCustomerId")
+    public List<AdviceNoteDto> retrieveByCustomerId( @RequestParam int customerId ) {
+        return adviceNoteList.retrieveByCustomerId( customerId );
+    }
+    @PutMapping("/update")
     public void update(@RequestBody AdviceNoteDto request) {adviceNoteList.update(request);}
-    @DeleteMapping("/advicenote")
+    @DeleteMapping("/delete")
     public void delete(@RequestParam int id) {adviceNoteList.delete(id);}
 }
