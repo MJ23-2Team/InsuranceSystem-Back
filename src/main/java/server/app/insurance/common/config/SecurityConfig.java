@@ -3,6 +3,7 @@ package server.app.insurance.common.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -27,13 +28,15 @@ public class SecurityConfig {
                 .cors(c -> c.disable())
                 .formLogin(c -> c.disable())
                 .httpBasic(c -> c.disable())
+
                 .sessionManagement(c->c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .headers(c -> c.frameOptions(f -> f.disable()).disable())
                 .authorizeHttpRequests(auth -> {
                     try{auth
                                 .requestMatchers("/", "/auth/**","login/oauth2/code/google","login/oauth2/code/**").permitAll()
                                 .requestMatchers( "/swagger-ui/**","/v3/**").permitAll()
-                                .anyRequest().permitAll()
+                            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                            .anyRequest().authenticated()
                         ;
                     }catch (Exception e){
                         e.printStackTrace();
