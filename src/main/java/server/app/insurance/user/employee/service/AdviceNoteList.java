@@ -27,6 +27,9 @@ public class AdviceNoteList {
     public List<AdviceNoteDto> retrieveAll(){
         return adviceNoteRepository.findAll().stream().map( AdviceNoteDto::of ).collect(Collectors.toList());
     }
+    public List<AdviceNoteDto> retrieveByCustomerId( int customerId ){
+        return adviceNoteRepository.findByCustomerId( customerId ).stream().map( AdviceNoteDto::of ).collect( Collectors.toList() );
+    }
 
     public void update( AdviceNoteDto request ){
         adviceNoteRepository.save( AdviceNote.of( request ) );

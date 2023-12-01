@@ -10,31 +10,34 @@ import java.util.List;
 
 @Tag(name = "Reward 컨트롤러", description = "Reward API입니다.")
 @RestController
+@RequestMapping( "/reward" )
 @RequiredArgsConstructor
 public class RewardController {
     private final RewardList rewardList;
 
-    @PostMapping( "/reward")
+    @PostMapping( "/add")
     public void add( @RequestBody RewardDto request ){
         rewardList.add( request );
     }
 
-    @GetMapping( "/reward" )
+    @GetMapping( "/getByRewardId" )
     public RewardDto retrieve( @RequestParam int id ){
         return rewardList.retrieve( id );
     }
 
-    @GetMapping( "/reward/getAll")
+    @GetMapping( "/getByContractId" )
+    public List<RewardDto> retrieveByContractId( @RequestParam int contractId ) { return rewardList.retrieveByContractId( contractId ); }
+    @GetMapping( "/getAll")
     public List<RewardDto> retrieveAll(){
         return rewardList.retrieveAll();
     }
 
-    @PutMapping( "/reward" )
+    @PutMapping( "/update" )
     public void update( @RequestBody RewardDto request ){
         rewardList.update( request );
     }
 
-    @DeleteMapping( "/reward" )
+    @DeleteMapping( "/delete" )
     public void delete( @RequestParam int id ){
         rewardList.delete( id );
     }

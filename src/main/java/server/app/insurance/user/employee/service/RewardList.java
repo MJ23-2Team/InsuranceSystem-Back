@@ -28,6 +28,10 @@ public class RewardList {
         return rewardRepository.findAll().stream().map( RewardDto::of ).collect( Collectors.toList() );
     }
 
+    public List<RewardDto> retrieveByContractId( int contractId ){
+        return null;
+    }
+
     public void update( RewardDto request ){
         rewardRepository.save( Reward.of( request ) );
     }

@@ -78,21 +78,15 @@ public class InsuranceDevelopmentList {
         insurance.setRate(rate);
     }
 
-    public void authorizeInsurance(InsuranceDto insuranceDto) {
+    public InsuranceState authorizeInsurance(InsuranceDto insuranceDto) {
         Insurance insurance = insuranceRepository.findById(insuranceDto.getInsuranceID()).get();
-        LocalDateTime authorizedDate;
-        authorizedDate = TimeChecker.actorNotResponseCheck(
+        TimeChecker.actorNotResponseCheck(
                 outerActor.authorizedInsurance(insurance), 2, "인가를 실패했습니다.");
-        if (insurance.getInsuranceState() == InsuranceState.AUTHORIZED) {
-            insurance.setDuration(8);
-            insurance.setResultAnalysis(10);
-            insurance.setRewardAmount(20);
-            insurance.setSalesPerformance(30);
-            System.out.println(
-                    authorizedDate.getMonth().getValue() + "월 " + authorizedDate.getDayOfMonth() + "일에 합격 되었습니다");
-        } else {
-            System.out.println("불합격되었습니다.");
-        }
+        insurance.setDuration(8);
+        insurance.setResultAnalysis(10);
+        insurance.setRewardAmount(20);
+        insurance.setSalesPerformance(30);
+        return insurance.getInsuranceState();
     }
 
     public List<InsuranceDto> getPlannedInsurances() {
@@ -115,4 +109,9 @@ public class InsuranceDevelopmentList {
                 .filter(insurance -> insurance.getInsuranceState() == InsuranceState.AUTHORIZED)
                 .collect(Collectors.toList());
     }
+
+    public InsuranceDto getByInsuranceID(int insuranceID) {
+        return InsuranceDto.of(insuranceRepository.findById(insuranceID).get());
+    }
+
 }
