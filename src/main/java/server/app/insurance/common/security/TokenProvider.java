@@ -13,7 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import server.app.insurance.common.exception.BizException;
-import server.app.insurance.user.customer.dto.TokenInfoResponse;
+import server.app.insurance.user.customer.dto.LoginResponse;
 import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.customer.repository.CustomerRepository;
 import server.app.insurance.user.customer.repository.RefreshTokenRepository;
@@ -59,7 +59,7 @@ public class TokenProvider implements InitializingBean {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public TokenInfoResponse createToken(Authentication authentication, boolean isAdditionalInfoProvided, Long userId) {
+    public LoginResponse.TokenInfoResponse createToken(Authentication authentication, boolean isAdditionalInfoProvided, Long userId) {
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
@@ -83,7 +83,7 @@ public class TokenProvider implements InitializingBean {
 
         refreshTokenRepository.save(refreshToken, userId);
 
-        return TokenInfoResponse.from("Bearer", accessToken, refreshToken, refreshTokenValidityTime);
+        return LoginResponse.TokenInfoResponse.from("Bearer", accessToken, refreshToken, refreshTokenValidityTime);
 
     }
 

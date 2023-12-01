@@ -5,10 +5,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.common.util.ApiResponse;
-import server.app.insurance.intra.repository.dto.CustomerInformationRequest;
+import server.app.insurance.user.customer.dto.CustomerInformationRequest;
 import server.app.insurance.user.customer.service.CustomerList;
 import server.app.insurance.user.customer.state.CustomerResponseType;
-import server.app.insurance.intra.repository.dto.CustomerDto;
+import server.app.insurance.user.customer.dto.CustomerDto;
 
 import java.util.List;
 
