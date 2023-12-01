@@ -24,4 +24,22 @@ public class LoginResponse {
                 .build();
     }
 
+    @Builder
+    @Getter
+    @AllArgsConstructor
+    public static class TokenInfoResponse {
+        private String grantType;
+        private String accessToken;
+        private String refreshToken;
+        private Long refreshTokenExpirationTime;
+
+        public static TokenInfoResponse from(String grantType, String accessToken, String refreshToken, Long refreshTokenExpirationTime) {
+            return TokenInfoResponse.builder()
+                    .grantType(grantType)
+                    .accessToken(accessToken)
+                    .refreshToken(refreshToken)
+                    .refreshTokenExpirationTime(refreshTokenExpirationTime)
+                    .build();
+        }
+    }
 }
