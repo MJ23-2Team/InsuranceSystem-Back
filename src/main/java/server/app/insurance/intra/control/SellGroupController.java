@@ -35,9 +35,10 @@ public class SellGroupController {
    //
 
     @GetMapping("/campaignProgram")
-    public CampaignProgramDto choiceCampaignProgram(@RequestBody InsuranceDto insuranceDto) {return sellGroupList.choiceCampaignProgram(insuranceDto);}
+    public CampaignProgramDto choiceCampaignProgram(@RequestParam int id) {return sellGroupList.choiceCampaignProgram(id);}
     @GetMapping ("/userPersonas")
-    public List<UserPersonaDto> getUserPersonas(@RequestBody InsuranceDto insuranceDto) {return sellGroupList.getUserPersonas(insuranceDto);}
+    public List<UserPersonaDto> getUserPersonas(@RequestParam int id) {
+        return sellGroupList.getUserPersonas(id);}
     @PostMapping("/userPersona")
     public void addUserPersona(@RequestBody UserPersonaDto userPersonaDto) {sellGroupList.addUserPersona(userPersonaDto);}
     @PutMapping("/salesPlan")
