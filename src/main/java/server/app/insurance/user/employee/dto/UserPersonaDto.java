@@ -18,6 +18,13 @@ public class UserPersonaDto {
     private String job;
     private int incomeLevel;
 
+    public UserPersonaDto (Constants.Gender sex, int age, String job, int incomeLevel) {
+        this.sex = sex;
+        this.age = age;
+        this.job = job;
+        this.incomeLevel = incomeLevel;
+    }
+
     public static UserPersonaDto of(UserPersona userPersona) {
         return UserPersonaDto.builder()
                 .userPersonaID(userPersona.getUserPersonaID())
