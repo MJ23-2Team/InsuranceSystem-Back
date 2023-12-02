@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.user.customer.dto.LoginRequset;
+import server.app.insurance.user.customer.dto.RegisterGoogleRequset;
 import server.app.insurance.user.customer.service.CustomerAuthList;
 import server.app.insurance.user.customer.service.CustomerManagementList;
 import server.app.insurance.user.customer.dto.RegisterRequset;
@@ -42,5 +43,16 @@ public class CustomerManagementControl {
         log.info(code);
         return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS,
                 customerAuthList.getAccessToken(code));
+    }
+    @GetMapping(value = {"/setInfo"})
+    public ApiResponse<Boolean> setInfo(@RequestParam int id) {
+        return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS,
+                customerManagementList.getInfo(id));
+    }
+
+    @PostMapping(value = {"/setInfo"})
+    public ApiResponse<Object> setInfo(@RequestBody RegisterGoogleRequset requset) {
+        customerManagementList.setInfo(requset);
+        return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS);
     }
 }

@@ -12,6 +12,7 @@ import server.app.insurance.common.util.Constants;
 public class CustomerDto{
 
     private int customerID;
+    private String email;
     private String address;
     private int age;
     private Constants.Gender sex;
@@ -27,6 +28,7 @@ public class CustomerDto{
     public static CustomerDto of(Customer customer){
         return CustomerDto.builder()
                 .customerID(customer.getCustomerID())
+                .email(customer.getEmail())
                 .address(customer.getAddress())
                 .age(customer.getAge())
                 .sex(customer.getSex())
