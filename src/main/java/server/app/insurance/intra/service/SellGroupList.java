@@ -71,21 +71,21 @@ public class SellGroupList {
         return "~~~ 이유로 이 보험을 추천합니다.";
     }
 
-    public CampaignProgramDto choiceCampaignProgram(InsuranceDto insuranceDto) {
+    public CampaignProgramDto choiceCampaignProgram(int insuranceID) {
         Optional<CampaignProgramDto> findCampaignDto = campaignProgramRepository.findAll().stream().map( CampaignProgramDto::of )
-                .filter(campaignProgramDto -> campaignProgramDto.getInsuranceID() == insuranceDto.getInsuranceID()
+                .filter(campaignProgramDto -> campaignProgramDto.getInsuranceID() == insuranceID
                         && campaignProgramDto.getState() == CampaignState.END)
                 .findFirst();
         if (findCampaignDto.isEmpty()) {
-            throw new CInsuranceNotFoundException("해당 상품의 캠페인 프로그램이 종료되지 않았습니다.");
+            return null;
         }
         return findCampaignDto.get();
     }
 
-    public List<UserPersonaDto> getUserPersonas(InsuranceDto insuranceDto) {
+    public List<UserPersonaDto> getUserPersonas(int insuranceID) {
         return userPersonaRepository.findAll()
                 .stream().map( UserPersonaDto::of )
-                .filter(userPersonaDto -> userPersonaDto.getInsurance().getInsuranceID() == insuranceDto.getInsuranceID())
+//                .filter(userPersonaDto -> userPersonaDto.getInsurance().getInsuranceID() == insuranceID)
                 .collect(Collectors.toList());
     }
 
