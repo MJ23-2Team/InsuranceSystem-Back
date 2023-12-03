@@ -11,7 +11,7 @@ import server.app.insurance.user.employee.dto.UserPersonaDto;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserPersona {
+    public class UserPersona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userPersonaid")
