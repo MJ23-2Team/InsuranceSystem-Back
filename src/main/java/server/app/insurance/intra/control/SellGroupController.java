@@ -32,7 +32,8 @@ public class SellGroupController {
     @GetMapping("/recommendReason")
     public String recommendInsuranceReason(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupList.recommendInsuranceReason(insuarnceId,customerId);}
     @GetMapping("/fee")
-    public int calculateInsuranceFee(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupList.calculateInsuranceFee(insuarnceId,customerId);}
+    public int calculateInsuranceFee(@RequestParam int insuarnceId,@RequestParam int customerId) {
+        return sellGroupList.calculateInsuranceFee(insuarnceId,customerId);}
    //
 
     @GetMapping("/campaignProgram")
