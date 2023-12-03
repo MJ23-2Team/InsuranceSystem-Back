@@ -48,10 +48,10 @@ public class SellGroupController {
     public void planSalesPlan(@RequestBody InsuranceSalesRequest insuranceSalesRequest) {sellGroupList.planSalesPlan(insuranceSalesRequest);}
     @GetMapping("/appliedCounselingCustomers")
     public List<CustomerDto> getAppliedCounselingCustomers() {return sellGroupList.getAppliedCounselingCustomers();}
-    @GetMapping("/appliedCounselingCustomersByDto")
-    public List<CustomerCounselingDto> getCustomerCounselingsByCustomerDto(@RequestBody CustomerDto customerDto) {return sellGroupList.getCustomerCounselingsByCustomerDto(customerDto);}
+    @GetMapping("/appliedCounselings")
+    public List<CustomerCounselingDto> getCustomerCounselingsByCustomerID(@RequestParam int customerID) {return sellGroupList.getCustomerCounselingsByCustomerID(customerID);}
     @PutMapping("/schedule")
-    public void setConsultationSchedule(@RequestBody CustomerCounselingDto customerCounselingDto) {sellGroupList.setConsultationSchedule(customerCounselingDto);}
+    public void setConsultationSchedule(@RequestParam int customerCounselingID) {sellGroupList.setConsultationSchedule(customerCounselingID);}
     @GetMapping("/acceptedApplyCounselingCustomers")
     public List<CustomerCounselingResponse> getAcceptedApplyCounselingCustomers() {return sellGroupList.getAcceptedApplyCounselingCustomers();}
     @GetMapping("/checkTime")
