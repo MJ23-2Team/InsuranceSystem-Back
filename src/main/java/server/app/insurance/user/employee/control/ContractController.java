@@ -2,9 +2,13 @@ package server.app.insurance.user.employee.control;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import server.app.insurance.user.employee.dto.ContractDto;
 import server.app.insurance.user.employee.service.ContractList;
+
+import java.util.List;
 
 @Tag(name = "Contract 컨트롤러", description = "Contract API입니다.")
 @RestController
@@ -21,4 +25,7 @@ public class ContractController {
     public void doCollaborativeUnderWriting(int contractId) {
         contractList.doCollaborativeUnderWriting(contractId);
     }
+
+    @GetMapping( "/getContractByCustomerId" )
+    public List<ContractDto> retrieveByCustomerId(int customerId ){ return contractList.getAllByCustomerId( customerId ); }
 }

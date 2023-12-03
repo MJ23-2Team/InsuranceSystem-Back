@@ -3,6 +3,7 @@ package server.app.insurance.user.employee.control;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import server.app.insurance.user.employee.dto.PaymentWithCustomerDto;
 import server.app.insurance.user.employee.service.PaymentList;
 import server.app.insurance.user.employee.dto.PaymentDto;
 
@@ -20,7 +21,9 @@ public class PaymentController {
     @GetMapping("/getById")
     public PaymentDto retrieve(@RequestParam int id) {return paymentList.retrieve(id);}
     @GetMapping("/getAll")
-    public List<PaymentDto> retrieveAll() {return paymentList.retrieveAll();}
+    public List<PaymentWithCustomerDto> retrieveAll() {return paymentList.retrieveAll();}
+    @GetMapping( "/getAllExpired" )
+    public List<PaymentWithCustomerDto> retrieveAllExpired() { return paymentList.retrieveAllExpired(); }
     @GetMapping( "/checkValidate" )
     public void checkValidate() { paymentList.checkValidate(); }
     @PutMapping("/update")
