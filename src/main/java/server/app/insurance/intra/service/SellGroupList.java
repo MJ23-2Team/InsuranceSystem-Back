@@ -83,13 +83,10 @@ public class SellGroupList {
     }
 
     public List<UserPersonaDto> getUserPersonas(int insuranceID) {
-        return userPersonaRepository.findAll()
-                .stream().map( UserPersonaDto::of )
-//                .filter(userPersonaDto -> userPersonaDto.getInsurance().getInsuranceID() == insuranceID)
-                .collect(Collectors.toList());
+        return userPersonaRepository.findByInsuranceID(insuranceID);
     }
 
-    public void addUserPersona(UserPersonaDto userPersonaDto) { // insuranceId는 프론트에서 입력이 아니고 insurance에서 받기
+    public void addUserPersona(UserPersonaDto userPersonaDto) {
         userPersonaRepository.save(UserPersona.of(userPersonaDto));
     }
 
