@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface RewardRepository extends JpaRepository<Reward,Integer> {
 
-    @Query( "SELECT r FROM Reward r WHERE m.contractid in :contractids" )
-    List<Reward> findAllByContractIds(@Param("contractids") Collection<Integer> contractIds);
+    @Query( "SELECT r FROM Reward r WHERE r.contract.contractID in :contractids" )
+    List<Reward> findAllByContractIds(@Param("contractids") Collection<Integer> contractids);
 
 }

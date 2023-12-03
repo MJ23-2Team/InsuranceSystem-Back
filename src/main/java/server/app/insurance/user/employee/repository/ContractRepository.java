@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ContractRepository extends JpaRepository<Contract,Integer> {
     @Query( "SELECT a FROM Contract a WHERE a.customer.customerID=:customerId" )
-    List<Contract> findByCustomerId( @Param("customerId") int customerID );
+    List<Contract> findByCustomerId( @Param("customerId") int customerId );
 
 }
