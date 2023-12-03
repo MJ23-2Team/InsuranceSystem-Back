@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import server.app.insurance.common.security.TokenProvider;
 import server.app.insurance.user.customer.dto.LoginResponse;
-import server.app.insurance.user.customer.dto.TokenInfoResponse;
 import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.customer.repository.CustomerRepository;
 import server.app.insurance.user.customer.state.Role;
@@ -97,7 +96,7 @@ public String getAccessToken(String code) {
         OAuth2AuthenticationToken auth = configureAuthentication(userDetails, authorities);
 
         //3. JWT 토큰 생성
-        TokenInfoResponse tokenInfoResponse = tokenProvider.createToken(auth, isSignedUp, (long) user.getCustomerID());
+        LoginResponse.TokenInfoResponse tokenInfoResponse = tokenProvider.createToken(auth, isSignedUp, (long) user.getCustomerID());
         return LoginResponse.from(tokenInfoResponse, isSignedUp ? LOGIN_SUCCESS.getMessage() : SIGN_UP_ING.getMessage(), (long) user.getCustomerID());
 
     }

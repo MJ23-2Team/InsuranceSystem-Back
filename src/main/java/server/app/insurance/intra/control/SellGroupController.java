@@ -13,6 +13,7 @@ import server.app.insurance.user.employee.dto.CampaignProgramDto;
 import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.employee.dto.InsuranceSalesRequest;
 import server.app.insurance.user.employee.dto.UserPersonaDto;
+import server.app.insurance.user.employee.entity.UserPersona;
 
 import java.util.List;
 
@@ -35,11 +36,13 @@ public class SellGroupController {
    //
 
     @GetMapping("/campaignProgram")
-    public CampaignProgramDto choiceCampaignProgram(@RequestBody InsuranceDto insuranceDto) {return sellGroupList.choiceCampaignProgram(insuranceDto);}
+    public CampaignProgramDto choiceCampaignProgram(@RequestParam int id) {return sellGroupList.choiceCampaignProgram(id);}
     @GetMapping ("/userPersonas")
-    public List<UserPersonaDto> getUserPersonas(@RequestBody InsuranceDto insuranceDto) {return sellGroupList.getUserPersonas(insuranceDto);}
+    public List<UserPersonaDto> getUserPersonas(@RequestParam int id) {
+        return sellGroupList.getUserPersonas(id);}
     @PostMapping("/userPersona")
-    public void addUserPersona(@RequestBody UserPersonaDto userPersonaDto) {sellGroupList.addUserPersona(userPersonaDto);}
+    public void addUserPersona(@RequestBody UserPersonaDto userPersonaDto) {
+        sellGroupList.addUserPersona(userPersonaDto);}
     @PutMapping("/salesPlan")
     public void planSalesPlan(@RequestBody InsuranceSalesRequest insuranceSalesRequest) {sellGroupList.planSalesPlan(insuranceSalesRequest);}
     @GetMapping("/appliedCounselingCustomers")

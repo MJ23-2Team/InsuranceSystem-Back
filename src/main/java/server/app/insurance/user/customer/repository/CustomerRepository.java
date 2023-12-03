@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer,Integer> {
     Customer findByName(String name);
-
+    Customer findByCustomerID(Integer CustomerID);
     @Query("select m from Customer m where m.email = :email")
     Optional<Customer> findByEmailonToken(@Param("email") String email);
 
