@@ -31,15 +31,15 @@ public class PaymentList {
     private final CustomerRepository customerRepository;
     private final InsuranceRepository insuranceRepository;
 
-    public void add( PaymentDto request ){
+    public void createPayment( PaymentDto request ){
         paymentRepository.save( Payment.of( request ) );
     }
 
-    public PaymentDto retrieve( int id ){
+    public PaymentDto retrievePayment( int id ){
         return PaymentDto.of( paymentRepository.findById( id ).get() );
     }
 
-    public List<PaymentWithCustomerDto> retrieveAll(){
+    public List<PaymentWithCustomerDto> retrieveAllPayment(){
         List<PaymentDto> paymentList = paymentRepository.findAll().stream().map( PaymentDto::of ).collect( Collectors.toList() );
         List<PaymentWithCustomerDto> paymentInfoList = new ArrayList<PaymentWithCustomerDto>();
         for( PaymentDto payment : paymentList ){
@@ -62,8 +62,8 @@ public class PaymentList {
         return paymentInfoList;
     }
 
-    public List<PaymentWithCustomerDto> retrieveAllExpired() {
-        List<PaymentWithCustomerDto> allPaymentInfo = retrieveAll();
+    public List<PaymentWithCustomerDto> retrieveAllExpiredPayment() {
+        List<PaymentWithCustomerDto> allPaymentInfo = retrieveAllPayment();
         List<PaymentWithCustomerDto> tempPaymentInfoList = new ArrayList<PaymentWithCustomerDto>();
         for( PaymentWithCustomerDto dto : allPaymentInfo ){
             if( dto.isResult() == false ) tempPaymentInfoList.add( dto );
@@ -82,11 +82,11 @@ public class PaymentList {
         }
     }
 
-    public void update( PaymentDto request ){
+    public void updatePayment( PaymentDto request ){
         paymentRepository.save( Payment.of( request ) );
     }
 
-    public void delete( int id ){
+    public void deletePayment( int id ){
         paymentRepository.deleteById( id );
     }
 }

@@ -20,19 +20,19 @@ public class RewardList {
     private final RewardRepository rewardRepository;
     private final ContractRepository contractRepository;
 
-    public void add( RewardDto request ){
+    public void createReward( RewardDto request ){
         rewardRepository.save( Reward.of( request ) );
     }
 
-    public RewardDto retrieve( int id ){
+    public RewardDto retrieveReward( int id ){
         return RewardDto.of( rewardRepository.findById( id ).get() );
     }
 
-    public List<RewardDto> retrieveAll(){
+    public List<RewardDto> retrieveAllReward(){
         return rewardRepository.findAll().stream().map( RewardDto::of ).collect( Collectors.toList() );
     }
 
-    public List<RewardDto> retrieveByCustomerId( int customerId ){
+    public List<RewardDto> retrieveRewardByCustomerId( int customerId ){
         List<ContractDto> contractList = contractRepository.findByCustomerId( customerId )
                 .stream().map( ContractDto::of ).collect( Collectors.toList() );
         List<Integer> contractIdList = new ArrayList<Integer>();
@@ -42,11 +42,11 @@ public class RewardList {
         return rewardRepository.findAllByContractIds( contractIdList ).stream().map( RewardDto::of ).collect( Collectors.toList() );
     }
 
-    public void update( RewardDto request ){
+    public void updateReward( RewardDto request ){
         rewardRepository.save( Reward.of( request ) );
     }
 
-    public void delete( int id ){
+    public void deleteReward( int id ){
         rewardRepository.deleteById( id );
     }
 }
