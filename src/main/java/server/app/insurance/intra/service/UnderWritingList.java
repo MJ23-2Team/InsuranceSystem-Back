@@ -44,7 +44,7 @@ public class UnderWritingList {
         boolean exist = assumePolicyRepository.findAll()
                             .stream()
                             .anyMatch(assumePolicy -> assumePolicy.getName().equals(title));
-        if(!exist) {
+        if(exist) {
             throw new IllegalArgumentException();
         }
     }

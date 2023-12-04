@@ -13,6 +13,7 @@ import server.app.insurance.intra.dto.AssumePolicyRetrieveResponse;
 import server.app.insurance.intra.service.UnderWritingList;
 import server.app.insurance.intra.state.intraResponseType;
 import server.app.insurance.user.employee.control.ContractController;
+import server.app.insurance.user.employee.dto.ContractDto;
 
 import java.util.List;
 
@@ -31,13 +32,23 @@ public class UnderWritingController {
         return ApiResponse.of(intraResponseType.ESTABLISH_SUCCESS);
     }
 
-    @PutMapping("/basic")
+    @GetMapping("/basic")
+    public List<ContractDto> getBasicContract() {
+        return contractController.getBasicContract();
+    }
+
+    @PostMapping("/basic")
     public ApiResponse<Object> doBasicUnderWriting(@RequestParam int contractId) {
         contractController.doBasicUnderWriting(contractId);
         return ApiResponse.of(intraResponseType.DOBASIC_SUCCESS);
     }
 
-    @PutMapping("/collaborative")
+    @GetMapping("/collaborative")
+    public List<ContractDto> getCollaborativeContract() {
+        return contractController.getCollaborativeContract();
+    }
+
+    @PostMapping("/collaborative")
     public ApiResponse<Object> doCollaborativeUnderWriting(@RequestParam int contractId) {
         contractController.doCollaborativeUnderWriting(contractId);
         return ApiResponse.of(intraResponseType.DOCOLLABORATIVE_SUCCESS);
