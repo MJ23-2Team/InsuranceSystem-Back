@@ -16,17 +16,17 @@ public class AdviceNoteController {
     private final AdviceNoteList adviceNoteList;
 
     @PostMapping("/add")
-    public void add(@RequestBody AdviceNoteDto request) {adviceNoteList.add(request);}
+    public void createAdviceNote(@RequestBody AdviceNoteDto request) {adviceNoteList.createAdviceNote(request);}
     @GetMapping("/getById")
-    public AdviceNoteDto retrieve(@RequestParam int id) {return adviceNoteList.retrieve(id);}
+    public AdviceNoteDto retrieveAdviceNote(@RequestParam int id) {return adviceNoteList.retrieveAdviceNote(id);}
     @GetMapping("/getAll")
-    public List<AdviceNoteDto> retrieveAll() {return adviceNoteList.retrieveAll();}
+    public List<AdviceNoteDto> retrieveAll() {return adviceNoteList.retrieveAllAdviceNote();}
     @GetMapping( "/getByCustomerId")
-    public List<AdviceNoteDto> retrieveByCustomerId( @RequestParam int customerId ) {
-        return adviceNoteList.retrieveByCustomerId( customerId );
+    public List<AdviceNoteDto> retrieveAdviceNoteByCustomerId( @RequestParam int customerId ) {
+        return adviceNoteList.retrieveAdviceNoteByCustomerId( customerId );
     }
     @PutMapping("/update")
-    public void update(@RequestBody AdviceNoteDto request) {adviceNoteList.update(request);}
+    public void updateAdviceNote(@RequestBody AdviceNoteDto request) {adviceNoteList.updateAdviceNote(request);}
     @DeleteMapping("/delete")
-    public void delete(@RequestParam int id) {adviceNoteList.delete(id);}
+    public void deleteAdviceNote(@RequestParam int id) {adviceNoteList.deleteAdviceNote(id);}
 }

@@ -16,23 +16,23 @@ import java.util.stream.Collectors;
 public class ContractManagementPolicyList {
     private final ContractManagementPolicyRepository contractManagementPolicyRepository;
 
-    public void add( ContractManagementPolicyDto request ){
+    public void createContractManagementPolicy( ContractManagementPolicyDto request ){
         contractManagementPolicyRepository.save( ContractManagementPolicy.of( request ) );
     }
 
-    public ContractManagementPolicyDto retrieve( int id ){
+    public ContractManagementPolicyDto retrieveContractManagementPolicy( int id ){
         return ContractManagementPolicyDto.of( contractManagementPolicyRepository.findById( id ).get() );
     }
 
-    public List<ContractManagementPolicyDto> retrieveAll(){
+    public List<ContractManagementPolicyDto> retrieveAllContractManagementPolicy(){
         return contractManagementPolicyRepository.findAll().stream().map( ContractManagementPolicyDto::of ).collect( Collectors.toList() );
     }
 
-    public void update( ContractManagementPolicyDto request ){
+    public void updateContractManagementPolicy( ContractManagementPolicyDto request ){
         contractManagementPolicyRepository.save( ContractManagementPolicy.of( request ) );
     }
 
-    public void delete( int id ){
+    public void deleteContractManagementPolicy( int id ){
         contractManagementPolicyRepository.deleteById( id );
     }
 }

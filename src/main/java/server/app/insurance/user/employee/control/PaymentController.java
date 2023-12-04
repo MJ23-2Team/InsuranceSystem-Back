@@ -17,17 +17,17 @@ public class PaymentController {
     private final PaymentList paymentList;
 
     @PostMapping("/add")
-    public void add(@RequestBody PaymentDto request) {paymentList.add(request);}
+    public void createPayment(@RequestBody PaymentDto request) {paymentList.createPayment(request);}
     @GetMapping("/getById")
-    public PaymentDto retrieve(@RequestParam int id) {return paymentList.retrieve(id);}
+    public PaymentDto retrievePayment(@RequestParam int id) {return paymentList.retrievePayment(id);}
     @GetMapping("/getAll")
-    public List<PaymentWithCustomerDto> retrieveAll() {return paymentList.retrieveAll();}
+    public List<PaymentWithCustomerDto> retrieveAllPayment() {return paymentList.retrieveAllPayment();}
     @GetMapping( "/getAllExpired" )
-    public List<PaymentWithCustomerDto> retrieveAllExpired() { return paymentList.retrieveAllExpired(); }
+    public List<PaymentWithCustomerDto> retrieveAllExpiredPayment() { return paymentList.retrieveAllExpiredPayment(); }
     @GetMapping( "/checkValidate" )
     public void checkValidate() { paymentList.checkValidate(); }
     @PutMapping("/update")
-    public void update(@RequestBody PaymentDto request) {paymentList.update(request);}
+    public void updatePayment(@RequestBody PaymentDto request) {paymentList.updatePayment(request);}
     @DeleteMapping("/delete")
-    public void delete(@RequestParam int id) {paymentList.delete(id);}
+    public void deletePayment(@RequestParam int id) {paymentList.deletePayment(id);}
 }

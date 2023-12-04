@@ -16,26 +16,26 @@ import java.util.stream.Collectors;
 public class AdviceNoteList {
     private final AdviceNoteRepository adviceNoteRepository;
 
-    public void add( AdviceNoteDto request ){
+    public void createAdviceNote( AdviceNoteDto request ){
         adviceNoteRepository.save( AdviceNote.of( request ) );
     }
 
-    public AdviceNoteDto retrieve( int id ){
+    public AdviceNoteDto retrieveAdviceNote( int id ){
         return AdviceNoteDto.of( adviceNoteRepository.findById( id ).get() );
     }
 
-    public List<AdviceNoteDto> retrieveAll(){
+    public List<AdviceNoteDto> retrieveAllAdviceNote(){
         return adviceNoteRepository.findAll().stream().map( AdviceNoteDto::of ).collect(Collectors.toList());
     }
-    public List<AdviceNoteDto> retrieveByCustomerId( int customerId ){
+    public List<AdviceNoteDto> retrieveAdviceNoteByCustomerId( int customerId ){
         return adviceNoteRepository.findByCustomerId( customerId ).stream().map( AdviceNoteDto::of ).collect( Collectors.toList() );
     }
 
-    public void update( AdviceNoteDto request ){
+    public void updateAdviceNote( AdviceNoteDto request ){
         adviceNoteRepository.save( AdviceNote.of( request ) );
     }
 
-    public void delete( int id ){
+    public void deleteAdviceNote( int id ){
         adviceNoteRepository.deleteById( id );
     }
 }

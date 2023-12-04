@@ -16,29 +16,29 @@ public class RewardController {
     private final RewardList rewardList;
 
     @PostMapping( "/add")
-    public void add( @RequestBody RewardDto request ){
-        rewardList.add( request );
+    public void createReward( @RequestBody RewardDto request ){
+        rewardList.createReward( request );
     }
 
     @GetMapping( "/getByRewardId" )
-    public RewardDto retrieve( @RequestParam int id ){
-        return rewardList.retrieve( id );
+    public RewardDto retrieveReward( @RequestParam int id ){
+        return rewardList.retrieveReward( id );
     }
 
     @GetMapping( "/getByCustomerId" )
-    public List<RewardDto> retrieveByCustomerId( @RequestParam int customerId ) { return rewardList.retrieveByCustomerId( customerId ); }
+    public List<RewardDto> retrieveRewardByCustomerId( @RequestParam int customerId ) { return rewardList.retrieveRewardByCustomerId( customerId ); }
     @GetMapping( "/getAll")
-    public List<RewardDto> retrieveAll(){
-        return rewardList.retrieveAll();
+    public List<RewardDto> retrieveAllReward(){
+        return rewardList.retrieveAllReward();
     }
 
     @PutMapping( "/update" )
-    public void update( @RequestBody RewardDto request ){
-        rewardList.update( request );
+    public void updateReward( @RequestBody RewardDto request ){
+        rewardList.updateReward( request );
     }
 
     @DeleteMapping( "/delete" )
-    public void delete( @RequestParam int id ){
-        rewardList.delete( id );
+    public void deleteReward( @RequestParam int id ){
+        rewardList.deleteReward( id );
     }
 }

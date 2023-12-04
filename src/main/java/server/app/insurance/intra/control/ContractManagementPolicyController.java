@@ -10,32 +10,33 @@ import java.util.List;
 
 @Tag(name = "ContractManagementPolicy 컨트롤러", description = "ContractManagementPolicy API입니다.")
 @RestController
+@RequestMapping( "/contractManagement")
 @RequiredArgsConstructor
 public class ContractManagementPolicyController {
     private final ContractManagementPolicyList contractManagementPolicyList;
 
-    @PostMapping( "/contractmanagementpolicy")
-    public void add(@RequestBody ContractManagementPolicyDto request ){
-        contractManagementPolicyList.add( request );
+    @PostMapping( "/add")
+    public void createContractManagementPolicy(@RequestBody ContractManagementPolicyDto request ){
+        contractManagementPolicyList.createContractManagementPolicy( request );
     }
 
-    @GetMapping( "/contractmanagementpolicy")
-    public ContractManagementPolicyDto retrieve( @RequestParam int id ){
-        return contractManagementPolicyList.retrieve( id );
+    @GetMapping( "/getById")
+    public ContractManagementPolicyDto retrieveContractManagementPolicy( @RequestParam int id ){
+        return contractManagementPolicyList.retrieveContractManagementPolicy( id );
     }
 
-    @GetMapping( "/contractmanagementpolicy/getAll" )
-    public List<ContractManagementPolicyDto> retrieveAll(){
-        return contractManagementPolicyList.retrieveAll();
+    @GetMapping( "/getAll" )
+    public List<ContractManagementPolicyDto> retrieveAllContractManagementPolicy(){
+        return contractManagementPolicyList.retrieveAllContractManagementPolicy();
     }
 
-    @PutMapping( "/contractmanagementpolicy" )
-    public void update( @RequestBody ContractManagementPolicyDto request ){
-        contractManagementPolicyList.update( request );
+    @PutMapping( "/update" )
+    public void updateContractManagementPolicy( @RequestBody ContractManagementPolicyDto request ){
+        contractManagementPolicyList.updateContractManagementPolicy( request );
     }
 
-    @DeleteMapping( "/contractmanagementpolicy" )
-    public void delete( @RequestParam int id ){
-        contractManagementPolicyList.delete( id );
+    @DeleteMapping( "/delete" )
+    public void deleteContractManagementPolicy( @RequestParam int id ){
+        contractManagementPolicyList.deleteContractManagementPolicy( id );
     }
 }
