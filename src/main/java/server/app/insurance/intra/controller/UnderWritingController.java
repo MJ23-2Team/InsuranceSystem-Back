@@ -1,4 +1,4 @@
-package server.app.insurance.intra.control;
+package server.app.insurance.intra.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,8 @@ import server.app.insurance.intra.dto.AssumePolicyCreateRequest;
 import server.app.insurance.intra.dto.AssumePolicyRetrieveResponse;
 import server.app.insurance.intra.service.UnderWritingList;
 import server.app.insurance.intra.state.intraResponseType;
-import server.app.insurance.user.employee.control.ContractController;
+import server.app.insurance.user.employee.controller.ContractController;
+import server.app.insurance.user.employee.dto.ContractDto;
 
 import java.util.List;
 
@@ -26,26 +27,33 @@ public class UnderWritingController {
     private final ContractController contractController;
 
     @PostMapping()
-    public ApiResponse<Object> createUnderWritingPolicy(@RequestBody AssumePolicyCreateRequest assumePolicyDto) {
+    public void createUnderWritingPolicy(@RequestBody AssumePolicyCreateRequest assumePolicyDto) {
         underWritingList.createUWPolicy(assumePolicyDto);
-        return ApiResponse.of(intraResponseType.ESTABLISH_SUCCESS);
     }
 
-    @PutMapping("/basic")
-    public ApiResponse<Object> doBasicUnderWriting(@RequestParam int contractId) {
+    @GetMapping("/basic")
+    public List<ContractDto> retrieveBasicContract() {
+        return contractController.retrieveBasicContract();
+    }
+
+    @PostMapping("/basic")
+    public void doBasicUnderWriting(@RequestParam int contractId) {
         contractController.doBasicUnderWriting(contractId);
-        return ApiResponse.of(intraResponseType.DOBASIC_SUCCESS);
     }
 
-    @PutMapping("/collaborative")
-    public ApiResponse<Object> doCollaborativeUnderWriting(@RequestParam int contractId) {
+    @GetMapping("/collaborative")
+    public List<ContractDto> retrieveCollaborativeContract() {
+        return contractController.retrieveCollaborativeContract();
+    }
+
+    @PostMapping("/collaborative")
+    public void doCollaborativeUnderWriting(@RequestParam int contractId) {
         contractController.doCollaborativeUnderWriting(contractId);
-        return ApiResponse.of(intraResponseType.DOCOLLABORATIVE_SUCCESS);
     }
 
     @GetMapping("/all")
-    public ApiResponse<List<AssumePolicyRetrieveResponse>> retrieveAll() {
-        return ApiResponse.of(intraResponseType.RETRIVE_SUCCESS, underWritingList.retrieveAll());
+    public List<AssumePolicyRetrieveResponse> retrieveAll() {
+        return underWritingList.retrieveAll();
     }
 
 }

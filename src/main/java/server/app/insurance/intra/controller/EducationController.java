@@ -1,4 +1,4 @@
-package server.app.insurance.intra.control;
+package server.app.insurance.intra.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -16,27 +16,27 @@ public class EducationController {
     private final EducationList educationList;
 
     @PostMapping("/add")
-    public void add(@RequestBody EducationDto request) {
-        educationList.add(request);
+    public void createEducation(@RequestBody EducationDto request) {
+        educationList.createEducation(request);
     }
 
     @GetMapping("/getById")
-    public EducationDto retrieve(@RequestParam int id) {
-        return educationList.retrieve(id);
+    public EducationDto retrieveEducation(@RequestParam int id) {
+        return educationList.retrieveEducation(id);
     }
 
     @GetMapping("/getAll")
-    public List<EducationDto> retrieveAll() {
-        return educationList.retrieveAll();
+    public List<EducationDto> retrieveAllEducation() {
+        return educationList.retrieveAllEducation();
     }
 
     @PutMapping("/update")
-    public void update(@RequestBody EducationDto request) {
-        educationList.update(request);
+    public void updateEducation(@RequestBody EducationDto request) {
+        educationList.updateEducation(request);
     }
 
     @DeleteMapping("/delete")
-    public void delete(@RequestParam int id) {
-        educationList.delete(id);
+    public void deleteEducation(@RequestParam int id) {
+        educationList.deleteEducation(id);
     }
 }

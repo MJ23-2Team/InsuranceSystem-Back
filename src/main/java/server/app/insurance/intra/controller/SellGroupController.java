@@ -1,4 +1,4 @@
-package server.app.insurance.intra.control;
+package server.app.insurance.intra.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +26,13 @@ public class SellGroupController {
     public void evaluateResult(@RequestBody EvaluateResultRequest request) {sellGroupList.evaluateResult(request);}
     @GetMapping("/recommend")
     public List<InsuranceDto> recommendInsurance() {return sellGroupList.recommendInsurance();}
-    @GetMapping("/getAll")
+    @GetMapping("/retrieveAll")
     public List<SellGroupDto> retrieveAll() {return sellGroupList.getAllGroup();}
     @GetMapping("/recommendReason")
     public String recommendInsuranceReason(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupList.recommendInsuranceReason(insuarnceId,customerId);}
-    @GetMapping("/fee")
-    public int calculateInsuranceFee(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupList.calculateInsuranceFee(insuarnceId,customerId);}
+    @GetMapping("/calculateFee")
+    public int calculateInsuranceFee(@RequestParam int insuarnceId,@RequestParam int customerId) {
+        return sellGroupList.calculateInsuranceFee(insuarnceId,customerId);}
    //
 
     @GetMapping("/campaignProgram")

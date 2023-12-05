@@ -1,4 +1,4 @@
-package server.app.insurance.user.employee.control;
+package server.app.insurance.user.employee.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

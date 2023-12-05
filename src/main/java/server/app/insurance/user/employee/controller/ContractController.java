@@ -1,4 +1,4 @@
-package server.app.insurance.user.employee.control;
+package server.app.insurance.user.employee.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,18 @@ public class ContractController {
         contractList.doBasicUnderWriting(contractId);
     }
 
+    @GetMapping("/basic")
+    public List<ContractDto> retrieveBasicContract() {
+        return contractList.retrieveBasicContract();
+    }
+
     public void doCollaborativeUnderWriting(int contractId) {
         contractList.doCollaborativeUnderWriting(contractId);
+    }
+
+    @GetMapping("/collaborative")
+    public List<ContractDto> retrieveCollaborativeContract() {
+        return contractList.retrieveCollaborativeContract();
     }
 
     @GetMapping( "/getContractByCustomerId" )

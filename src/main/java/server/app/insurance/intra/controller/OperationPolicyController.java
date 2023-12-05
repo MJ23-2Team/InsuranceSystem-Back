@@ -1,10 +1,11 @@
-package server.app.insurance.intra.control;
+package server.app.insurance.intra.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.intra.dto.OperationPolicyManageRequest;
+import server.app.insurance.intra.dto.OperationPolicyRecommandResponse;
 import server.app.insurance.intra.dto.OperationPolicyRequest;
 import server.app.insurance.intra.dto.OperationPolicyResponse;
 import server.app.insurance.intra.service.OperationPolicyList;
@@ -24,7 +25,7 @@ public class OperationPolicyController {
         return ApiResponse.of(intraResponseType.ESTABLISH_SUCCESS);
     }
     @PostMapping("/recommand")
-    public ApiResponse<Object> recommand(@RequestBody OperationPolicyManageRequest request) {
+    public ApiResponse<Object> recommandOperationPolicy(@RequestBody OperationPolicyManageRequest request) {
         operationPolicyList.manage(request.getId());
         return ApiResponse.of(intraResponseType.MANAGE_SUCCESS);
     }
@@ -33,8 +34,12 @@ public class OperationPolicyController {
         operationPolicyList.passOperationPolicy(request.getId());
         return ApiResponse.of(intraResponseType.MAKEOP_SUCCESS);
     }
-    @GetMapping("/getAll")
-    public ApiResponse<List<OperationPolicyResponse>> getAllPolicy() {
+    @GetMapping("/suggested")
+    public ApiResponse<List<OperationPolicyResponse>> retriveSuggestedOperationPolicy() {
         return  ApiResponse.of(intraResponseType.RETRIVE_SUCCESS,
-                operationPolicyList.getAllPolicy());}
+                operationPolicyList.getSuggestedPolicy());}
+    @GetMapping("/recommanded")
+    public ApiResponse<List<OperationPolicyRecommandResponse>> retriveRecommandedOperationPolicy() {
+        return  ApiResponse.of(intraResponseType.RETRIVE_SUCCESS,
+                operationPolicyList.geteRecommandedPolicy());}
 }

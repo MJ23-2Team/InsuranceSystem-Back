@@ -1,4 +1,4 @@
-package server.app.insurance.user.customer.control;
+package server.app.insurance.user.customer.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,7 +17,7 @@ import server.app.insurance.user.customer.state.CustomerResponseType;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class CustomerManagementControl {
+public class CustomerManagementController {
     private final CustomerManagementList customerManagementList;
     private final CustomerAuthList customerAuthList;
     @PostMapping("/login")
@@ -44,14 +44,14 @@ public class CustomerManagementControl {
         return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS,
                 customerAuthList.getAccessToken(code));
     }
-    @GetMapping(value = {"/setInfo"})
-    public ApiResponse<Boolean> setInfo(@RequestParam int id) {
+    @GetMapping(value = {"/customermanage/Info"})
+    public ApiResponse<Boolean> retirveInfo(@RequestParam int id) {
         return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS,
                 customerManagementList.getInfo(id));
     }
 
-    @PostMapping(value = {"/setInfo"})
-    public ApiResponse<Object> setInfo(@RequestBody RegisterGoogleRequset requset) {
+    @PostMapping(value = {"/customermanage/Info"})
+    public ApiResponse<Object> createInfo(@RequestBody RegisterGoogleRequset requset) {
         customerManagementList.setInfo(requset);
         return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS);
     }
