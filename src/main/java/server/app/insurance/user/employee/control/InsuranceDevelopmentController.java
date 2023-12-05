@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.user.employee.dto.*;
-import server.app.insurance.user.employee.entity.Insurance;
 import server.app.insurance.user.employee.service.InsuranceDevelopmentList;
 import server.app.insurance.user.employee.service.InsuranceList;
 import server.app.insurance.user.employee.state.InsuranceState;
@@ -50,21 +49,21 @@ public class InsuranceDevelopmentController {
         return insuranceDevelopmentList.authorizeInsurance(insuranceDto);
     }
     @GetMapping("/reports")
-    public List<InsurancePlanRequest> getReports() {
+    public List<InsurancePlanRequest> retrieveReports() {
         return insuranceList.retrieveReports();
     }
     @GetMapping("/planned")
-    public List<InsuranceDto> getPlannedInsurances() {
-        return insuranceDevelopmentList.getPlannedInsurances();
+    public List<InsuranceDto> retrievePlannedInsurances() {
+        return insuranceDevelopmentList.retrievePlannedInsurances();
     }
     @GetMapping("/designed")
-    public List<InsuranceDto> getDesignedInsurances() {
-        return insuranceDevelopmentList.getDesignedInsurances();
+    public List<InsuranceDto> retrieveDesignedInsurances() {
+        return insuranceDevelopmentList.retrieveDesignedInsurances();
     }
     @GetMapping("/authorized")
-    public List<InsuranceDto> getAuthorizedInsurances() {
-        return insuranceDevelopmentList.getAuthorizedInsurances();
+    public List<InsuranceDto> retrieveAuthorizedInsurances() {
+        return insuranceDevelopmentList.retrieveAuthorizedInsurances();
     }
     @GetMapping("/insurance")
-    public InsuranceDto getByInsuranceID(@RequestParam int id) {return insuranceDevelopmentList.getByInsuranceID(id);}
+    public InsuranceDto retrieveByInsuranceID(@RequestParam int id) {return insuranceDevelopmentList.retrieveByInsuranceID(id);}
 }

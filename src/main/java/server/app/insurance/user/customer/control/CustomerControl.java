@@ -38,7 +38,7 @@ public class CustomerControl {
     public CustomerDto retrieveByID(@RequestParam int id) {return customerList.retrieveByID(id);}
 
     @PutMapping("/information")
-    public void setCustomerInformation(@RequestBody CustomerInformationRequest customerInformationRequest, @RequestParam int id) {
-        customerList.setCustomerInformation(customerInformationRequest, id);
+    public void updateCustomerInformation(@RequestBody CustomerInformationRequest customerInformationRequest) {
+        customerList.updateCustomerInformation(customerInformationRequest);
     }
 }

@@ -3,8 +3,6 @@ package server.app.insurance.intra.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import server.app.insurance.common.exception.CCounselingNotFoundException;
-import server.app.insurance.common.exception.CInsuranceNotFoundException;
 import server.app.insurance.intra.dto.EvaluateResultRequest;
 import server.app.insurance.intra.dto.SellGroupDto;
 import server.app.insurance.intra.entity.SellGroup;
@@ -82,11 +80,11 @@ public class SellGroupList {
         return findCampaignDto.get();
     }
 
-    public List<UserPersonaDto> getUserPersonas(int insuranceID) {
+    public List<UserPersonaDto> retrieveUserPersonas(int insuranceID) {
         return userPersonaRepository.findByInsuranceID(insuranceID);
     }
 
-    public void addUserPersona(UserPersonaDto userPersonaDto) {
+    public void createUserPersona(UserPersonaDto userPersonaDto) {
         userPersonaRepository.save(UserPersona.of(userPersonaDto));
     }
 
@@ -104,7 +102,7 @@ public class SellGroupList {
                 .collect(Collectors.toList());
     }
 
-    public List<CustomerDto> getAppliedCounselingCustomers() {
+    public List<CustomerDto> retrieveAppliedCounselingCustomers() {
         return getCustomerCounselings(CounselingState.APPLIED).stream()
                 .map(CustomerCounselingDto::getCustomer)
                 .distinct()
@@ -112,17 +110,17 @@ public class SellGroupList {
                 .collect(Collectors.toList());
     }
 
-    public List<CustomerCounselingDto> getCustomerCounselingsByCustomerID(int customerID) {
+    public List<CustomerCounselingDto> retrieveCustomerCounselingsByCustomerID(int customerID) {
         return customerCounselingRepository.findByInsuranceID(customerID, CounselingState.APPLIED);
     }
 
-    public void setConsultationSchedule(int customerCounselingID) {
+    public void updateConsultationSchedule(int customerCounselingID) {
         CustomerCounseling customerCounseling = customerCounselingRepository.findById(customerCounselingID).get();
         customerCounseling.setCounselingState(CounselingState.ACCEPTED_APPLY);
         outerActor.sendSMStoCustomer("상담 일정이 잡혔습니다.");
     }
 
-    public List<CustomerCounselingResponse> getAcceptedApplyCounselingCustomers() {
+    public List<CustomerCounselingResponse> retrieveAcceptedApplyCounselingCustomers() {
         return getCustomerCounselings(CounselingState.ACCEPTED_APPLY).stream()
                 .map(CustomerCounseling::of)
                 .map(CustomerCounselingResponse::of)
@@ -135,7 +133,7 @@ public class SellGroupList {
         LocalDateTime startTime = LocalDateTime.now().minusHours(1);
         LocalDateTime endTime = LocalDateTime.now().plusHours(1);
         if (counselingTime.isBefore(startTime) || counselingTime.isAfter(endTime)) {
-            throw new CCounselingNotFoundException("해당 고객은 상담 시간이 아닙니다.");
+            return -1;
         }
         return customerCounselingResponse.getCustomerID();
     }

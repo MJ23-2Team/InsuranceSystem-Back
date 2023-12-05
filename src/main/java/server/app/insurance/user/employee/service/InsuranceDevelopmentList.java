@@ -13,7 +13,6 @@ import server.app.insurance.user.employee.repository.InsuranceRepository;
 import server.app.insurance.user.employee.state.InsuranceState;
 import server.app.insurance.user.outerActor.OuterActor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,28 +88,28 @@ public class InsuranceDevelopmentList {
         return insurance.getInsuranceState();
     }
 
-    public List<InsuranceDto> getPlannedInsurances() {
+    public List<InsuranceDto> retrievePlannedInsurances() {
         return insuranceRepository.findAll()
                 .stream().map( InsuranceDto::of )
                 .filter(insurance -> insurance.getInsuranceState() == InsuranceState.PLANED)
                 .collect(Collectors.toList());
     }
 
-    public List<InsuranceDto> getDesignedInsurances() {
+    public List<InsuranceDto> retrieveDesignedInsurances() {
         return insuranceRepository.findAll()
                 .stream().map( InsuranceDto::of )
                 .filter(insurance -> insurance.getInsuranceState() == InsuranceState.DESIGNED)
                 .collect(Collectors.toList());
     }
 
-    public List<InsuranceDto> getAuthorizedInsurances() {
+    public List<InsuranceDto> retrieveAuthorizedInsurances() {
         return insuranceRepository.findAll()
                 .stream().map( InsuranceDto::of )
                 .filter(insurance -> insurance.getInsuranceState() == InsuranceState.AUTHORIZED)
                 .collect(Collectors.toList());
     }
 
-    public InsuranceDto getByInsuranceID(int insuranceID) {
+    public InsuranceDto retrieveByInsuranceID(int insuranceID) {
         return InsuranceDto.of(insuranceRepository.findById(insuranceID).get());
     }
 
