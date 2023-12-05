@@ -25,7 +25,10 @@ public class SellGroupController {
     @PostMapping("/evaluateResult")
     public void evaluateResult(@RequestBody EvaluateResultRequest request) {sellGroupList.evaluateResult(request);}
     @GetMapping("/recommend")
-    public List<InsuranceDto> recommendInsurance() {return sellGroupList.recommendInsurance();}
+    public List<InsuranceDto> recommendInsurance() {
+        sellGroupList.recommendInsurance();
+        return sellGroupList.recommendInsurance();
+    }
     @GetMapping("/getAll")
     public List<SellGroupDto> retrieveAll() {return sellGroupList.getAllGroup();}
     @GetMapping("/recommendReason")
