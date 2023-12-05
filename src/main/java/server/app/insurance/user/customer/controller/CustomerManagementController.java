@@ -44,14 +44,14 @@ public class CustomerManagementController {
         return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS,
                 customerAuthList.getAccessToken(code));
     }
-    @GetMapping(value = {"/setInfo"})
-    public ApiResponse<Boolean> setInfo(@RequestParam int id) {
+    @GetMapping(value = {"/customermanage/Info"})
+    public ApiResponse<Boolean> retirveInfo(@RequestParam int id) {
         return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS,
                 customerManagementList.getInfo(id));
     }
 
-    @PostMapping(value = {"/setInfo"})
-    public ApiResponse<Object> setInfo(@RequestBody RegisterGoogleRequset requset) {
+    @PostMapping(value = {"/customermanage/Info"})
+    public ApiResponse<Object> createInfo(@RequestBody RegisterGoogleRequset requset) {
         customerManagementList.setInfo(requset);
         return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS);
     }

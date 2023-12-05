@@ -25,15 +25,12 @@ public class SellGroupController {
     @PostMapping("/evaluateResult")
     public void evaluateResult(@RequestBody EvaluateResultRequest request) {sellGroupList.evaluateResult(request);}
     @GetMapping("/recommend")
-    public List<InsuranceDto> recommendInsurance() {
-        sellGroupList.recommendInsurance();
-        return sellGroupList.recommendInsurance();
-    }
-    @GetMapping("/getAll")
+    public List<InsuranceDto> recommendInsurance() {return sellGroupList.recommendInsurance();}
+    @GetMapping("/retrieveAll")
     public List<SellGroupDto> retrieveAll() {return sellGroupList.getAllGroup();}
     @GetMapping("/recommendReason")
     public String recommendInsuranceReason(@RequestParam int insuarnceId,@RequestParam int customerId) {return sellGroupList.recommendInsuranceReason(insuarnceId,customerId);}
-    @GetMapping("/fee")
+    @GetMapping("/calculateFee")
     public int calculateInsuranceFee(@RequestParam int insuarnceId,@RequestParam int customerId) {
         return sellGroupList.calculateInsuranceFee(insuarnceId,customerId);}
    //
