@@ -3,6 +3,7 @@ package server.app.insurance.intra.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import server.app.insurance.intra.dto.OperationPolicyRecommandResponse;
 import server.app.insurance.intra.dto.OperationPolicyResponse;
 import server.app.insurance.intra.entity.OperationPolicy;
 import server.app.insurance.intra.dto.OperationPolicyRequest;
@@ -35,7 +36,11 @@ public class OperationPolicyList {
         operationPolicy.setPass(1);
         operationPolicyRepository.save(operationPolicy);
     }
-    public List<OperationPolicyResponse> getAllPolicy() {
-        return operationPolicyRepository.findByPassLike(0).stream().map(OperationPolicyResponse::of).collect(Collectors.toList());
+    public List<OperationPolicyResponse> getSuggestedPolicy() {
+        return operationPolicyRepository.findNotPass().stream().map(OperationPolicyResponse::of).collect(Collectors.toList());
+    }
+
+    public List<OperationPolicyRecommandResponse> geteRecommandedPolicy() {
+        return operationPolicyRepository.findPass().stream().map(OperationPolicyRecommandResponse::of).collect(Collectors.toList());
     }
 }
