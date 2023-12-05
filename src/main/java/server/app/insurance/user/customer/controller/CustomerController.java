@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/customer")
 @RequiredArgsConstructor
-public class CustomerControl {
+public class CustomerController {
     private final CustomerList customerList;
 
     @PostMapping()

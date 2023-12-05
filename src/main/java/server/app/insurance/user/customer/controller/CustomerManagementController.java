@@ -17,7 +17,7 @@ import server.app.insurance.user.customer.state.CustomerResponseType;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class CustomerManagementControl {
+public class CustomerManagementController {
     private final CustomerManagementList customerManagementList;
     private final CustomerAuthList customerAuthList;
     @PostMapping("/login")

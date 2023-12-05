@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ContractManagementPolicyController {
     private final ContractManagementPolicyList contractManagementPolicyList;
-
     @PostMapping( "/add")
     public void createContractManagementPolicy(@RequestBody ContractManagementPolicyDto request ){
         contractManagementPolicyList.createContractManagementPolicy( request );
