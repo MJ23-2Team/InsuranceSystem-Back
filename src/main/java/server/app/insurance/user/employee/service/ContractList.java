@@ -64,12 +64,12 @@ public class ContractList {
         contractRepository.save(target);
     }
 
-    public List<ContractDto> getBasicContract() {
+    public List<ContractDto> retrieveBasicContract() {
         return contractRepository.findAll().stream().filter(contract -> contract.getContractUWState() == ContractUWState.BASIC)
                 .map(ContractDto::of).collect(Collectors.toList());
     }
 
-    public List<ContractDto> getCollaborativeContract() {
+    public List<ContractDto> retrieveCollaborativeContract() {
         return contractRepository.findAll().stream().filter(contract -> contract.getContractUWState() == ContractUWState.COLLABORATIVE)
                 .map(ContractDto::of).collect(Collectors.toList());
     }

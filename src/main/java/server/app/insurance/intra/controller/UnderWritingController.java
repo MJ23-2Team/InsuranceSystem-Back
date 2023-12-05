@@ -1,4 +1,4 @@
-package server.app.insurance.intra.control;
+package server.app.insurance.intra.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import server.app.insurance.intra.dto.AssumePolicyCreateRequest;
 import server.app.insurance.intra.dto.AssumePolicyRetrieveResponse;
 import server.app.insurance.intra.service.UnderWritingList;
 import server.app.insurance.intra.state.intraResponseType;
-import server.app.insurance.user.employee.control.ContractController;
+import server.app.insurance.user.employee.controller.ContractController;
 import server.app.insurance.user.employee.dto.ContractDto;
 
 import java.util.List;
@@ -33,8 +33,8 @@ public class UnderWritingController {
     }
 
     @GetMapping("/basic")
-    public List<ContractDto> getBasicContract() {
-        return contractController.getBasicContract();
+    public List<ContractDto> retrieveBasicContract() {
+        return contractController.retrieveBasicContract();
     }
 
     @PostMapping("/basic")
@@ -44,8 +44,8 @@ public class UnderWritingController {
     }
 
     @GetMapping("/collaborative")
-    public List<ContractDto> getCollaborativeContract() {
-        return contractController.getCollaborativeContract();
+    public List<ContractDto> retrieveCollaborativeContract() {
+        return contractController.retrieveCollaborativeContract();
     }
 
     @PostMapping("/collaborative")

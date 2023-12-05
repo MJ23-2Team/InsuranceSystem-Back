@@ -1,4 +1,4 @@
-package server.app.insurance.user.employee.control;
+package server.app.insurance.user.employee.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -7,7 +7,6 @@ import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.user.employee.dto.CampaignProgramPlanRequest;
 import server.app.insurance.user.employee.service.CampaignProgramList;
 import server.app.insurance.user.employee.dto.CampaignProgramDto;
-import server.app.insurance.user.employee.entity.CampaignProgram;
 import server.app.insurance.user.employee.state.EmployeeResponseType;
 
 import java.util.List;
@@ -21,8 +20,8 @@ public class MarketingPlanningController {
     private final CampaignProgramList campaignProgramList;
 
     @PostMapping()
-    public ApiResponse<Object> campaignPlan(@RequestBody CampaignProgramPlanRequest campaignProgramDto) {
-        campaignProgramList.campaignPlan(campaignProgramDto);
+    public ApiResponse<Object> createCampaignPlan(@RequestBody CampaignProgramPlanRequest campaignProgramDto) {
+        campaignProgramList.createCampaignPlan(campaignProgramDto);
         return ApiResponse.of(EmployeeResponseType.CAMPAIGNPLAN_SUCCESS);
     }
 
@@ -56,8 +55,8 @@ public class MarketingPlanningController {
     }
 
     @PostMapping("/result")
-    public ApiResponse<Object> setCampaignResult(@RequestParam int campaignID) {
-        campaignProgramList.setResultCampaign(campaignID);
+    public ApiResponse<Object> createCampaignResult(@RequestParam int campaignID) {
+        campaignProgramList.createCampaignResult(campaignID);
         return ApiResponse.of(EmployeeResponseType.SETCAMPAIGNRESULT_SUCCESS);
     }
 
