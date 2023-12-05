@@ -1,4 +1,4 @@
-package server.app.insurance.intra.control;
+package server.app.insurance.intra.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,6 @@ import server.app.insurance.user.employee.dto.CampaignProgramDto;
 import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.employee.dto.InsuranceSalesRequest;
 import server.app.insurance.user.employee.dto.UserPersonaDto;
-import server.app.insurance.user.employee.entity.UserPersona;
 
 import java.util.List;
 

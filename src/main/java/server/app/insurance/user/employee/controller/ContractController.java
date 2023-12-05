@@ -1,9 +1,8 @@
-package server.app.insurance.user.employee.control;
+package server.app.insurance.user.employee.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import server.app.insurance.user.employee.dto.ContractDto;
@@ -24,8 +23,8 @@ public class ContractController {
     }
 
     @GetMapping("/basic")
-    public List<ContractDto> getBasicContract() {
-        return contractList.getBasicContract();
+    public List<ContractDto> retrieveBasicContract() {
+        return contractList.retrieveBasicContract();
     }
 
     public void doCollaborativeUnderWriting(int contractId) {
@@ -33,8 +32,8 @@ public class ContractController {
     }
 
     @GetMapping("/collaborative")
-    public List<ContractDto> getCollaborativeContract() {
-        return contractList.getCollaborativeContract();
+    public List<ContractDto> retrieveCollaborativeContract() {
+        return contractList.retrieveCollaborativeContract();
     }
 
     @GetMapping( "/getContractByCustomerId" )

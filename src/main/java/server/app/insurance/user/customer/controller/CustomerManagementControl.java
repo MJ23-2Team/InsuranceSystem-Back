@@ -1,4 +1,4 @@
-package server.app.insurance.user.customer.control;
+package server.app.insurance.user.customer.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,10 +1,9 @@
-package server.app.insurance.user.employee.control;
+package server.app.insurance.user.employee.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.user.employee.dto.*;
-import server.app.insurance.user.employee.entity.Insurance;
 import server.app.insurance.user.employee.service.InsuranceDevelopmentList;
 import server.app.insurance.user.employee.service.InsuranceList;
 import server.app.insurance.user.employee.state.InsuranceState;
