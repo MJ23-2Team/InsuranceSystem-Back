@@ -19,11 +19,9 @@ import java.util.List;
 public class CustomerController {
     private final CustomerList customerList;
 
-    // @RequestBody RequestDto를 만들어서 하면 ID 인식이 안됨 <- 뭐지 진짜
     @PostMapping()
-    public ApiResponse<Object> registerInsurance(@RequestParam int customerID, @RequestParam int insuranceID) {
+    public void registerInsurance(@RequestParam int customerID, @RequestParam int insuranceID) {
         customerList.registerInsurance(customerID, insuranceID);
-        return ApiResponse.of(CustomerResponseType.REGIST_INSURANCE_SUCCESS);
     }
 
     @GetMapping("/{name}")
