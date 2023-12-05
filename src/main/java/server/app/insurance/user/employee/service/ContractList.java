@@ -64,6 +64,16 @@ public class ContractList {
         contractRepository.save(target);
     }
 
+    public List<ContractDto> retrieveBasicContract() {
+        return contractRepository.findAll().stream().filter(contract -> contract.getContractUWState() == ContractUWState.BASIC)
+                .map(ContractDto::of).collect(Collectors.toList());
+    }
+
+    public List<ContractDto> retrieveCollaborativeContract() {
+        return contractRepository.findAll().stream().filter(contract -> contract.getContractUWState() == ContractUWState.COLLABORATIVE)
+                .map(ContractDto::of).collect(Collectors.toList());
+    }
+
     public void doCollaborativeUnderWriting(int contractId) {
         Contract collaborateTarget = contractRepository.getReferenceById(contractId);
         Customer contractCustomer = collaborateTarget.getCustomer();
@@ -86,4 +96,5 @@ public class ContractList {
     public List<ContractDto> getAllByCustomerId( int customerId ){
         return contractRepository.findByCustomerId( customerId ).stream().map( ContractDto::of ).collect( Collectors.toList() );
     }
+
 }

@@ -16,23 +16,23 @@ import java.util.stream.Collectors;
 public class EducationStudentList {
     private final EducationStudentRepository educationStudentRepository;
 
-    public void add( EducationStudentDto request ){
+    public void createEducationStudent( EducationStudentDto request ){
         educationStudentRepository.save( EducationStudent.of( request ) );
     }
 
-    public EducationStudentDto retrieve( int id ){
+    public EducationStudentDto retrieveEducationStudent( int id ){
         return EducationStudentDto.of( educationStudentRepository.findById( id ).get() );
     }
 
-    public List<EducationStudentDto> retrieveAll(){
+    public List<EducationStudentDto> retrieveAllEducationStudent(){
         return educationStudentRepository.findAll().stream().map( EducationStudentDto::of).collect( Collectors.toList() );
     }
 
-    public void update( EducationStudentDto request ){
+    public void updateEducationStudent( EducationStudentDto request ){
         educationStudentRepository.save( educationStudentRepository.save( EducationStudent.of( request ) ) );
     }
 
-    public void delete( int id ){
+    public void deleteEducationStudent( int id ){
         educationStudentRepository.deleteById( id );
     }
 }

@@ -16,13 +16,13 @@ public class EducationStudentController {
     private final EducationStudentList educationStudentList;
 
     @PostMapping("/add")
-    public void add(@RequestBody EducationStudentDto request) {educationStudentList.add(request);}
+    public void createEducationStudent(@RequestBody EducationStudentDto request) {educationStudentList.createEducationStudent(request);}
     @GetMapping("/getById")
-    public EducationStudentDto retrieve(@RequestParam int id) {return educationStudentList.retrieve(id);}
+    public EducationStudentDto retrieveEducationStudent(@RequestParam int id) {return educationStudentList.retrieveEducationStudent(id);}
     @GetMapping("/getAll")
-    public List<EducationStudentDto> retrieveAll() {return educationStudentList.retrieveAll();}
+    public List<EducationStudentDto> retrieveAllEducationStudent() {return educationStudentList.retrieveAllEducationStudent();}
     @PutMapping("/update")
-    public void update(@RequestBody EducationStudentDto request) {educationStudentList.update(request);}
+    public void updateEducationStudent(@RequestBody EducationStudentDto request) {educationStudentList.updateEducationStudent(request);}
     @DeleteMapping("/delete")
-    public void delete(@RequestParam int id) {educationStudentList.delete(id);}
+    public void deleteEducationStudent(@RequestParam int id) {educationStudentList.deleteEducationStudent(id);}
 }

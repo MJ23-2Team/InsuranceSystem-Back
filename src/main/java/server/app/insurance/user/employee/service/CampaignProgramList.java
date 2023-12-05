@@ -25,14 +25,12 @@ public class CampaignProgramList {
     private final CampaignProgramRepository campaignProgramRepository;
     private final InsuranceRepository insuranceRepository;
 
-    // 기획 -> O
-    public void campaignPlan(CampaignProgramPlanRequest campaignProgramDto) {
+    public void createCampaignPlan(CampaignProgramPlanRequest campaignProgramDto) {
         Insurance campaignInsurance = insuranceRepository.getReferenceById(campaignProgramDto.getInsuranceID());
         campaignProgramDto.setState(CampaignState.PLAN);
         campaignProgramRepository.save(CampaignProgram.of(campaignInsurance, campaignProgramDto));
     }
 
-    // state = PLAN 조회 -> O
     public List<CampaignProgramDto> retrievePlanCampaign() {
         return campaignProgramRepository.findAll().stream()
                 .filter(campaignProgram -> campaignProgram.getState() == CampaignState.PLAN)
@@ -40,7 +38,6 @@ public class CampaignProgramList {
                 .collect(Collectors.toList());
     }
 
-    // state = RUN 조회
     public List<CampaignProgramDto> retrieveRunCampaign() {
         return campaignProgramRepository.findAll()
                 .stream()
@@ -49,7 +46,6 @@ public class CampaignProgramList {
                 .collect(Collectors.toList());
     }
 
-    // state = END 조회
     public List<CampaignProgramDto> retrieveEndCampaign() {
         return campaignProgramRepository.findAll()
                 .stream()
@@ -58,13 +54,11 @@ public class CampaignProgramList {
                 .collect(Collectors.toList());
     }
 
-    // state = END campaign program 실제 손익률 업데이트
-    public void setResultCampaign(int campaignId) {
+    public void createCampaignResult(int campaignId) {
         CampaignProgram endCampaign = campaignProgramRepository.getReferenceById(campaignId);
         endCampaign.setEND_RESULT(endCampaign.END_RESULT);
     }
 
-    // 기획된 campaign state -> RUN으로 변경
     public void doCampaignRun(int campaignID) {
         CampaignProgram readyCampaignProgram = campaignProgramRepository.getReferenceById(campaignID);
         CampaignState currentState = readyCampaignProgram.getState();
