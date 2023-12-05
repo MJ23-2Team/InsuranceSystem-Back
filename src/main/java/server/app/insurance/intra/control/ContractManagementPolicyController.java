@@ -10,7 +10,7 @@ import java.util.List;
 
 @Tag(name = "ContractManagementPolicy 컨트롤러", description = "ContractManagementPolicy API입니다.")
 @RestController
-@RequestMapping( "/contractManagement")
+@RequestMapping( "/contractManagementPolicy")
 @RequiredArgsConstructor
 public class ContractManagementPolicyController {
     private final ContractManagementPolicyList contractManagementPolicyList;

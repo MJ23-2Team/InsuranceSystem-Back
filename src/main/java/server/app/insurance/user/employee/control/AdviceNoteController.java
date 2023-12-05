@@ -22,8 +22,8 @@ public class AdviceNoteController {
     @GetMapping("/getAll")
     public List<AdviceNoteDto> retrieveAll() {return adviceNoteList.retrieveAllAdviceNote();}
     @GetMapping( "/getByCustomerId")
-    public List<AdviceNoteDto> retrieveAdviceNoteByCustomerId( @RequestParam int customerId ) {
-        return adviceNoteList.retrieveAdviceNoteByCustomerId( customerId );
+    public List<AdviceNoteDto> retrieveAdviceNoteByCustomerId( @RequestParam int id ) {
+        return adviceNoteList.retrieveAdviceNoteByCustomerId( id );
     }
     @PutMapping("/update")
     public void updateAdviceNote(@RequestBody AdviceNoteDto request) {adviceNoteList.updateAdviceNote(request);}
