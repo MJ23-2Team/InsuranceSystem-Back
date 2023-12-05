@@ -18,6 +18,12 @@ public class CustomerCounselingDto {
     private LocalDateTime counselingTime;
     private CounselingState counselingState;
 
+    public CustomerCounselingDto(int counselingID, String counselingPlace, LocalDateTime counselingTime) {
+        this.counselingID = counselingID;
+        this.counselingPlace = counselingPlace;
+        this.counselingTime = counselingTime;
+    }
+
     public static CustomerCounselingDto of(CustomerCounseling customerCounseling) {
         return CustomerCounselingDto.builder()
                 .counselingID(customerCounseling.getCounselingID())

@@ -112,14 +112,12 @@ public class SellGroupList {
                 .collect(Collectors.toList());
     }
 
-    public List<CustomerCounselingDto> getCustomerCounselingsByCustomerDto(CustomerDto customerDto) {
-        return getCustomerCounselings(CounselingState.APPLIED).stream()
-                .filter(customerCounselingDto -> customerCounselingDto.getCustomer().getCustomerID() == customerDto.getCustomerID())
-                .collect(Collectors.toList());
+    public List<CustomerCounselingDto> getCustomerCounselingsByCustomerID(int customerID) {
+        return customerCounselingRepository.findByInsuranceID(customerID, CounselingState.APPLIED);
     }
 
-    public void setConsultationSchedule(CustomerCounselingDto customerCounselingDto) {
-        CustomerCounseling customerCounseling = CustomerCounseling.of(customerCounselingDto);
+    public void setConsultationSchedule(int customerCounselingID) {
+        CustomerCounseling customerCounseling = customerCounselingRepository.findById(customerCounselingID).get();
         customerCounseling.setCounselingState(CounselingState.ACCEPTED_APPLY);
         outerActor.sendSMStoCustomer("상담 일정이 잡혔습니다.");
     }
