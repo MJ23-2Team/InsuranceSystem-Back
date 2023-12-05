@@ -1,4 +1,4 @@
-package server.app.insurance.user.customer.control;
+package server.app.insurance.user.customer.controller;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/customer")
 @RequiredArgsConstructor
-public class CustomerControl {
+public class CustomerController {
     private final CustomerList customerList;
 
     // @RequestBody RequestDto를 만들어서 하면 ID 인식이 안됨 <- 뭐지 진짜
