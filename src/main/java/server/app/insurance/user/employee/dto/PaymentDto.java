@@ -24,6 +24,18 @@ public class PaymentDto {
     private Constants.PayWay payway;				// 납부 방법
     private boolean result;
 
+    public PaymentDto( int paymentID, int contractID, int duration, int contractDuration, LocalDate expireDate, String content, int amount, int accidentCount, boolean result ){
+        this.paymentID = paymentID;
+        this.contractID = contractID;
+        this.duration = duration;
+        this.contractDuration = contractDuration;
+        this.expireDate = expireDate;
+        this.content = content;
+        this.amount = amount;
+        this.accidentCount = accidentCount;
+        this.result = result;
+    }
+
     public static PaymentDto of( Payment payment ){
         return PaymentDto.builder()
                 .paymentID( payment.getPaymentID() )

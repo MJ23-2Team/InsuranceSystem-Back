@@ -44,5 +44,4 @@ public class Reward {
                 .build();
     }
     // 보상금
-
 }

@@ -48,8 +48,8 @@ public class PaymentList {
             useDTO.setExpireDate( payment.getExpireDate() );
             useDTO.setResult( payment.isResult() );
             useDTO.setAmount( payment.getAmount() );
-            System.out.println( payment.getContractID() + "#############" );
-            ContractDto currentContract = ContractDto.of( contractRepository.findById( payment.getContractID() ).get() );
+            int tempContractID = paymentRepository.findByPaymentId(payment.getPaymentID()).getContractID();
+            ContractDto currentContract = contractRepository.findByContractId( tempContractID );
             int insuranceID = currentContract.getInsuranceID();
             int customerID = currentContract.getCustomerID();
             InsuranceDto currentInsurance = InsuranceDto.of( insuranceRepository.findById( insuranceID ).get() );
@@ -58,7 +58,6 @@ public class PaymentList {
             useDTO.setCustomerName( currentCustomer.getName() );
             paymentInfoList.add( useDTO );
         }
-
         return paymentInfoList;
     }
 

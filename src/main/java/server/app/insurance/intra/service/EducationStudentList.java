@@ -3,8 +3,11 @@ package server.app.insurance.intra.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import server.app.insurance.intra.dto.EducationDto;
 import server.app.insurance.intra.dto.EducationStudentDto;
+import server.app.insurance.intra.entity.Education;
 import server.app.insurance.intra.entity.EducationStudent;
+import server.app.insurance.intra.repository.EducationRepository;
 import server.app.insurance.intra.repository.EducationStudentRepository;
 
 import java.util.List;
@@ -15,9 +18,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class EducationStudentList {
     private final EducationStudentRepository educationStudentRepository;
+    private final EducationRepository educationRepository;
 
     public void createEducationStudent( EducationStudentDto request ){
-        educationStudentRepository.save( EducationStudent.of( request ) );
+        System.out.println( request.getEducationID());
+        EducationDto tempEducation = EducationDto.of( educationRepository.getById( request.getEducationID() ) );
+        educationStudentRepository.save( EducationStudent.allOf( request, tempEducation ) );
     }
 
     public EducationStudentDto retrieveEducationStudent( int id ){
