@@ -31,7 +31,7 @@ public class CampaignProgram {
     private float exResult; // 캠페인 예상 손익률
     private String place; // 캠페인 장소
     private String campaignWay; // 캠페인 수단 - 시나리오에 적혀있지만 설계 과정에서 attribute가 제외되서 추가함
-    public float END_RESULT = 5.5f; // 실제 손익률 - 시나리오에 적혀있지만 설계 과정에서 attribute가 제외되서 추가함
+    public float END_RESULT; // 실제 손익률 - 시나리오에 적혀있지만 설계 과정에서 attribute가 제외되서 추가함
 
     @Enumerated(EnumType.STRING)
     private CampaignState state;
@@ -48,6 +48,7 @@ public class CampaignProgram {
                 .place(campaignProgramDto.getPlace())
                 .campaignWay(campaignProgramDto.getCampaignWay())
                 .state(campaignProgramDto.getState())
+                .END_RESULT(campaignProgramDto.getEndResult())
                 .outTeam(OUT_TEAM)
                 .build();
     }

@@ -36,6 +36,7 @@ public class CampaignProgramDto {
                 .exResult(campaignProgram.getExResult())
                 .place(campaignProgram.getPlace())
                 .campaignWay(campaignProgram.getCampaignWay())
+                .endResult(campaignProgram.getEND_RESULT())
                 .state(campaignProgram.getState())
                 .outTeam(campaignProgram.getOutTeam())
                 .build();

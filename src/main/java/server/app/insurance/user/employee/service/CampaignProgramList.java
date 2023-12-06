@@ -54,7 +54,7 @@ public class CampaignProgramList {
 
     public void createCampaignResult(int campaignId) {
         CampaignProgram endCampaign = campaignProgramRepository.getReferenceById(campaignId);
-        endCampaign.setEND_RESULT(endCampaign.END_RESULT);
+        endCampaign.setEND_RESULT(5.5f);
     }
 
     public void doCampaignRun(int campaignID) {
