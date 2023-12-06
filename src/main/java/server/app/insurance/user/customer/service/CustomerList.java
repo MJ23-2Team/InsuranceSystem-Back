@@ -7,6 +7,7 @@ import server.app.insurance.user.customer.dto.CustomerInformationRequest;
 import server.app.insurance.user.customer.repository.CustomerRepository;
 import server.app.insurance.user.customer.dto.CustomerDto;
 import server.app.insurance.user.customer.entity.Customer;
+import server.app.insurance.user.customer.state.UserState;
 import server.app.insurance.user.employee.service.ContractList;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class CustomerList {
     public CustomerDto retrieve(String name) {return CustomerDto.of(userRepository.findByName(name));}
 
     public List<CustomerDto> retrieveAll() {
-        return userRepository.findAll().stream().map(CustomerDto::of).collect(Collectors.toList());
+        return userRepository.findByRoleLike(UserState.Customer).stream().map(CustomerDto::of).collect(Collectors.toList());
     }
 
     public void registerInsurance(int customerID, int insuranceID) {

@@ -1,4 +1,4 @@
-package server.app.insurance.common.security.state;
+package server.app.insurance.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

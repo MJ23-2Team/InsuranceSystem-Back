@@ -13,6 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import server.app.insurance.common.exception.BizException;
+import server.app.insurance.common.exception.LoginException;
 import server.app.insurance.user.customer.dto.LoginResponse;
 import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.customer.repository.CustomerRepository;
@@ -24,8 +25,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-import static server.app.insurance.user.customer.state.CustomerResponseType.*;
-import static server.app.insurance.common.security.state.JwtException.*;
+import static server.app.insurance.common.exception.JwtException.*;
 
 @Component
 @RequiredArgsConstructor
@@ -100,7 +100,7 @@ public class TokenProvider implements InitializingBean {
                         .collect(Collectors.toList());
 
         Customer user = this.userRepository.findByEmailonToken(claims.getSubject())
-                .orElseThrow(() -> new BizException(NOT_FOUND_EMAIL));
+                .orElseThrow(() -> new BizException(LoginException.NOT_FOUND_EMAIL));
 
         return new UsernamePasswordAuthenticationToken(new CustomUserDetails(user), token, authorities);
     }
