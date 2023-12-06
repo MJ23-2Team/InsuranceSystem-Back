@@ -30,6 +30,7 @@ public class PaymentDto {
                 .duration( payment.getDuration() )
                 .contractDuration(payment.getContractDuration() )
                 .expireDate( payment.getExpireDate() )
+                .contractID( payment.getContract().getContractID() )
                 .content( payment.getContent() )
                 .amount( payment.getAmount() )
                 .accidentCount( payment.getAccidentCount() )

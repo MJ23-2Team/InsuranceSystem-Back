@@ -48,7 +48,7 @@ public class PaymentList {
             useDTO.setExpireDate( payment.getExpireDate() );
             useDTO.setResult( payment.isResult() );
             useDTO.setAmount( payment.getAmount() );
-            int paymentID = payment.getPaymentID();
+            System.out.println( payment.getContractID() + "#############" );
             ContractDto currentContract = ContractDto.of( contractRepository.findById( payment.getContractID() ).get() );
             int insuranceID = currentContract.getInsuranceID();
             int customerID = currentContract.getCustomerID();
@@ -73,10 +73,10 @@ public class PaymentList {
 
     public void checkValidate() {
         LocalDate now = LocalDate.now();
-        List<PaymentDto> paymentList = paymentRepository.findAll().stream().map( PaymentDto::of ).collect( Collectors.toList() );
+        List<PaymentDto> paymentList = paymentRepository.findAll().stream().map(PaymentDto::of).collect(Collectors.toList());
         Vector<Integer> expiredID = new Vector<Integer>();
-        for( PaymentDto payment : paymentList ){
-            if( payment.getExpireDate().isBefore( now ) ){
+        for (PaymentDto payment : paymentList) {
+            if (payment.getExpireDate().isBefore(now)) {
                 // 만료 날짜가 지난 경우 adviceNote를 생성한다.
             }
         }

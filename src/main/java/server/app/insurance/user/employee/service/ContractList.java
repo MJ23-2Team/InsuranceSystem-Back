@@ -93,6 +93,10 @@ public class ContractList {
         return contractList;
     }
 
+    public ContractDto retrieveContract( int contractId ){
+        return ContractDto.of( contractRepository.findById( contractId ).get() );
+    }
+
     public List<ContractDto> getAllByCustomerId( int customerId ){
         return contractRepository.findByCustomerId( customerId ).stream().map( ContractDto::of ).collect( Collectors.toList() );
     }
