@@ -27,9 +27,8 @@ public class UnderWritingController {
     private final ContractController contractController;
 
     @PostMapping()
-    public ApiResponse<Object> createUnderWritingPolicy(@RequestBody AssumePolicyCreateRequest assumePolicyDto) {
+    public void createUnderWritingPolicy(@RequestBody AssumePolicyCreateRequest assumePolicyDto) {
         underWritingList.createUWPolicy(assumePolicyDto);
-        return ApiResponse.of(intraResponseType.ESTABLISH_SUCCESS);
     }
 
     @GetMapping("/basic")
@@ -38,9 +37,8 @@ public class UnderWritingController {
     }
 
     @PostMapping("/basic")
-    public ApiResponse<Object> doBasicUnderWriting(@RequestParam int contractId) {
+    public void doBasicUnderWriting(@RequestParam int contractId) {
         contractController.doBasicUnderWriting(contractId);
-        return ApiResponse.of(intraResponseType.DOBASIC_SUCCESS);
     }
 
     @GetMapping("/collaborative")
@@ -49,14 +47,13 @@ public class UnderWritingController {
     }
 
     @PostMapping("/collaborative")
-    public ApiResponse<Object> doCollaborativeUnderWriting(@RequestParam int contractId) {
+    public void doCollaborativeUnderWriting(@RequestParam int contractId) {
         contractController.doCollaborativeUnderWriting(contractId);
-        return ApiResponse.of(intraResponseType.DOCOLLABORATIVE_SUCCESS);
     }
 
     @GetMapping("/all")
-    public ApiResponse<List<AssumePolicyRetrieveResponse>> retrieveAll() {
-        return ApiResponse.of(intraResponseType.RETRIVE_SUCCESS, underWritingList.retrieveAll());
+    public List<AssumePolicyRetrieveResponse> retrieveAll() {
+        return underWritingList.retrieveAll();
     }
 
 }

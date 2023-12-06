@@ -28,6 +28,10 @@ public class EducationStudentList {
         return educationStudentRepository.findAll().stream().map( EducationStudentDto::of).collect( Collectors.toList() );
     }
 
+    public List<EducationStudentDto> retrieveAllEducationStudentByEducationId( int id ){
+        return educationStudentRepository.findByEducationId( id ).stream().map( EducationStudentDto::of ).collect( Collectors.toList() );
+    }
+
     public void updateEducationStudent( EducationStudentDto request ){
         educationStudentRepository.save( educationStudentRepository.save( EducationStudent.of( request ) ) );
     }

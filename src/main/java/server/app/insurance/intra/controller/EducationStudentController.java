@@ -21,6 +21,8 @@ public class EducationStudentController {
     public EducationStudentDto retrieveEducationStudent(@RequestParam int id) {return educationStudentList.retrieveEducationStudent(id);}
     @GetMapping("/getAll")
     public List<EducationStudentDto> retrieveAllEducationStudent() {return educationStudentList.retrieveAllEducationStudent();}
+    @GetMapping( "/getByEducationId")
+    public List<EducationStudentDto> retrieveAllEducationStudentByEducationId( @RequestParam int id) { return educationStudentList.retrieveAllEducationStudentByEducationId(id); }
     @PutMapping("/update")
     public void updateEducationStudent(@RequestBody EducationStudentDto request) {educationStudentList.updateEducationStudent(request);}
     @DeleteMapping("/delete")

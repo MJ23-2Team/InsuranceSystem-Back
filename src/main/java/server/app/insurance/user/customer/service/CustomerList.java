@@ -33,13 +33,12 @@ public class CustomerList {
         return CustomerDto.of(userRepository.findById(id).get());
     }
 
-    public void setCustomerInformation(CustomerInformationRequest customerInformationRequest, int id) {
-        Customer customer = userRepository.findById(id).get();
+    public void updateCustomerInformation(CustomerInformationRequest customerInformationRequest) {
+        Customer customer = userRepository.findByCustomerID(customerInformationRequest.getCustomerID());
         customer.setAge(customerInformationRequest.getAge());
         customer.setSex(customerInformationRequest.getSex());
         customer.setName(customerInformationRequest.getName());
         customer.setPhoneNumber(customerInformationRequest.getPhoneNumber());
-        customer.setRegistrationNumber(customerInformationRequest.getRegistrationNumber());
         customer.setIncomeLevel(customerInformationRequest.getIncomeLevel());
         customer.setAccountNumber(customerInformationRequest.getAccountNumber());
         customer.setAccountPassword(customerInformationRequest.getAccountPassword());

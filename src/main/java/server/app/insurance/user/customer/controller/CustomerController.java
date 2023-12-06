@@ -1,8 +1,11 @@
 package server.app.insurance.user.customer.controller;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.user.customer.dto.CustomerInformationRequest;
@@ -19,7 +22,6 @@ import java.util.List;
 public class CustomerController {
     private final CustomerList customerList;
 
-    // @RequestBody RequestDto를 만들어서 하면 ID 인식이 안됨 <- 뭐지 진짜
     @PostMapping()
     public void registerInsurance(@RequestParam int customerID, @RequestParam int insuranceID) {
         customerList.registerInsurance(customerID, insuranceID);
@@ -36,7 +38,7 @@ public class CustomerController {
     public CustomerDto retrieveByID(@RequestParam int id) {return customerList.retrieveByID(id);}
 
     @PutMapping("/information")
-    public void setCustomerInformation(@RequestBody CustomerInformationRequest customerInformationRequest, @RequestParam int id) {
-        customerList.setCustomerInformation(customerInformationRequest, id);
+        public void updateCustomerInformation(@RequestBody CustomerInformationRequest customerInformationRequest) {
+        customerList.updateCustomerInformation(customerInformationRequest);
     }
 }

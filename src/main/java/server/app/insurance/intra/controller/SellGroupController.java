@@ -38,21 +38,21 @@ public class SellGroupController {
     @GetMapping("/campaignProgram")
     public CampaignProgramDto choiceCampaignProgram(@RequestParam int id) {return sellGroupList.choiceCampaignProgram(id);}
     @GetMapping ("/userPersonas")
-    public List<UserPersonaDto> getUserPersonas(@RequestParam int id) {
-        return sellGroupList.getUserPersonas(id);}
+    public List<UserPersonaDto> retrieveUserPersonas(@RequestParam int id) {
+        return sellGroupList.retrieveUserPersonas(id);}
     @PostMapping("/userPersona")
-    public void addUserPersona(@RequestBody UserPersonaDto userPersonaDto) {
-        sellGroupList.addUserPersona(userPersonaDto);}
+    public void createUserPersona(@RequestBody UserPersonaDto userPersonaDto) {
+        sellGroupList.createUserPersona(userPersonaDto);}
     @PutMapping("/salesPlan")
     public void planSalesPlan(@RequestBody InsuranceSalesRequest insuranceSalesRequest) {sellGroupList.planSalesPlan(insuranceSalesRequest);}
     @GetMapping("/appliedCounselingCustomers")
-    public List<CustomerDto> getAppliedCounselingCustomers() {return sellGroupList.getAppliedCounselingCustomers();}
+    public List<CustomerDto> retrieveAppliedCounselingCustomers() {return sellGroupList.retrieveAppliedCounselingCustomers();}
     @GetMapping("/appliedCounselings")
-    public List<CustomerCounselingDto> getCustomerCounselingsByCustomerID(@RequestParam int customerID) {return sellGroupList.getCustomerCounselingsByCustomerID(customerID);}
+    public List<CustomerCounselingDto> retrieveCustomerCounselingsByCustomerID(@RequestParam int customerID) {return sellGroupList.retrieveCustomerCounselingsByCustomerID(customerID);}
     @PutMapping("/schedule")
-    public void setConsultationSchedule(@RequestParam int customerCounselingID) {sellGroupList.setConsultationSchedule(customerCounselingID);}
+    public void updateConsultationSchedule(@RequestParam int customerCounselingID) {sellGroupList.updateConsultationSchedule(customerCounselingID);}
     @GetMapping("/acceptedApplyCounselingCustomers")
-    public List<CustomerCounselingResponse> getAcceptedApplyCounselingCustomers() {return sellGroupList.getAcceptedApplyCounselingCustomers();}
+    public List<CustomerCounselingResponse> retrieveAcceptedApplyCounselingCustomers() {return sellGroupList.retrieveAcceptedApplyCounselingCustomers();}
     @GetMapping("/checkTime")
     public int checkCounselingTime(CustomerCounselingResponse customerCounselingResponse) {return sellGroupList.checkCounselingTime(customerCounselingResponse);}
 }
