@@ -34,7 +34,7 @@ public class CustomerList {
     }
 
     public void updateCustomerInformation(CustomerInformationRequest customerInformationRequest) {
-        Customer customer = userRepository.findById(customerInformationRequest.getCustomerID()).get();
+        Customer customer = userRepository.findByCustomerID(customerInformationRequest.getCustomerID());
         customer.setAge(customerInformationRequest.getAge());
         customer.setSex(customerInformationRequest.getSex());
         customer.setName(customerInformationRequest.getName());
