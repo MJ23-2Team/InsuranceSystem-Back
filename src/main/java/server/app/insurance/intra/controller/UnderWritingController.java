@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.intra.dto.AssumePolicyCreateRequest;
 import server.app.insurance.intra.dto.AssumePolicyRetrieveResponse;
 import server.app.insurance.intra.service.UnderWritingList;
-import server.app.insurance.intra.state.intraResponseType;
 import server.app.insurance.user.employee.controller.ContractController;
 import server.app.insurance.user.employee.dto.ContractDto;
 

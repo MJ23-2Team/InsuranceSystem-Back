@@ -3,6 +3,7 @@ package server.app.insurance.user.customer.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.app.insurance.user.customer.state.UserState;
 import server.app.insurance.user.employee.entity.AdviceNote;
 import server.app.insurance.user.employee.entity.Contract;
 import server.app.insurance.user.customer.dto.CustomerDto;
@@ -36,6 +37,9 @@ public class Customer {
     private int incomeLevel;
     private String accountNumber; //계좌번호
     private String accountPassword;
+
+    @Enumerated(EnumType.STRING)
+    private UserState role;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private List<Contract> contracts = new ArrayList<>();

@@ -3,11 +3,9 @@ package server.app.insurance.user.employee.controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.user.employee.dto.CampaignProgramPlanRequest;
 import server.app.insurance.user.employee.service.CampaignProgramList;
 import server.app.insurance.user.employee.dto.CampaignProgramDto;
-import server.app.insurance.user.employee.state.EmployeeResponseType;
 
 import java.util.List;
 

@@ -18,7 +18,7 @@ import server.app.insurance.common.exception.BizException;
 import java.io.IOException;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
-import static server.app.insurance.common.security.state.JwtException.*;
+import static server.app.insurance.common.exception.JwtException.*;
 @Slf4j
 @RequiredArgsConstructor
 public class AuthFilter extends OncePerRequestFilter {
