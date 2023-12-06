@@ -30,7 +30,7 @@ public class CustomerController {
     @GetMapping("/{name}")
     public CustomerDto retrieve(@PathVariable String name) {return customerList.retrieve(name);}
 
-    @GetMapping("getAll")
+    @GetMapping("/getAll")
     public List<CustomerDto> retrieveAll() {
         return customerList.retrieveAll();}
 
