@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.user.customer.dto.LoginRequset;
+import server.app.insurance.user.customer.dto.LoginResponse;
 import server.app.insurance.user.customer.dto.RegisterGoogleRequset;
 import server.app.insurance.user.customer.service.CustomerAuthList;
 import server.app.insurance.user.customer.service.CustomerManagementList;
@@ -33,26 +34,22 @@ public class CustomerManagementController {
 
     @Operation(summary = "구글 연동 로그인 및 계정 등록", description = " https://accounts.google.com/o/oauth2/v2/auth?scope=profile%20email&response_type=code&redirect_uri=http://localhost:8080/login/oauth2/code/google&client_id=535321350238-hah6c37spl3eua2bujvvoug3ql237nns.apps.googleusercontent.com")
     @PostMapping(value = {"/login/oauth2/code/google"})
-    public ApiResponse<Object> googleLogin(@RequestBody String token) {
+    public LoginResponse googleLogin(@RequestBody String token) {
         log.info(token);
-        return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS,
-                customerAuthList.login(token));
+        return customerAuthList.login(token);
     }
     @GetMapping(value = {"/login/oauth2/code/google"})
-    public ApiResponse<Object> callBack(@RequestParam String code){
+    public String callBack(@RequestParam String code){
         log.info(code);
-        return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS,
-                customerAuthList.getAccessToken(code));
+        return customerAuthList.getAccessToken(code);
     }
     @GetMapping(value = {"/customermanage/Info"})
-    public ApiResponse<Boolean> retirveInfo(@RequestParam int id) {
-        return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS,
-                customerManagementList.getInfo(id));
+    public Boolean retirveInfo(@RequestParam int id) {
+        return customerManagementList.getInfo(id);
     }
 
     @PostMapping(value = {"/customermanage/Info"})
-    public ApiResponse<Object> createInfo(@RequestBody RegisterGoogleRequset requset) {
+    public void createInfo(@RequestBody RegisterGoogleRequset requset) {
         customerManagementList.setInfo(requset);
-        return ApiResponse.of(CustomerResponseType.LOGIN_SUCCESS);
     }
 }

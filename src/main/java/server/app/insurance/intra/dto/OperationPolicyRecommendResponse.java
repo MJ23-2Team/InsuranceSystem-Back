@@ -8,12 +8,12 @@ import server.app.insurance.intra.entity.OperationPolicy;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OperationPolicyRecommandResponse {
+public class OperationPolicyRecommendResponse {
     private String content;
     private String name;
 
-    public static OperationPolicyRecommandResponse of(OperationPolicy dto) {
-        return OperationPolicyRecommandResponse.builder()
+    public static OperationPolicyRecommendResponse of(OperationPolicy dto) {
+        return OperationPolicyRecommendResponse.builder()
                 .name(dto.getName())
                 .content(dto.getContent())
                 .build();

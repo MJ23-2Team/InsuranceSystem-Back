@@ -31,9 +31,8 @@ public class CustomerController {
     public CustomerDto retrieve(@PathVariable String name) {return customerList.retrieve(name);}
 
     @GetMapping("getAll")
-    public ApiResponse<List<CustomerDto>> retrieveAll() {
-        return ApiResponse.of(CustomerResponseType.RETRIVE_SUCCESS
-                ,customerList.retrieveAll());}
+    public List<CustomerDto> retrieveAll() {
+        return customerList.retrieveAll();}
 
     @GetMapping("/id")
     public CustomerDto retrieveByID(@RequestParam int id) {return customerList.retrieveByID(id);}
