@@ -1,8 +1,11 @@
 package server.app.insurance.user.customer.controller;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.user.customer.dto.CustomerInformationRequest;
@@ -36,7 +39,7 @@ public class CustomerController {
     public CustomerDto retrieveByID(@RequestParam int id) {return customerList.retrieveByID(id);}
 
     @PutMapping("/information")
-    public void updateCustomerInformation(@RequestBody CustomerInformationRequest customerInformationRequest) {
+        public void updateCustomerInformation(@RequestBody CustomerInformationRequest customerInformationRequest) {
         customerList.updateCustomerInformation(customerInformationRequest);
     }
 }
