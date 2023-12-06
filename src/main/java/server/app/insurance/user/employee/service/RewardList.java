@@ -3,6 +3,7 @@ package server.app.insurance.user.employee.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import server.app.insurance.common.util.Constants;
 import server.app.insurance.user.employee.dto.ContractDto;
 import server.app.insurance.user.employee.dto.RewardDto;
 import server.app.insurance.user.employee.entity.Reward;
@@ -48,5 +49,16 @@ public class RewardList {
 
     public void deleteReward( int id ){
         rewardRepository.deleteById( id );
+    }
+
+    public void approveReward( int id, boolean flag ) {
+        RewardDto temp = RewardDto.of( rewardRepository.findById( id ).get() );
+        if( flag ){
+            temp.setAppliResult( Constants.Result.ACCEPT );
+        }
+        else {
+            temp.setAppliResult( Constants.Result.DENY );
+        }
+        rewardRepository.save( Reward.of( temp ) );
     }
 }

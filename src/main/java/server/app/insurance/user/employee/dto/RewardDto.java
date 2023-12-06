@@ -25,7 +25,16 @@ public class RewardDto {
     private String identifyProfile;			// File 형식이 TUI에서는 지원되지 않으므로 String으로 대신함
 
     public static RewardDto of(Reward reward) {
-        return new RewardDto();
+        return RewardDto.builder()
+                .rewardID( reward.getRewardID() )
+                .rewardAmount( reward.getRewardAmount() )
+                .appliResult(reward.getAppliResult() )
+                .appliDate( reward.getAppliDate() )
+                .accidentProfile( reward.getAccidentProfile() )
+                .content( reward.getContent() )
+                .customerName( reward.getCustomerName() )
+                .identifyProfile( reward.getIdentifyProfile() )
+                .build();
     }
     // 보상금
 

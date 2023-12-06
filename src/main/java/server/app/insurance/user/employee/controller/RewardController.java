@@ -26,7 +26,7 @@ public class RewardController {
     }
 
     @GetMapping( "/getByCustomerId" )
-    public List<RewardDto> retrieveRewardByCustomerId( @RequestParam int customerId ) { return rewardList.retrieveRewardByCustomerId( customerId ); }
+    public List<RewardDto> retrieveRewardByCustomerId( @RequestParam int id ) { return rewardList.retrieveRewardByCustomerId( id ); }
     @GetMapping( "/getAll")
     public List<RewardDto> retrieveAllReward(){
         return rewardList.retrieveAllReward();
@@ -41,4 +41,10 @@ public class RewardController {
     public void deleteReward( @RequestParam int id ){
         rewardList.deleteReward( id );
     }
+
+    @GetMapping( "/approve")
+    public void approveReward( @RequestParam int id, @RequestParam boolean flag ){
+        System.out.println( id );
+        System.out.println( flag );
+        rewardList.approveReward( id, flag ); }
 }

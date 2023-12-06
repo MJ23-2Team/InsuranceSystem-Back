@@ -23,6 +23,7 @@ public class EducationStudentDto {
         return EducationStudentDto.builder()
                 .studentID( educationStudent.getStudentID() )
                 .gender( educationStudent.getGender() )
+                .educationID( educationStudent.getEducation().getEducationID() )
                 .age(educationStudent.getAge() )
                 .name(educationStudent.getName() )
                 .phone( educationStudent.getPhone() )

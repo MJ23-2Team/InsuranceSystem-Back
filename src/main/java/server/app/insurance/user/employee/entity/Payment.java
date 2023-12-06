@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import server.app.insurance.user.employee.dto.PaymentDto;
 import server.app.insurance.common.util.Constants;
+import server.app.insurance.user.employee.service.ContractList;
 
 import java.time.LocalDate;
 @Entity
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Payment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "paymentid")

@@ -48,8 +48,8 @@ public class PaymentList {
             useDTO.setExpireDate( payment.getExpireDate() );
             useDTO.setResult( payment.isResult() );
             useDTO.setAmount( payment.getAmount() );
-            int paymentID = payment.getPaymentID();
-            ContractDto currentContract = ContractDto.of( contractRepository.findById( payment.getContractID() ).get() );
+            int tempContractID = paymentRepository.findByPaymentId(payment.getPaymentID()).getContractID();
+            ContractDto currentContract = contractRepository.findByContractId( tempContractID );
             int insuranceID = currentContract.getInsuranceID();
             int customerID = currentContract.getCustomerID();
             InsuranceDto currentInsurance = InsuranceDto.of( insuranceRepository.findById( insuranceID ).get() );
@@ -58,7 +58,6 @@ public class PaymentList {
             useDTO.setCustomerName( currentCustomer.getName() );
             paymentInfoList.add( useDTO );
         }
-
         return paymentInfoList;
     }
 
@@ -73,10 +72,10 @@ public class PaymentList {
 
     public void checkValidate() {
         LocalDate now = LocalDate.now();
-        List<PaymentDto> paymentList = paymentRepository.findAll().stream().map( PaymentDto::of ).collect( Collectors.toList() );
+        List<PaymentDto> paymentList = paymentRepository.findAll().stream().map(PaymentDto::of).collect(Collectors.toList());
         Vector<Integer> expiredID = new Vector<Integer>();
-        for( PaymentDto payment : paymentList ){
-            if( payment.getExpireDate().isBefore( now ) ){
+        for (PaymentDto payment : paymentList) {
+            if (payment.getExpireDate().isBefore(now)) {
                 // 만료 날짜가 지난 경우 adviceNote를 생성한다.
             }
         }
