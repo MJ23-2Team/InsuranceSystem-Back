@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import server.app.insurance.user.customer.entity.Customer;
-import server.app.insurance.user.customer.state.Role;
+import server.app.insurance.user.customer.state.UserState;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -19,7 +19,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(Role.USER.toString()));
+        return Collections.singleton(new SimpleGrantedAuthority("USER"));
     }
 
     @Override

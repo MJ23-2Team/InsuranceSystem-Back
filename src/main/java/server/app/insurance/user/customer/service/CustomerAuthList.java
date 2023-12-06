@@ -16,7 +16,7 @@ import server.app.insurance.common.security.TokenProvider;
 import server.app.insurance.user.customer.dto.LoginResponse;
 import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.customer.repository.CustomerRepository;
-import server.app.insurance.user.customer.state.Role;
+import server.app.insurance.user.customer.state.UserState;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -25,8 +25,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static server.app.insurance.user.customer.state.CustomerResponseType.*;
 
 @Service
 @Transactional
@@ -97,7 +95,8 @@ public String getAccessToken(String code) {
 
         //3. JWT 토큰 생성
         LoginResponse.TokenInfoResponse tokenInfoResponse = tokenProvider.createToken(auth, isSignedUp, (long) user.getCustomerID());
-        return LoginResponse.from(tokenInfoResponse, isSignedUp ? LOGIN_SUCCESS.getMessage() : SIGN_UP_ING.getMessage(), (long) user.getCustomerID());
+        return LoginResponse.from(tokenInfoResponse, isSignedUp ? "LOGIN_SUCCESS" : "SIGN_UP_ING", (long) user.getCustomerID());
+
 
     }
 
@@ -107,13 +106,13 @@ public String getAccessToken(String code) {
     }
     public List<GrantedAuthority> initAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(String.valueOf(Role.USER)));
+        authorities.add(new SimpleGrantedAuthority("USER"));
         return authorities;
     }
     private OAuth2User createOAuth2UserByJson(List<GrantedAuthority> authorities, String email) {
         Map<String, Object> memberMap = new HashMap<>();
         memberMap.put("email", email);
-        authorities.add(new SimpleGrantedAuthority(String.valueOf(Role.USER)));
+        authorities.add(new SimpleGrantedAuthority("USER"));
         return new DefaultOAuth2User(authorities, memberMap, "email");
     }
 

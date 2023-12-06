@@ -1,10 +1,8 @@
 package server.app.insurance.user.employee.service;
 
 import lombok.RequiredArgsConstructor;
-import org.antlr.v4.runtime.misc.IntegerList;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.user.employee.dto.CampaignProgramDto;
 import server.app.insurance.user.employee.dto.CampaignProgramPlanRequest;
 import server.app.insurance.user.employee.entity.CampaignProgram;

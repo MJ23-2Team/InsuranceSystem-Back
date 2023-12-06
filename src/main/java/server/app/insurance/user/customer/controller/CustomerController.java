@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
-import server.app.insurance.common.util.ApiResponse;
 import server.app.insurance.user.customer.dto.CustomerInformationRequest;
 import server.app.insurance.user.customer.service.CustomerList;
-import server.app.insurance.user.customer.state.CustomerResponseType;
 import server.app.insurance.user.customer.dto.CustomerDto;
 
 import java.util.List;

@@ -8,15 +8,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import server.app.insurance.common.exception.BizException;
+import server.app.insurance.common.exception.LoginException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import static server.app.insurance.user.customer.state.CustomerResponseType.*;
-
 
 @Service
 @Transactional
@@ -65,8 +63,8 @@ public class CustomerGoogleList {
             JsonObject json = JsonParser.parseString(response.toString()).getAsJsonObject();
             return json;
         } catch (IOException e) {
-            log.info(CONNECT_ERROR.getMessage());
-            throw new BizException(CONNECT_ERROR);
+            log.info("CONNECT_ERROR");
+            throw new BizException(LoginException.CONNECT_ERROR);
         }
 
     }
@@ -74,7 +72,7 @@ public class CustomerGoogleList {
         if (userInfo.getAsJsonObject().has("email")) {
             return userInfo.getAsJsonObject().get("email").getAsString();
         }
-        throw new BizException(NOT_FOUND_EMAIL);
+        throw new BizException(LoginException.NOT_FOUND_EMAIL);
     }
 
 
