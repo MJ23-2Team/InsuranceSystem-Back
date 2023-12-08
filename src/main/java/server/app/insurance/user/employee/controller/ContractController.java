@@ -37,5 +37,7 @@ public class ContractController {
     }
 
     @GetMapping( "/getContractByCustomerId" )
-    public List<ContractDto> retrieveByCustomerId(int customerId ){ return contractList.getAllByCustomerId( customerId ); }
+    public List<ContractDto> retrieveByCustomerId(int customerId ){
+        return contractList.getAllByCustomerId( customerId );
+    }
 }
