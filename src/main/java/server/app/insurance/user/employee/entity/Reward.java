@@ -2,6 +2,7 @@ package server.app.insurance.user.employee.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.app.insurance.user.employee.dto.ContractDto;
 import server.app.insurance.user.employee.dto.RewardDto;
 import server.app.insurance.common.util.Constants;
 
@@ -41,6 +42,21 @@ public class Reward {
                 .content( rewardDto.getContent() )
                 .customerName( rewardDto.getCustomerName() )
                 .identifyProfile( rewardDto.getIdentifyProfile() )
+                .accidentProfile( rewardDto.getAccidentProfile() )
+                .build();
+    }
+
+    public static Reward allOf(RewardDto rewardDto, Contract contract) {
+        return Reward.builder()
+                .rewardID( rewardDto.getRewardID() )
+                .rewardAmount( rewardDto.getRewardAmount() )
+                .appliResult(rewardDto.getAppliResult() )
+                .appliDate( rewardDto.getAppliDate() )
+                .content( rewardDto.getContent() )
+                .contract( contract )
+                .customerName( rewardDto.getCustomerName() )
+                .identifyProfile( rewardDto.getIdentifyProfile() )
+                .accidentProfile( rewardDto.getAccidentProfile() )
                 .build();
     }
     // 보상금
