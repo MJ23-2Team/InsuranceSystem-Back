@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import server.app.insurance.user.employee.dto.ContractDto;
+import server.app.insurance.user.employee.dto.ContractWithInsuranceDto;
 import server.app.insurance.user.employee.service.ContractList;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class ContractController {
     }
 
     @GetMapping( "/getContractByCustomerId" )
-    public List<ContractDto> retrieveByCustomerId(int customerId ){
+    public List<ContractWithInsuranceDto> retrieveByCustomerId(int customerId ){
         return contractList.getAllByCustomerId( customerId );
     }
 }

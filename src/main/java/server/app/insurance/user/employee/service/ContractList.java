@@ -3,6 +3,10 @@ package server.app.insurance.user.employee.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import server.app.insurance.user.customer.dto.CustomerDto;
+import server.app.insurance.user.customer.repository.CustomerRepository;
+import server.app.insurance.user.employee.dto.ContractWithInsuranceDto;
+import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.outerActor.OuterActor;
 import server.app.insurance.user.customer.entity.Customer;
 import server.app.insurance.user.employee.dto.ContractDto;
@@ -14,6 +18,7 @@ import server.app.insurance.user.employee.state.ContractRunState;
 import server.app.insurance.user.employee.state.ContractState;
 import server.app.insurance.user.employee.state.ContractUWState;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +29,7 @@ public class ContractList {
 
     private final ContractRepository contractRepository;
     private final InsuranceRepository insuranceRepository;
+    private final CustomerRepository customerRepository;
     private final OuterActor outerActor;
 
     public void registerInsurance(Customer registerCustomer, int insuranceID) {
@@ -97,9 +103,21 @@ public class ContractList {
         return ContractDto.of( contractRepository.findById( contractId ).get() );
     }
 
-    public List<ContractDto> getAllByCustomerId( int customerId ){
-        List<ContractDto> temp = contractRepository.findByCustomerId( customerId ).stream().map( ContractDto::of ).collect( Collectors.toList() );
-        return temp;
+    public List<ContractWithInsuranceDto> getAllByCustomerId( int customerId ){
+        List<ContractDto> contractDtos = contractRepository.findByCustomerId( customerId ).stream().map( ContractDto::of ).collect( Collectors.toList() );
+        List<ContractWithInsuranceDto> forRewardDto = new ArrayList<ContractWithInsuranceDto>();
+        for( ContractDto contractDto : contractDtos ){
+            int insuranceID = contractDto.getInsuranceID();
+            InsuranceDto insuranceDto = InsuranceDto.of( insuranceRepository.findById( insuranceID ).get() );
+            ContractWithInsuranceDto tmp = new ContractWithInsuranceDto();
+            tmp.setContractID( contractDto.getContractID() );
+            tmp.setInsuranceID( insuranceDto.getInsuranceID() );
+            tmp.setInsuranceName( insuranceDto.getInsuranceName() );
+            tmp.setRewardAmount( insuranceDto.getRewardAmount() );
+            CustomerDto customerDto = CustomerDto.of( customerRepository.findById( contractDto.getCustomerID() ).get() );
+            forRewardDto.add( tmp );
+        }
+        return forRewardDto;
     }
 
 }
