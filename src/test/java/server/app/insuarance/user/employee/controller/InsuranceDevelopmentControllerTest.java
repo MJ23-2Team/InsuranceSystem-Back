@@ -46,7 +46,7 @@ public class InsuranceDevelopmentControllerTest {
     @Test
     void designInsurance() {
         InsuranceDesignRequest testRequest = InsuranceDesignRequest.builder()
-                .insuranceID(9)
+                .insuranceID(1)
                 .insuranceName("TEST_INSURANCE")
                 .insuranceType(InsuranceType.FIRE)
                 .salesTarget("STUDENT")
@@ -56,7 +56,7 @@ public class InsuranceDevelopmentControllerTest {
                 .estimatedDevelopment(10000000)
                 .build();
         insuranceDevelopmentList.designInsurance(testRequest);
-        Insurance testInsurance = insuranceRepository.findById(9).get();
+        Insurance testInsurance = insuranceRepository.findById(1).get();
 
         boolean testState = testInsurance.getInsuranceState().equals(InsuranceState.DESIGNED);
         boolean testEstimatedProfitRate = testInsurance.getEstimatedProfitRate() == -1f;
@@ -68,19 +68,19 @@ public class InsuranceDevelopmentControllerTest {
     @Test
     void analyzeInsuranceRate() {
         InsuranceRiskRequest testRequest = InsuranceRiskRequest.builder()
-                .insuranceID(9)
+                .insuranceID(1)
                 .riskDegree(10)
                 .build();
         insuranceDevelopmentList.analyzeInsuranceRate(testRequest);
 
-        Insurance testInsurance = insuranceRepository.findById(9).get();
+        Insurance testInsurance = insuranceRepository.findById(1).get();
         boolean testRate =  testInsurance.getRate() == 0.6f;
         assertTrue(testRate);
     }
 
     @Test
     void authorizeInsurance() {
-        Insurance testInsurance = insuranceRepository.findById(9).get();
+        Insurance testInsurance = insuranceRepository.findById(1).get();
         InsuranceDto testDto = InsuranceDto.builder()
                         .insuranceID(testInsurance.getInsuranceID())
                                 .build();

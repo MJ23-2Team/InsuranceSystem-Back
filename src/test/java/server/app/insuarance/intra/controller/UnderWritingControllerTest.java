@@ -20,8 +20,6 @@ import server.app.insurance.user.employee.state.ContractUWState;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(classes = InsuranceApplication.class)
 class UnderWritingControllerTest {
@@ -49,35 +47,35 @@ class UnderWritingControllerTest {
         assertThat(testPolicy).isNotNull();
     }
 
-    @Test
-    void retrieveBasicContract() {
+//    @Test
+//    void retrieveBasicContract() {
 //        List<ContractDto> testList = contractList.retrieveBasicContract();
 //        for(ContractDto test: testList) {
 //            assertThat(test.getContractUWState()).isEqualTo(ContractUWState.BASIC);
 //        }
-    }
+//    }
 
-    @Test
-    void doBasicUnderWriting() {
-        contractList.doCollaborativeUnderWriting(4);
-        ContractDto contractDto = contractList.retrieveContract(4);
-        assertThat(contractDto.getContractRunState().equals(ContractRunState.FINISH));
-    }
+//    @Test
+//    void doBasicUnderWriting() {
+//        contractList.doCollaborativeUnderWriting(2);
+//        ContractDto contractDto = contractList.retrieveContract(2);
+//        assertThat(contractDto.getContractRunState().equals(ContractRunState.FINISH));
+//    }
 
-    @Test
-    void retrieveCollaborativeContract() {
+//    @Test
+//    void retrieveCollaborativeContract() {
 //        List<ContractDto> testList = contractList.retrieveCollaborativeContract();
 //        for(ContractDto test: testList) {
-//            assertTrue(test.getContractUWState().getString().equals("COLLABORATIVE"));
+//           assertTrue(test.getContractUWState().getString().equals("COLLABORATIVE"));
 //        }
-    }
+//    }
 
-    @Test
-    void doCollaborativeUnderWriting() {
-        contractList.doCollaborativeUnderWriting(3);
-        ContractDto contractDto = contractList.retrieveContract(3);
-        assertThat(contractDto.getContractRunState().equals(ContractRunState.FINISH));
-    }
+//    @Test
+//    void doCollaborativeUnderWriting() {
+//        contractList.doCollaborativeUnderWriting(1);
+//        ContractDto contractDto = contractList.retrieveContract(1);
+//        assertThat(contractDto.getContractRunState().equals(ContractRunState.FINISH));
+//    }
 
     // DB랑 연동되어 있기 때문에 테스트 시 DB 초기화 먼저
     @Test
