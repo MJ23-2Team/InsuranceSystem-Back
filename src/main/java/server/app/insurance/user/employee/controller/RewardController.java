@@ -15,19 +15,19 @@ import java.util.List;
 public class RewardController {
     private final RewardList rewardList;
 
-    @PostMapping( "/add")
+    @PostMapping( "/create")
     public void createReward( @RequestBody RewardDto request ){
         rewardList.createReward( request );
     }
 
-    @GetMapping( "/getByRewardId" )
+    @GetMapping( "/retrieveByRewardId" )
     public RewardDto retrieveReward( @RequestParam int id ){
         return rewardList.retrieveReward( id );
     }
 
-    @GetMapping( "/getByCustomerId" )
+    @GetMapping( "/retrieveByCustomerId" )
     public List<RewardDto> retrieveRewardByCustomerId( @RequestParam int id ) { return rewardList.retrieveRewardByCustomerId( id ); }
-    @GetMapping( "/getAll")
+    @GetMapping( "/retrieveAll")
     public List<RewardDto> retrieveAllReward(){
         return rewardList.retrieveAllReward();
     }

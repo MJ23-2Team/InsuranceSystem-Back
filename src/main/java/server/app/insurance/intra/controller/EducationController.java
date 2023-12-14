@@ -15,17 +15,17 @@ import java.util.List;
 public class EducationController {
     private final EducationList educationList;
 
-    @PostMapping("/add")
+    @PostMapping("/create")
     public void createEducation(@RequestBody EducationDto request) {
         educationList.createEducation(request);
     }
 
-    @GetMapping("/getById")
+    @GetMapping("/retrieveById")
     public EducationDto retrieveEducation(@RequestParam int id) {
         return educationList.retrieveEducation(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/retrieveAll")
     public List<EducationDto> retrieveAllEducation() {
         return educationList.retrieveAllEducation();
     }

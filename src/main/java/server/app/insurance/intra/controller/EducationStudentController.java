@@ -15,13 +15,13 @@ import java.util.List;
 public class EducationStudentController {
     private final EducationStudentList educationStudentList;
 
-    @PostMapping("/add")
+    @PostMapping
     public void createEducationStudent(@RequestBody EducationStudentDto request) {educationStudentList.createEducationStudent(request);}
-    @GetMapping("/getById")
+    @GetMapping("/retrieveById")
     public EducationStudentDto retrieveEducationStudent(@RequestParam int id) {return educationStudentList.retrieveEducationStudent(id);}
-    @GetMapping("/getAll")
+    @GetMapping("/retrieveAll")
     public List<EducationStudentDto> retrieveAllEducationStudent() {return educationStudentList.retrieveAllEducationStudent();}
-    @GetMapping( "/getByEducationId")
+    @GetMapping( "/retrieveByEducationId")
     public List<EducationStudentDto> retrieveAllEducationStudentByEducationId( @RequestParam int id) { return educationStudentList.retrieveAllEducationStudentByEducationId(id); }
     @PutMapping("/update")
     public void updateEducationStudent(@RequestBody EducationStudentDto request) {educationStudentList.updateEducationStudent(request);}
