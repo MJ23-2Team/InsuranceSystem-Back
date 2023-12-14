@@ -28,7 +28,7 @@ public class CustomerController {
     @GetMapping("/{name}")
     public CustomerDto retrieve(@PathVariable String name) {return customerList.retrieve(name);}
 
-    @GetMapping("/getAll")
+    @GetMapping("/retrieveAll")
     public List<CustomerDto> retrieveAll() {
         return customerList.retrieveAll();}
 

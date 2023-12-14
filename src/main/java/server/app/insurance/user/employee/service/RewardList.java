@@ -15,6 +15,7 @@ import server.app.insurance.user.employee.repository.ContractRepository;
 import server.app.insurance.user.employee.repository.InsuranceRepository;
 import server.app.insurance.user.employee.repository.RewardRepository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +31,7 @@ public class RewardList {
 
     public void createReward( RewardDto request ){
         RewardDto saveData = new RewardDto();
+        saveData.setAppliDate(LocalDate.now());
         saveData.setContractID( request.getContractID() );
         saveData.setAppliResult( Constants.Result.PROCESS );
         saveData.setRewardAmount( request.getRewardAmount() );

@@ -15,13 +15,13 @@ import java.util.List;
 public class AdviceNoteController {
     private final AdviceNoteList adviceNoteList;
 
-    @PostMapping("/add")
+    @PostMapping("/create")
     public void createAdviceNote(@RequestBody AdviceNoteDto request) {adviceNoteList.createAdviceNote(request);}
-    @GetMapping("/getById")
+    @GetMapping("/retrieveById")
     public AdviceNoteDto retrieveAdviceNote(@RequestParam int id) {return adviceNoteList.retrieveAdviceNote(id);}
-    @GetMapping("/getAll")
+    @GetMapping("/retrieveAll")
     public List<AdviceNoteDto> retrieveAll() {return adviceNoteList.retrieveAllAdviceNote();}
-    @GetMapping( "/getByCustomerId")
+    @GetMapping( "/retrieveAdviceNoteByCustomerId")
     public List<AdviceNoteDto> retrieveAdviceNoteByCustomerId( @RequestParam int id ) {
         return adviceNoteList.retrieveAdviceNoteByCustomerId( id );
     }

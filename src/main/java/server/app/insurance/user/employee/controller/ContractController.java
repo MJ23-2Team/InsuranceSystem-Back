@@ -37,7 +37,7 @@ public class ContractController {
         return contractList.retrieveCollaborativeContract();
     }
 
-    @GetMapping( "/getContractByCustomerId" )
+    @GetMapping( "/retrieveContractByCustomerId" )
     public List<ContractWithInsuranceDto> retrieveByCustomerId(int customerId ){
         return contractList.getAllByCustomerId( customerId );
     }
