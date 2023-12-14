@@ -16,13 +16,13 @@ import java.util.List;
 public class PaymentController {
     private final PaymentList paymentList;
 
-    @PostMapping("/add")
+    @PostMapping("/create")
     public void createPayment(@RequestBody PaymentDto request) {paymentList.createPayment(request);}
-    @GetMapping("/getById")
+    @GetMapping("/retrieveById")
     public PaymentDto retrievePayment(@RequestParam int id) {return paymentList.retrievePayment(id);}
-    @GetMapping("/getAll")
+    @GetMapping("/retrieveAll")
     public List<PaymentWithCustomerDto> retrieveAllPayment() {return paymentList.retrieveAllPayment();}
-    @GetMapping( "/getAllExpired" )
+    @GetMapping( "/retrieveAllExpired" )
     public List<PaymentWithCustomerDto> retrieveAllExpiredPayment() { return paymentList.retrieveAllExpiredPayment(); }
     @GetMapping( "/checkValidate" )
     public void checkValidate() { paymentList.checkValidate(); }
