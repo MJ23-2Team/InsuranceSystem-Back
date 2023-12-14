@@ -50,6 +50,7 @@ public class Customer {
     @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //FK가 없는 쪽에 mappedBy 사용을 추천
     private CustomerManagement customerManagements = new CustomerManagement();
 
+
     public static Customer of(CustomerDto customerDto){
         return Customer.builder()
                 .address(customerDto.getAddress())

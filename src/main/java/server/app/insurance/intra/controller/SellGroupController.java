@@ -13,6 +13,7 @@ import server.app.insurance.user.employee.dto.CampaignProgramDto;
 import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.employee.dto.InsuranceSalesRequest;
 import server.app.insurance.user.employee.dto.UserPersonaDto;
+import server.app.insurance.user.employee.service.InsuranceDevelopmentList;
 
 import java.util.List;
 
@@ -34,7 +35,10 @@ public class SellGroupController {
     public int calculateInsuranceFee(@RequestParam int insuarnceId,@RequestParam int customerId) {
         return sellGroupList.calculateInsuranceFee(insuarnceId,customerId);}
    //
-
+   @GetMapping("/authorized")
+   public List<InsuranceDto> retrieveAuthorizedInsurances() {
+       return sellGroupList.retrieveAuthorizedInsurances();
+   }
     @GetMapping("/campaignProgram")
     public CampaignProgramDto choiceCampaignProgram(@RequestParam int id) {return sellGroupList.choiceCampaignProgram(id);}
     @GetMapping ("/userPersonas")

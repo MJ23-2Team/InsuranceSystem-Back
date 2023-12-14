@@ -1,13 +1,11 @@
 package server.app.insurance.user.customer.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import server.app.insurance.user.customer.state.UserState;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequset {

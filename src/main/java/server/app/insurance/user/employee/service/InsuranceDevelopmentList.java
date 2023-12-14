@@ -102,13 +102,6 @@ public class InsuranceDevelopmentList {
                 .collect(Collectors.toList());
     }
 
-    public List<InsuranceDto> retrieveAuthorizedInsurances() {
-        return insuranceRepository.findAll()
-                .stream().map( InsuranceDto::of )
-                .filter(insurance -> insurance.getInsuranceState() == InsuranceState.AUTHORIZED)
-                .collect(Collectors.toList());
-    }
-
     public InsuranceDto retrieveByInsuranceID(int insuranceID) {
         return InsuranceDto.of(insuranceRepository.findById(insuranceID).get());
     }

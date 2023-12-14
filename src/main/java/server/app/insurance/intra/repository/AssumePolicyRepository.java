@@ -6,4 +6,5 @@ import server.app.insurance.intra.entity.AssumePolicy;
 
 @Repository
 public interface AssumePolicyRepository extends JpaRepository<AssumePolicy,Integer> {
+    AssumePolicy findByName(String test);
 }

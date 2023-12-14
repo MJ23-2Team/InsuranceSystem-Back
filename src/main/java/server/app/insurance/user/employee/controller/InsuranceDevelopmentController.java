@@ -60,10 +60,7 @@ public class InsuranceDevelopmentController {
     public List<InsuranceDto> retrieveDesignedInsurances() {
         return insuranceDevelopmentList.retrieveDesignedInsurances();
     }
-    @GetMapping("/authorized")
-    public List<InsuranceDto> retrieveAuthorizedInsurances() {
-        return insuranceDevelopmentList.retrieveAuthorizedInsurances();
-    }
+
     @GetMapping("/insurance")
     public InsuranceDto retrieveByInsuranceID(@RequestParam int id) {return insuranceDevelopmentList.retrieveByInsuranceID(id);}
 }

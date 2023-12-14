@@ -138,4 +138,11 @@ public class SellGroupList {
         return customerCounselingResponse.getCustomerID();
     }
 
+    public List<InsuranceDto> retrieveAuthorizedInsurances() {
+        return insuranceRepository.findAll()
+                .stream().map( InsuranceDto::of )
+                .filter(insurance -> insurance.getInsuranceState() == InsuranceState.AUTHORIZED)
+                .collect(Collectors.toList());
+    }
+
 }
