@@ -4,10 +4,15 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import server.app.insurance.common.util.Constants;
+import server.app.insurance.user.customer.dto.CustomerDto;
+import server.app.insurance.user.customer.repository.CustomerRepository;
 import server.app.insurance.user.employee.dto.ContractDto;
+import server.app.insurance.user.employee.dto.InsuranceDto;
 import server.app.insurance.user.employee.dto.RewardDto;
+import server.app.insurance.user.employee.entity.Contract;
 import server.app.insurance.user.employee.entity.Reward;
 import server.app.insurance.user.employee.repository.ContractRepository;
+import server.app.insurance.user.employee.repository.InsuranceRepository;
 import server.app.insurance.user.employee.repository.RewardRepository;
 
 import java.util.ArrayList;
@@ -20,9 +25,28 @@ import java.util.stream.Collectors;
 public class RewardList {
     private final RewardRepository rewardRepository;
     private final ContractRepository contractRepository;
+    private final CustomerRepository customerRepository;
+    private final InsuranceRepository insuranceRepository;
 
     public void createReward( RewardDto request ){
-        rewardRepository.save( Reward.of( request ) );
+        RewardDto saveData = new RewardDto();
+        saveData.setContractID( request.getContractID() );
+        saveData.setAppliResult( Constants.Result.PROCESS );
+        saveData.setRewardAmount( request.getRewardAmount() );
+        saveData.setAccidentProfile( request.getAccidentProfile() );
+        ContractDto contractDto = ContractDto.of( contractRepository.findById( request.getContractID() ).get() );
+        int customerID = contractDto.getCustomerID();
+        int insuranceID = contractDto.getInsuranceID();
+        CustomerDto customerDto = CustomerDto.of( customerRepository.findById( customerID).get() );
+        InsuranceDto insuranceDto = InsuranceDto.of( insuranceRepository.findById( insuranceID ).get() );
+        saveData.setRewardAmount( insuranceDto.getRewardAmount() );
+        saveData.setCustomerName( customerDto.getName() );
+        saveData.setContent( request.getContent() );
+        saveData.setIdentifyProfile( request.getIdentifyProfile() );
+
+        Contract contract = contractRepository.findById( request.getContractID() ).get();
+
+        rewardRepository.save( Reward.allOf( saveData, contract ) );
     }
 
     public RewardDto retrieveReward( int id ){
