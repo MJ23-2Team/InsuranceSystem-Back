@@ -48,7 +48,6 @@ public class CampaignProgram {
                 .place(campaignProgramDto.getPlace())
                 .campaignWay(campaignProgramDto.getCampaignWay())
                 .state(campaignProgramDto.getState())
-                .END_RESULT(campaignProgramDto.getEndResult())
                 .outTeam(OUT_TEAM)
                 .build();
     }
