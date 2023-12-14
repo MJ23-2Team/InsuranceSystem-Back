@@ -18,6 +18,7 @@ import server.app.insurance.user.employee.state.InsuranceType;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(classes = InsuranceApplication.class)
 public class CustomerControllerTest {
@@ -37,7 +38,7 @@ public class CustomerControllerTest {
     @Autowired
     ContractRepository contractRepository;
 
-    @BeforeEach
+//    @BeforeEach
     void setUp() {
         customerRepository.deleteAll();
         insuranceRepository.deleteAll();
@@ -46,21 +47,16 @@ public class CustomerControllerTest {
 
     @Test
     void registerInsuranceTest() {
-//        Customer testCustomer = new Customer(1, "test", "test", 24, Constants.Gender.MALE, "student", "woo",
-//                "000-0000-0000", "12345", 4, "111111", "1234");
-        Customer testCustomer = Customer.builder().name("test").sex(Constants.Gender.MALE).incomeLevel(4).build();
-        Insurance testInsurance = Insurance.builder()
-                .insuranceName("insuranceTest")
-                .insuranceState(InsuranceState.AUTHORIZED)
-                .insuranceType(InsuranceType.FIRE)
-                .payment(1111)
-                .rate(1)
-                .build();
 
-        customerRepository.save(testCustomer);
-        insuranceRepository.save(testInsurance);
+        int customerID = 1234;
+        int insuranceID = 7;
 
-        customerList.registerInsurance(testCustomer.getCustomerID(), testInsurance.getInsuranceID());
-        assertThat(contractList.retrieveContract(1)).isNotNull();
+        customerList.registerInsurance(customerID, insuranceID);
+        assertThat(contractList.retrieveContract(3)).isNotNull();
+
+        int customerid = 5678;
+        customerList.registerInsurance(customerid, insuranceID);
+        assertThat(contractList.retrieveContract(4)).isNotNull();
     }
+
 }

@@ -12,17 +12,25 @@ import server.app.insurance.intra.entity.AssumePolicy;
 import server.app.insurance.intra.repository.AssumePolicyRepository;
 import server.app.insurance.intra.service.UnderWritingList;
 import server.app.insurance.intra.state.PolicyType;
+import server.app.insurance.user.employee.dto.ContractDto;
+import server.app.insurance.user.employee.service.ContractList;
+import server.app.insurance.user.employee.state.ContractRunState;
+import server.app.insurance.user.employee.state.ContractUWState;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(classes = InsuranceApplication.class)
 class UnderWritingControllerTest {
 
     @Autowired
     UnderWritingList testList;
+
+    @Autowired
+    ContractList contractList;
 
     @Autowired
     AssumePolicyRepository assumePolicyRepository;
@@ -43,18 +51,32 @@ class UnderWritingControllerTest {
 
     @Test
     void retrieveBasicContract() {
+//        List<ContractDto> testList = contractList.retrieveBasicContract();
+//        for(ContractDto test: testList) {
+//            assertThat(test.getContractUWState()).isEqualTo(ContractUWState.BASIC);
+//        }
     }
 
     @Test
     void doBasicUnderWriting() {
+        contractList.doCollaborativeUnderWriting(4);
+        ContractDto contractDto = contractList.retrieveContract(4);
+        assertThat(contractDto.getContractRunState().equals(ContractRunState.FINISH));
     }
 
     @Test
     void retrieveCollaborativeContract() {
+//        List<ContractDto> testList = contractList.retrieveCollaborativeContract();
+//        for(ContractDto test: testList) {
+//            assertTrue(test.getContractUWState().getString().equals("COLLABORATIVE"));
+//        }
     }
 
     @Test
     void doCollaborativeUnderWriting() {
+        contractList.doCollaborativeUnderWriting(3);
+        ContractDto contractDto = contractList.retrieveContract(3);
+        assertThat(contractDto.getContractRunState().equals(ContractRunState.FINISH));
     }
 
     // DB랑 연동되어 있기 때문에 테스트 시 DB 초기화 먼저
@@ -69,6 +91,5 @@ class UnderWritingControllerTest {
         testList.createUWPolicy(testRequest2);
         List<AssumePolicyRetrieveResponse> testResponse = testList.retrieveAll();
         assertThat(testResponse.size()).isEqualTo(2);
-
     }
 }

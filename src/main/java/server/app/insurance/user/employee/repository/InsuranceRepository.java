@@ -9,5 +9,4 @@ import java.util.List;
 @Repository
 public interface InsuranceRepository extends JpaRepository<Insurance,Integer> {
 
-    Insurance findByReport(String planReport);
 }
