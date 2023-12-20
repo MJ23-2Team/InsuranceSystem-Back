@@ -8,7 +8,7 @@
 Backend  : Java 17, Spring boot 3.1.4
 Frontend : React ^18.2.0
 AWS Sever : EC2 Ubuntu
-DBMS : MySQL(RDS)
+DBMS : MySQL(RDS)+Redis
 ```
 ![image](https://github.com/MJ23-2Team/InsuranceSystem-Front/assets/62841992/660a92af-35f8-4b17-a8fa-ded458ffab41)
 
