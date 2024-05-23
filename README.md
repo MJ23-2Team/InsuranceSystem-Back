@@ -6,7 +6,7 @@
 ### 개발 환경
 ```
 Backend  : Java 17, Spring boot 3.1.4
-Frontend : React ^18.2.0
+Frontend : React 18.2.0
 AWS Sever : EC2 Ubuntu
 DBMS : MySQL(RDS)+Redis
 ```
