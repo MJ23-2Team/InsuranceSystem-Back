@@ -23,7 +23,6 @@ DBMS : MySQL(RDS)+Redis
 
 
 # 참고 자료
-기능 요구사항 분석 보고서
-[분산 프로그래밍 중간 보고서.pdf](https://github.com/wodnd0131/InsuranceSystem/files/12530592/default.pdf)
+[기능 요구사항 분석 보고서](https://github.com/MJ23-2Team/InsuranceSystem-Back/wiki)
 
 
